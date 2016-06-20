@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hello">Hello World, Click Me!</string>
+	<string name="app_name">Project 4</string>
+	<string name="v1">Vraag 1</string>
+	<string name="v2">Vraag 2</string>
+	<string name="v3">Vraag 3</string>
+	<string name="v4">Vraag 4</string>
+	<string name="v5">Vraag 5</string>
+	<string name="v6">Vraag 6</string>
+</resources>
