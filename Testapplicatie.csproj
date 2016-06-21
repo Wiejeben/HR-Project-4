@@ -65,6 +65,7 @@
     <Compile Include="Question4.cs" />
     <Compile Include="Question5.cs" />
     <Compile Include="Question6.cs" />
+    <Compile Include="Classes\Helpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
