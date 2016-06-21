@@ -1636,6 +1636,9 @@ namespace Testapplicatie
 			// aapt resource value: 0x7f0c003b
 			public const int radio = 2131492923;
 			
+			// aapt resource value: 0x7f0c0063
+			public const int returnButton = 2131492963;
+			
 			// aapt resource value: 0x7f0c0015
 			public const int screen = 2131492885;
 			
@@ -1894,16 +1897,22 @@ namespace Testapplicatie
 			public const int notification_template_part_time = 2130968609;
 			
 			// aapt resource value: 0x7f040022
-			public const int select_dialog_item_material = 2130968610;
+			public const int Question_One = 2130968610;
 			
 			// aapt resource value: 0x7f040023
-			public const int select_dialog_multichoice_material = 2130968611;
+			public const int Question_Two = 2130968611;
 			
 			// aapt resource value: 0x7f040024
-			public const int select_dialog_singlechoice_material = 2130968612;
+			public const int select_dialog_item_material = 2130968612;
 			
 			// aapt resource value: 0x7f040025
-			public const int support_simple_spinner_dropdown_item = 2130968613;
+			public const int select_dialog_multichoice_material = 2130968613;
+			
+			// aapt resource value: 0x7f040026
+			public const int select_dialog_singlechoice_material = 2130968614;
+			
+			// aapt resource value: 0x7f040027
+			public const int support_simple_spinner_dropdown_item = 2130968615;
 			
 			static Layout()
 			{
@@ -1996,6 +2005,9 @@ namespace Testapplicatie
 			
 			// aapt resource value: 0x7f060014
 			public const int hello = 2131099668;
+			
+			// aapt resource value: 0x7f06001c
+			public const int returnLabel = 2131099676;
 			
 			// aapt resource value: 0x7f060013
 			public const int status_bar_notification_info_overflow = 2131099667;
