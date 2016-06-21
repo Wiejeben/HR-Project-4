@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace Testapplicatie
 {
-	[Activity(Label = "Question2")]
+	[Activity(Label = "@string/v2")]
 	public class Question2 : Activity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)

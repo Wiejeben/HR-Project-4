@@ -61,6 +61,10 @@
     <Compile Include="Question1.cs" />
     <Compile Include="Question2.cs" />
     <Compile Include="Classes\Router.cs" />
+    <Compile Include="Question3.cs" />
+    <Compile Include="Question4.cs" />
+    <Compile Include="Question5.cs" />
+    <Compile Include="Question6.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

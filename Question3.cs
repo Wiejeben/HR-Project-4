@@ -1,7 +1,9 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -11,22 +13,17 @@ using Android.Widget;
 
 namespace Testapplicatie
 {
-	public class Router : Activity
+	[Activity(Label = "@string/v3")]
+	public class Question3 : Activity
 	{
-		public Router()
-		{
-			
-		}
+		Router router = new Router();
 
-		public void getView(Context old, Type viewActivity)
+		protected override void OnCreate(Bundle bundle)
 		{
-			//Intent it = new Intent(old, viewActivity);
-			//StartActivity(it);
-			//StartActivity(viewActivity);
-		}
+			base.OnCreate(bundle);
+			// Set layout view.
+			SetContentView(Resource.Layout.Question_One);
 
-		public void initializeView()
-		{
 			// Button & eventhandler.
 			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
 			returnButton.Click += delegate
@@ -37,15 +34,6 @@ namespace Testapplicatie
 				Finish();
 			};
 		}
-
-		public void closeView()
-		{
-			// Swap to the right activity.
-			StartActivity(typeof(MainActivity));
-			// Close the current layout.
-			Finish();
-		}
-
 	}
 }
 
