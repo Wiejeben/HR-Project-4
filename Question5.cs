@@ -21,7 +21,6 @@ namespace Testapplicatie
 	[Activity(Label = "@string/v5")]
 	public class Question5 : Activity
 	{
-		Router router = new Router();
 
         private PlotModel CreatePlotModel()
         {

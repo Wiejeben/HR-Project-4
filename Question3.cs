@@ -7,18 +7,62 @@ using System.Text;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Renderscripts;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+
+using OxyPlot;
+using OxyPlot.Axes;
+using OxyPlot.Series;
+using OxyPlot.Xamarin.Android;
 
 namespace Testapplicatie
 {
 	[Activity(Label = "@string/v3")]
 	public class Question3 : Activity
 	{
-		Router router = new Router();
 
-		protected override void OnCreate(Bundle bundle)
+        private PlotModel CreatePlotModel()
+        {
+            var plotModel = new PlotModel { Title = "Pie Sample1" };
+            
+            var categoryAxis = new CategoryAxis { Position = AxisPosition.Left };
+            categoryAxis.Labels.Add("Category A");
+            categoryAxis.Labels.Add("Category B");
+            categoryAxis.Labels.Add("Category C");
+            categoryAxis.Labels.Add("Category D");
+            categoryAxis.Labels.Add("Category E");
+
+            var rand = new Random();
+            double[] cakePopularity = new double[5];
+            for (int i = 0; i < 5; ++i)
+            {
+                cakePopularity[i] = rand.NextDouble();
+            }
+            var sum = cakePopularity.Sum();
+
+            var series1 = new BarSeries
+            {
+                ItemsSource = new List<BarItem>(new[]
+                {
+                    new BarItem{ Value = (cakePopularity[0] / sum * 100) },
+                    new BarItem{ Value = (cakePopularity[1] / sum * 100) },
+                    new BarItem{ Value = (cakePopularity[2] / sum * 100) },
+                    new BarItem{ Value = (cakePopularity[3] / sum * 100) },
+                    new BarItem{ Value = (cakePopularity[4] / sum * 100) }
+                 }),
+                LabelPlacement = LabelPlacement.Inside,
+                LabelFormatString = "{0:.00}%"
+            };
+
+            plotModel.Series.Add(series1);
+            plotModel.Axes.Add(categoryAxis);
+
+            return plotModel;
+        }
+
+        protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
 			// Set layout view.
@@ -33,7 +77,13 @@ namespace Testapplicatie
 				// Close the current layout.
 				Finish();
 			};
-		}
+
+            var plotView = new PlotView(this);
+            plotView.Model = CreatePlotModel();
+
+            this.AddContentView(plotView,
+                new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
+        }
 	}
 }
 
