@@ -40,17 +40,17 @@ namespace Testapplicatie
 			Button fifthQuestion = FindViewById<Button>(Resource.Id.buttonVraag5);
 			Button sixthQuestion = FindViewById<Button>(Resource.Id.buttonVraag6);
 
+            Menu Menu = new Menu(this);
 
 			firstQuestion.Click += delegate{
-				// Swap to the right activity.
-				StartActivity(typeof(Question1));
+                Menu.QuestionOne();
 			};
 
-			secondQuestion.Click += delegate
+			/*secondQuestion.Click += delegate
 			{
 				// Swap to the right activity.
 				StartActivity(typeof(Question2));
-			};
+			};*/
 
 			thirdQuestion.Click += delegate
 			{
