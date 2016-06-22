@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
+using System.Linq;
+using System.Text;
 using Android.App;
 using Android.OS;
 using Android.Gms.Location;
@@ -7,6 +10,8 @@ using Android.Gms.Common.Apis;
 using Android.Util;
 using Android.Widget;
 using Android.Locations;
+using System.Collections.Generic;
+
 
 namespace Testapplicatie
 {
@@ -20,10 +25,12 @@ namespace Testapplicatie
 		TextView latitude;
 		TextView longitude;
 		TextView provider;
+		TextView locationName;
 		Button button2;
 		TextView latitude2;
 		TextView longitude2;
 		TextView provider2;
+		Location _currentLocation;
 
 		bool _isGooglePlayServicesInstalled;
 
@@ -42,6 +49,7 @@ namespace Testapplicatie
 			latitude = FindViewById<TextView>(Resource.Id.latitude);
 			longitude = FindViewById<TextView>(Resource.Id.longitude);
 			provider = FindViewById<TextView>(Resource.Id.provider);
+			locationName = FindViewById<TextView>(Resource.Id.locationName);
 
 			// UI to print location updates
 			button2 = FindViewById<Button>(Resource.Id.myButton2);
@@ -96,7 +104,7 @@ namespace Testapplicatie
 			apiClient.Connect();
 
 			// Clicking the first button will make a one-time call to get the user's last location
-			button.Click += delegate
+			button.Click += async delegate
 			{
 				if (apiClient.IsConnected)
 				{
@@ -108,6 +116,16 @@ namespace Testapplicatie
 						latitude.Text = "Latitude: " + location.Latitude.ToString();
 						longitude.Text = "Longitude: " + location.Longitude.ToString();
 						provider.Text = "Provider: " + location.Provider.ToString();
+
+						if (_currentLocation == null)
+						{
+							locationName.Text = "Can't determine the current address. Try again in a few minutes.";
+							return;
+						}
+
+						Address address = await ReverseGeocodeCurrentLocation();
+						DisplayAddress(address);
+
 						Log.Debug("LocationClient", "Last location printed");
 					}
 				}
@@ -163,6 +181,36 @@ namespace Testapplicatie
 		}
 
 
+		async Task<Address> ReverseGeocodeCurrentLocation()
+		{
+			Geocoder geocoder = new Geocoder(this);
+			IList<Address> addressList =
+				await geocoder.GetFromLocationAsync(_currentLocation.Latitude, _currentLocation.Longitude, 10);
+
+			Address address = addressList.FirstOrDefault();
+			return address;
+		}
+
+		void DisplayAddress(Address address)
+		{
+			if (address != null)
+			{
+				StringBuilder deviceAddress = new StringBuilder();
+				for (int i = 0; i < address.MaxAddressLineIndex; i++)
+				{
+					deviceAddress.AppendLine(address.GetAddressLine(i));
+				}
+				// Remove the last comma from the end of the address.
+				locationName.Text = deviceAddress.ToString();
+			}
+			else
+			{
+				locationName.Text = "Unable to determine the address. Try again in a few minutes.";
+			}
+		}
+	
+
+
 		////Interface methods
 
 		public void OnConnected(Bundle bundle)
@@ -201,6 +249,7 @@ namespace Testapplicatie
 			latitude2.Text = "Latitude: " + location.Latitude.ToString();
 			longitude2.Text = "Longitude: " + location.Longitude.ToString();
 			provider2.Text = "Provider: " + location.Provider.ToString();
+			_currentLocation = location;
 		}
 
 		public void OnConnectionSuspended(int i)

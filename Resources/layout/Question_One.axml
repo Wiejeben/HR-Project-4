@@ -23,6 +23,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/provider" />
+	 <TextView
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/locationName" />
     <Button
         android:text="Request Location Updates"
         android:layout_width="match_parent"
