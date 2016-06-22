@@ -75,6 +75,8 @@
     <Compile Include="Question4.cs" />
     <Compile Include="Question5.cs" />
     <Compile Include="Question6.cs" />
+    <Compile Include="Helpers\GooglePlayService.cs" />
+    <Compile Include="Helpers\LocationInformation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -97,6 +99,7 @@
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
     <Folder Include="Classes\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
