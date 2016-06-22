@@ -7,6 +7,7 @@ namespace Testapplicatie
 {
 	public static class GooglePlayService
 	{
+		// Example call: if (GooglePlayService.IsGooglePlayServicesInstalled(this))
 		public static bool IsGooglePlayServicesInstalled(Android.Content.Context par1)
 		{
 			int queryResult = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(par1);
@@ -27,4 +28,3 @@ namespace Testapplicatie
 		}
 	}
 }
-

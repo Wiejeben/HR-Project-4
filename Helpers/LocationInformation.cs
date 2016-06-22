@@ -2,13 +2,6 @@
 using System.Threading.Tasks;
 using System.Linq;
 using System.Text;
-using Android.App;
-using Android.OS;
-using Android.Gms.Location;
-using Android.Gms.Common;
-using Android.Gms.Common.Apis;
-using Android.Util;
-using Android.Widget;
 using Android.Locations;
 using System.Collections.Generic;
 
@@ -16,6 +9,7 @@ namespace Testapplicatie
 {
 	public static class LocationInformation
 	{
+		// Example call: Address address = await LocationInformation.ReverseGeocodeCurrentLocation(this, location);
 		public static async Task<Address> ReverseGeocodeCurrentLocation(Android.Content.Context par1, Location location)
 		{
 			Geocoder geocoder = new Geocoder(par1);
@@ -24,6 +18,7 @@ namespace Testapplicatie
 			return address;
 		}
 
+		// Example call locationName.Text = LocationInformation.DisplayAddress(address);
 		public static string DisplayAddress(Address address)
 		{
 			if (address != null)
@@ -43,4 +38,3 @@ namespace Testapplicatie
 		}
 	}
 }
-

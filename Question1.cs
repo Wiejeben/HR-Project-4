@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
-using System.Linq;
-using System.Text;
 using Android.App;
 using Android.OS;
 using Android.Gms.Location;
@@ -10,7 +7,10 @@ using Android.Gms.Common.Apis;
 using Android.Util;
 using Android.Widget;
 using Android.Locations;
-using System.Collections.Generic;
+using Android.Content;
+using Android.Gms.Maps;
+using Android.Gms.Maps.Model;
+
 
 
 namespace Testapplicatie
@@ -25,6 +25,8 @@ namespace Testapplicatie
 		TextView longitude;
 		TextView provider;
 		TextView locationName;
+		Location location;
+	 	MapFragment _mapFragment;
 
 		////Lifecycle methods
 		protected override void OnCreate(Bundle bundle)
@@ -41,6 +43,7 @@ namespace Testapplicatie
 			provider = FindViewById<TextView>(Resource.Id.provider);
 			locationName = FindViewById<TextView>(Resource.Id.locationName);
 
+			InitMapFragment();
 		
 			// Button & eventhandler.
 			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
@@ -50,6 +53,21 @@ namespace Testapplicatie
 				StartActivity(typeof(MainActivity));
 				// Close the current layout.
 				Finish();
+			};
+
+			// Show location on the map
+			Button showLocationOnMap = FindViewById<Button>(Resource.Id.showLocationOnMap);
+			showLocationOnMap.Click += delegate {
+				if (location == null)
+				{
+					Log.Error("OnShowLocationOnMapButtonClick", "No location has been found to display on the map");
+					Toast.MakeText(this, "No location has been found.", ToastLength.Long).Show();
+				}
+				else {
+					var geoUri = Android.Net.Uri.Parse("geo:" + location.Latitude + "," + location.Longitude);
+					var mapIntent = new Intent(Intent.ActionView, geoUri);
+					StartActivity(mapIntent);
+				}
 			};
 
 			if (GooglePlayService.IsGooglePlayServicesInstalled(this))
@@ -154,7 +172,7 @@ namespace Testapplicatie
 
 		public async void OnLocationChanged(Location location)
 		{
-			// This method returns changes in the user's location if they've been requested
+			// This method display changes in the user's location if they've been requested
 
 			// You must implement this to implement the Android.Gms.Locations.ILocationListener Interface
 			Log.Debug("LocationClient", "Location updated");
@@ -163,10 +181,29 @@ namespace Testapplicatie
 			longitude.Text = "Longitude: " + location.Longitude.ToString();
 			provider.Text = "Provider: " + location.Provider.ToString();
 
+			this.location = location;
 			Address address = await LocationInformation.ReverseGeocodeCurrentLocation(this, location);
 			locationName.Text = LocationInformation.DisplayAddress(address);
 		}
 
 		public void OnConnectionSuspended(int i){}
+
+
+		private void InitMapFragment()
+		{
+			_mapFragment = FragmentManager.FindFragmentByTag("map") as MapFragment;
+			if (_mapFragment == null)
+			{
+				GoogleMapOptions mapOptions = new GoogleMapOptions()
+					.InvokeMapType(GoogleMap.MapTypeSatellite)
+					.InvokeZoomControlsEnabled(false)
+					.InvokeCompassEnabled(true);
+
+				FragmentTransaction fragTx = FragmentManager.BeginTransaction();
+				_mapFragment = MapFragment.NewInstance(mapOptions);
+				fragTx.Add(Resource.Id.map, _mapFragment, "map");
+				fragTx.Commit();
+			}
+		}
 	}
 }

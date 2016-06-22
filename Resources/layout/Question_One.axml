@@ -28,4 +28,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/returnButton" />
+	<Button
+        android:text="Show location on map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/showLocationOnMap" />
+    <FrameLayout
+        android:id="@+id/map"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
 </LinearLayout>
