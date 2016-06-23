@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="MainMenu.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question1.cs" />
@@ -79,8 +80,37 @@
     <Compile Include="Helpers\LocationInformation.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages\OxyPlot.Core.2015.1.744-alpha\AUTHORS" />
+    <None Include="packages\OxyPlot.Core.2015.1.744-alpha\CONTRIBUTORS" />
+    <None Include="packages\OxyPlot.Core.2015.1.744-alpha\LICENSE" />
+    <None Include="packages\OxyPlot.Core.2015.1.744-alpha\OxyPlot.Core.2015.1.744-alpha.nupkg" />
+    <None Include="packages\OxyPlot.Core.2015.1.744-alpha\README.md" />
+    <None Include="packages\OxyPlot.Mobile.2015.1.744-alpha\AUTHORS" />
+    <None Include="packages\OxyPlot.Mobile.2015.1.744-alpha\CHANGELOG.md" />
+    <None Include="packages\OxyPlot.Mobile.2015.1.744-alpha\CONTRIBUTORS" />
+    <None Include="packages\OxyPlot.Mobile.2015.1.744-alpha\lib\portable-windows8+wpa81\OxyPlot.WindowsUniversal.pri" />
+    <None Include="packages\OxyPlot.Mobile.2015.1.744-alpha\lib\portable-windows8+wpa81\Themes\Generic.xbf" />
+    <None Include="packages\OxyPlot.Mobile.2015.1.744-alpha\LICENSE" />
+    <None Include="packages\OxyPlot.Mobile.2015.1.744-alpha\OxyPlot.Mobile.2015.1.744-alpha.nupkg" />
+    <None Include="packages\OxyPlot.Mobile.2015.1.744-alpha\README.md" />
+    <None Include="packages\Xamarin.Android.Support.Animated.Vector.Drawable.23.3.0\Xamarin.Android.Support.Animated.Vector.Drawable.23.3.0.nupkg" />
+    <None Include="packages\Xamarin.Android.Support.Animated.Vector.Drawable.23.4.0\Xamarin.Android.Support.Animated.Vector.Drawable.23.4.0.nupkg" />
+    <None Include="packages\Xamarin.Android.Support.v4.23.3.0\Xamarin.Android.Support.v4.23.3.0.nupkg" />
+    <None Include="packages\Xamarin.Android.Support.v4.23.4.0\Xamarin.Android.Support.v4.23.4.0.nupkg" />
+    <None Include="packages\Xamarin.Android.Support.v7.AppCompat.23.3.0\Xamarin.Android.Support.v7.AppCompat.23.3.0.nupkg" />
+    <None Include="packages\Xamarin.Android.Support.v7.AppCompat.23.4.0\Xamarin.Android.Support.v7.AppCompat.23.4.0.nupkg" />
+    <None Include="packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" />
+    <None Include="packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\Xamarin.Android.Support.Vector.Drawable.23.3.0.nupkg" />
+    <None Include="packages\Xamarin.Android.Support.Vector.Drawable.23.4.0\Xamarin.Android.Support.Vector.Drawable.23.4.0.nupkg" />
+    <None Include="packages\Xamarin.GooglePlayServices.Base.29.0.0.2\Xamarin.GooglePlayServices.Base.29.0.0.2.nupkg" />
+    <None Include="packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets" />
+    <None Include="packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\Xamarin.GooglePlayServices.Basement.29.0.0.2.nupkg" />
+    <None Include="packages\Xamarin.GooglePlayServices.Location.29.0.0.2\Xamarin.GooglePlayServices.Location.29.0.0.2.nupkg" />
+    <None Include="packages\Xamarin.GooglePlayServices.Maps.29.0.0.2\Xamarin.GooglePlayServices.Maps.29.0.0.2.nupkg" />
     <None Include="Resources\AboutResources.txt" />
-    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="Properties\AndroidManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -98,8 +128,49 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
-    <Folder Include="Classes\" />
-    <Folder Include="Helpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages\OxyPlot.Core.2015.1.744-alpha\lib\net40-client\OxyPlot.dll" />
+    <Content Include="packages\OxyPlot.Core.2015.1.744-alpha\lib\net40-client\OxyPlot.pdb" />
+    <Content Include="packages\OxyPlot.Core.2015.1.744-alpha\lib\net40-client\OxyPlot.XML" />
+    <Content Include="packages\OxyPlot.Core.2015.1.744-alpha\lib\net40\OxyPlot.dll" />
+    <Content Include="packages\OxyPlot.Core.2015.1.744-alpha\lib\net40\OxyPlot.pdb" />
+    <Content Include="packages\OxyPlot.Core.2015.1.744-alpha\lib\net40\OxyPlot.XML" />
+    <Content Include="packages\OxyPlot.Core.2015.1.744-alpha\lib\net45\OxyPlot.dll" />
+    <Content Include="packages\OxyPlot.Core.2015.1.744-alpha\lib\net45\OxyPlot.pdb" />
+    <Content Include="packages\OxyPlot.Core.2015.1.744-alpha\lib\net45\OxyPlot.xml" />
+    <Content Include="packages\OxyPlot.Core.2015.1.744-alpha\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10\OxyPlot.dll" />
+    <Content Include="packages\OxyPlot.Core.2015.1.744-alpha\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10\OxyPlot.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="packages\OxyPlot.Core.2015.1.744-alpha\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10\OxyPlot.pdb" />
+    <Content Include="packages\OxyPlot.Core.2015.1.744-alpha\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10\OxyPlot.xml" />
+    <Content Include="packages\OxyPlot.Mobile.2015.1.744-alpha\lib\MonoAndroid\OxyPlot.Xamarin.Android.dll" />
+    <Content Include="packages\OxyPlot.Mobile.2015.1.744-alpha\lib\MonoAndroid\OxyPlot.Xamarin.Android.xml" />
+    <Content Include="packages\OxyPlot.Mobile.2015.1.744-alpha\lib\MonoTouch\OxyPlot.MonoTouch.dll" />
+    <Content Include="packages\OxyPlot.Mobile.2015.1.744-alpha\lib\MonoTouch\OxyPlot.MonoTouch.xml" />
+    <Content Include="packages\OxyPlot.Mobile.2015.1.744-alpha\lib\portable-windows8+wpa81\OxyPlot.WindowsUniversal.dll" />
+    <Content Include="packages\OxyPlot.Mobile.2015.1.744-alpha\lib\portable-windows8+wpa81\OxyPlot.WindowsUniversal.pdb" />
+    <Content Include="packages\OxyPlot.Mobile.2015.1.744-alpha\lib\portable-windows8+wpa81\OxyPlot.WindowsUniversal.xml" />
+    <Content Include="packages\OxyPlot.Mobile.2015.1.744-alpha\lib\portable-windows8+wpa81\OxyPlot.WindowsUniversal.xr.xml" />
+    <Content Include="packages\OxyPlot.Mobile.2015.1.744-alpha\lib\windowsphone8\OxyPlot.WP8.dll" />
+    <Content Include="packages\OxyPlot.Mobile.2015.1.744-alpha\lib\windowsphone8\OxyPlot.WP8.pdb" />
+    <Content Include="packages\OxyPlot.Mobile.2015.1.744-alpha\lib\windowsphone8\OxyPlot.WP8.xml" />
+    <Content Include="packages\OxyPlot.Mobile.2015.1.744-alpha\lib\Xamarin.iOS10\OxyPlot.Xamarin.iOS.dll" />
+    <Content Include="packages\OxyPlot.Mobile.2015.1.744-alpha\lib\Xamarin.iOS10\OxyPlot.Xamarin.iOS.xml" />
+    <Content Include="packages\Xamarin.Android.Support.Animated.Vector.Drawable.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.Animated.Vector.Drawable.dll" />
+    <Content Include="packages\Xamarin.Android.Support.Animated.Vector.Drawable.23.4.0\lib\MonoAndroid403\Xamarin.Android.Support.Animated.Vector.Drawable.dll" />
+    <Content Include="packages\Xamarin.Android.Support.v4.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll" />
+    <Content Include="packages\Xamarin.Android.Support.v4.23.4.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll" />
+    <Content Include="packages\Xamarin.Android.Support.v7.AppCompat.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll" />
+    <Content Include="packages\Xamarin.Android.Support.v7.AppCompat.23.4.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll" />
+    <Content Include="packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Tasks.VectorDrawable.dll" />
+    <Content Include="packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.Vector.Drawable.dll" />
+    <Content Include="packages\Xamarin.Android.Support.Vector.Drawable.23.4.0\lib\MonoAndroid403\Xamarin.Android.Support.Vector.Drawable.dll" />
+    <Content Include="packages\Xamarin.GooglePlayServices.Base.29.0.0.2\lib\MonoAndroid41\Xamarin.GooglePlayServices.Base.dll" />
+    <Content Include="packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\lib\MonoAndroid41\Xamarin.GooglePlayServices.Basement.dll" />
+    <Content Include="packages\Xamarin.GooglePlayServices.Location.29.0.0.2\lib\MonoAndroid41\Xamarin.GooglePlayServices.Location.dll" />
+    <Content Include="packages\Xamarin.GooglePlayServices.Maps.29.0.0.2\lib\MonoAndroid41\Xamarin.GooglePlayServices.Maps.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets" Condition="Exists('packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets')" />
