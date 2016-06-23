@@ -15,7 +15,7 @@ namespace ImportBicycleInfo
             List<BikeTheft> bikeThefts = bikeTheftParser.ParseBikeTheft();
 
             CsvParser bikeContainerParser = new CsvParser("BikeContainers", 1);
-            List<BikeContainer> bikeContainers = bikeTheftParser.ParseBikeContainer();
+            List<BikeContainer> bikeContainers = bikeContainerParser.ParseBikeContainer();
 
             Console.Write("");
 
@@ -23,12 +23,11 @@ namespace ImportBicycleInfo
             SQLiteConnection.CreateFile("Database.sqlite");
 
             // Connect
-            SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=Database.sqlite;Version=3;");
-            m_dbConnection.Open();
+            SQLiteConnection dbConnection = new SQLiteConnection("Data Source=Database.sqlite;Version=3;");
+            dbConnection.Open();
 
-            //string sql = "CREATE TABLE highscores (name VARCHAR(20), score INT)";
-            //SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
-            //command.ExecuteNonQuery();
+            SQLiteCommand command = new SQLiteCommand(Resource.sql_init, dbConnection);
+            command.ExecuteNonQuery();
 
             //sql = "insert into highscores (name, score) values ('Me', 3000)";
             //command = new SQLiteCommand(sql, m_dbConnection);
@@ -40,13 +39,13 @@ namespace ImportBicycleInfo
             //command = new SQLiteCommand(sql, m_dbConnection);
             //command.ExecuteNonQuery();
 
-            var sql = "select * from highscores order by score desc";
-            var command = new SQLiteCommand(sql, m_dbConnection);
-            SQLiteDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                Console.WriteLine("Name: " + reader["name"] + "\tScore: " + reader["score"]);
-            }
+            //var sql = "select * from bikecontainers order by score desc";
+            //command = new SQLiteCommand(sql, dbConnection);
+            //SQLiteDataReader reader = command.ExecuteReader();
+            //while (reader.Read())
+            //{
+            //    Console.WriteLine("Name: " + reader["name"] + "\tScore: " + reader["score"]);
+            //}
         }
     }
 }

@@ -15,11 +15,6 @@ namespace ImportBicycleInfo
         public string Brand;
         public DateTime DateTime;
         public string District;
-        
-        public BikeTheft()
-        {
-
-        }
 
         public BikeTheft(string ID, string district, string brand, string color, DateTime dateTime)
         {
@@ -39,7 +34,7 @@ namespace ImportBicycleInfo
             string brand = row[22];
             string dateTime = row[11];
 
-            if (dateTime == "")
+            if (dateTime == "" || ID == "")
             {
                 return false;
             }
