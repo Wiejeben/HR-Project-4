@@ -17,7 +17,7 @@ namespace Testapplicatie
 {
 	[Activity(Label = "@string/v1")]
 	public class Question1 : Activity, GoogleApiClient.IConnectionCallbacks,
-		GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener
+		GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener, IOnMapReadyCallback
 	{
 		GoogleApiClient apiClient;
 		LocationRequest locRequest;
@@ -26,7 +26,9 @@ namespace Testapplicatie
 		TextView provider;
 		TextView locationName;
 		Location location;
-	 	MapFragment _mapFragment;
+	 	//MapFragment _mapFragment;
+		GoogleMap _map;
+
 
 		////Lifecycle methods
 		protected override void OnCreate(Bundle bundle)
@@ -43,7 +45,7 @@ namespace Testapplicatie
 			provider = FindViewById<TextView>(Resource.Id.provider);
 			locationName = FindViewById<TextView>(Resource.Id.locationName);
 
-			InitMapFragment();
+
 		
 			// Button & eventhandler.
 			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
@@ -151,6 +153,7 @@ namespace Testapplicatie
 			// You must implement this to implement the IGooglePlayServicesClientConnectionCallbacks Interface
 			Log.Info("LocationClient", "Now connected to client");
 			GetLocation();
+
 		}
 
 		public void OnDisconnected()
@@ -184,26 +187,47 @@ namespace Testapplicatie
 			this.location = location;
 			Address address = await LocationInformation.ReverseGeocodeCurrentLocation(this, location);
 			locationName.Text = LocationInformation.DisplayAddress(address);
+
+			InitMapFragment();
 		}
 
 		public void OnConnectionSuspended(int i){}
 
 
+
+	
 		private void InitMapFragment()
 		{
-			_mapFragment = FragmentManager.FindFragmentByTag("map") as MapFragment;
-			if (_mapFragment == null)
+			if (_map == null)
 			{
+				FragmentManager.FindFragmentById<MapFragment>(Resource.Id.map).GetMapAsync(this);
+
+				LatLng LatLngLocation = new LatLng(location.Latitude, location.Longitude);
+				CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
+				builder.Target(LatLngLocation);
+				builder.Zoom(18);
+		
+				CameraPosition cameraPosition = builder.Build();
 				GoogleMapOptions mapOptions = new GoogleMapOptions()
 					.InvokeMapType(GoogleMap.MapTypeSatellite)
 					.InvokeZoomControlsEnabled(false)
-					.InvokeCompassEnabled(true);
+					.InvokeCompassEnabled(true)
+					.InvokeCamera(cameraPosition);
 
 				FragmentTransaction fragTx = FragmentManager.BeginTransaction();
-				_mapFragment = MapFragment.NewInstance(mapOptions);
+				MapFragment _mapFragment = MapFragment.NewInstance(mapOptions);
 				fragTx.Add(Resource.Id.map, _mapFragment, "map");
 				fragTx.Commit();
+				_mapFragment.GetMapAsync(this);
+
+	
 			}
+		}
+
+		public void OnMapReady(GoogleMap googleMap)
+		{
+			_map = googleMap;
+
 		}
 	}
 }
