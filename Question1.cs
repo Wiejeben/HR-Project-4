@@ -12,7 +12,6 @@ using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 
 
-
 namespace Testapplicatie
 {
 	[Activity(Label = "@string/v1")]
@@ -21,13 +20,8 @@ namespace Testapplicatie
 	{
 		GoogleApiClient apiClient;
 		LocationRequest locRequest;
-		TextView latitude;
-		TextView longitude;
-		TextView provider;
-		TextView locationName;
 		Location location;
-		GoogleMap _map;
-
+		GoogleMap map;
 
 		////Lifecycle methods
 		protected override void OnCreate(Bundle bundle)
@@ -38,12 +32,6 @@ namespace Testapplicatie
 			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.Question_One);
 
-			// UI to print last location
-			latitude = FindViewById<TextView>(Resource.Id.latitude);
-			longitude = FindViewById<TextView>(Resource.Id.longitude);
-			provider = FindViewById<TextView>(Resource.Id.provider);
-			locationName = FindViewById<TextView>(Resource.Id.locationName);
-
 			// Button & eventhandler.
 			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
 			returnButton.Click += delegate
@@ -52,12 +40,11 @@ namespace Testapplicatie
 				StartActivity(typeof(MainActivity));
 				// Close the current layout.
 				Finish();
-			};
+			} ;
 
 			// Show location on the map
 			Button showLocationOnMap = FindViewById<Button>(Resource.Id.showLocationOnMap);
-			showLocationOnMap.Click += delegate
-			{
+			showLocationOnMap.Click += delegate {
 				if (location == null)
 				{
 					Log.Error("OnShowLocationOnMapButtonClick", "No location has been found to display on the map");
@@ -68,7 +55,7 @@ namespace Testapplicatie
 					var mapIntent = new Intent(Intent.ActionView, geoUri);
 					StartActivity(mapIntent);
 				}
-			};
+			} ;
 
 			if (GooglePlayService.IsGooglePlayServicesInstalled(this))
 			{
@@ -108,40 +95,6 @@ namespace Testapplicatie
 		}
 
 
-		public async void GetLocation()
-		{
-			apiClient.Connect();
-
-			// This method is called when we connect to the LocationClient. We can start location updated directly form
-			// here if desired, or we can do it in a lifecycle method, as shown above 
-
-			// You must implement this to implement the IGooglePlayServicesClientConnectionCallbacks Interface
-			Log.Info("LocationClient", "Now connected to client");
-			if (apiClient.IsConnected)
-			{
-				// Setting location priority to PRIORITY_HIGH_ACCURACY (100)
-				locRequest.SetPriority(100);
-
-				// Setting interval between updates, in milliseconds
-				// NOTE: the default FastestInterval is 1 minute. If you want to receive location updates more than 
-				// once a minute, you _must_ also change the FastestInterval to be less than or equal to your Interval
-				locRequest.SetFastestInterval(500);
-				locRequest.SetInterval(1000);
-
-				Log.Debug("LocationRequest", "Request priority set to status code {0}, interval set to {1} ms",
-					locRequest.Priority.ToString(), locRequest.Interval.ToString());
-
-				// pass in a location request and LocationListener
-				await LocationServices.FusedLocationApi.RequestLocationUpdates(apiClient, locRequest, this);
-				// In OnLocationChanged (below), we will make calls to update the UI
-				// with the new location data
-			}
-			else
-			{
-				Log.Info("LocationClient", "Please wait for Client to connect");
-			}
-		}
-
 		////Interface methods
 		public void OnConnected(Bundle bundle)
 		{
@@ -151,7 +104,6 @@ namespace Testapplicatie
 			// You must implement this to implement the IGooglePlayServicesClientConnectionCallbacks Interface
 			Log.Info("LocationClient", "Now connected to client");
 			GetLocation();
-
 		}
 
 		public void OnDisconnected()
@@ -171,30 +123,45 @@ namespace Testapplicatie
 			Log.Info("LocationClient", "Connection failed, attempting to reach google play services");
 		}
 
-		public async void OnLocationChanged(Location location)
+		public async void GetLocation()
+		{
+			apiClient.Connect();
+
+			// This method is called when we connect to the LocationClient. We can start location updated directly form
+			// here if desired, or we can do it in a lifecycle method, as shown above 
+
+			// You must implement this to implement the IGooglePlayServicesClientConnectionCallbacks Interface
+			Log.Info("LocationClient", "Now connected to client");
+			if (apiClient.IsConnected)
+			{
+				// pass in a location request and LocationListener
+				await LocationServices.FusedLocationApi.RequestLocationUpdates(apiClient, locRequest, this);
+				// In OnLocationChanged (below), we will make calls to update the UI
+				// with the new location data
+			}
+			else
+			{
+				Log.Info("LocationClient", "Please wait for Client to connect");
+			}
+		}
+
+		public void OnLocationChanged(Location location)
 		{
 			// This method display changes in the user's location if they've been requested
 
 			// You must implement this to implement the Android.Gms.Locations.ILocationListener Interface
 			Log.Debug("LocationClient", "Location updated");
 
-			latitude.Text = "Latitude: " + location.Latitude.ToString();
-			longitude.Text = "Longitude: " + location.Longitude.ToString();
-			provider.Text = "Provider: " + location.Provider.ToString();
-
 			this.location = location;
-			Address address = await LocationInformation.ReverseGeocodeCurrentLocation(this, location);
-			locationName.Text = LocationInformation.DisplayAddress(address);
-
 			InitMapFragment();
 		}
 
-		public void OnConnectionSuspended(int i) { }
+		public void OnConnectionSuspended(int i){}
 
-
+	
 		private void InitMapFragment()
 		{
-			if (_map == null)
+			if (map == null)
 			{
 				FragmentManager.FindFragmentById<MapFragment>(Resource.Id.map).GetMapAsync(this);
 
@@ -202,7 +169,7 @@ namespace Testapplicatie
 				CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
 				builder.Target(LatLngLocation);
 				builder.Zoom(18);
-
+		
 				CameraPosition cameraPosition = builder.Build();
 				GoogleMapOptions mapOptions = new GoogleMapOptions()
 					.InvokeMapType(GoogleMap.MapTypeSatellite)
@@ -220,14 +187,14 @@ namespace Testapplicatie
 
 		public async void OnMapReady(GoogleMap googleMap)
 		{
-			_map = googleMap;
+			map = googleMap;
 			Address address = await LocationInformation.ReverseGeocodeCurrentLocation(this, location);
 
 			LatLng LatLngLocation = new LatLng(location.Latitude, location.Longitude);
 			MarkerOptions markerOpt1 = new MarkerOptions();
 			markerOpt1.SetPosition(LatLngLocation);
 			markerOpt1.SetTitle(address.GetAddressLine(0).ToString());
-			_map.AddMarker(markerOpt1);
+			map.AddMarker(markerOpt1);
 		}
 	}
 }

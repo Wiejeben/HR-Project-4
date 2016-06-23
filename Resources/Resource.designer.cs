@@ -1930,9 +1930,6 @@ namespace Testapplicatie
 			// aapt resource value: 0x7f0c006c
 			public const int info = 2131492972;
 			
-			// aapt resource value: 0x7f0c0076
-			public const int latitude = 2131492982;
-			
 			// aapt resource value: 0x7f0c0029
 			public const int light = 2131492905;
 			
@@ -1948,14 +1945,8 @@ namespace Testapplicatie
 			// aapt resource value: 0x7f0c0033
 			public const int list_item = 2131492915;
 			
-			// aapt resource value: 0x7f0c0079
-			public const int locationName = 2131492985;
-			
-			// aapt resource value: 0x7f0c0077
-			public const int longitude = 2131492983;
-			
-			// aapt resource value: 0x7f0c007c
-			public const int map = 2131492988;
+			// aapt resource value: 0x7f0c0078
+			public const int map = 2131492984;
 			
 			// aapt resource value: 0x7f0c0064
 			public const int media_actions = 2131492964;
@@ -2008,14 +1999,11 @@ namespace Testapplicatie
 			// aapt resource value: 0x7f0c0006
 			public const int progress_horizontal = 2131492870;
 			
-			// aapt resource value: 0x7f0c0078
-			public const int provider = 2131492984;
-			
 			// aapt resource value: 0x7f0c0046
 			public const int radio = 2131492934;
 			
-			// aapt resource value: 0x7f0c007a
-			public const int returnButton = 2131492986;
+			// aapt resource value: 0x7f0c0076
+			public const int returnButton = 2131492982;
 			
 			// aapt resource value: 0x7f0c0022
 			public const int satellite = 2131492898;
@@ -2074,8 +2062,8 @@ namespace Testapplicatie
 			// aapt resource value: 0x7f0c0010
 			public const int showHome = 2131492880;
 			
-			// aapt resource value: 0x7f0c007b
-			public const int showLocationOnMap = 2131492987;
+			// aapt resource value: 0x7f0c0077
+			public const int showLocationOnMap = 2131492983;
 			
 			// aapt resource value: 0x7f0c0011
 			public const int showTitle = 2131492881;
