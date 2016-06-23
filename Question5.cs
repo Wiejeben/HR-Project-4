@@ -101,7 +101,7 @@ namespace Testapplicatie
         {
             base.OnCreate(bundle);
             // Set layout view.
-            SetContentView(Resource.Layout.Question_One);
+			SetContentView(Resource.Layout.One_View);
 
             // Button & eventhandler.
             Button returnButton = FindViewById<Button>(Resource.Id.returnButton);

@@ -67,7 +67,7 @@ namespace Testapplicatie
 		{
 			base.OnCreate(savedInstanceState);
 			// Set view.
-			SetContentView(Resource.Layout.Question_Two);
+			SetContentView(Resource.Layout.One_View);
 
 			// Button & eventhandler.
 			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
