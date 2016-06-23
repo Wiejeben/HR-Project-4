@@ -26,7 +26,6 @@ namespace Testapplicatie
 		TextView provider;
 		TextView locationName;
 		Location location;
-	 	//MapFragment _mapFragment;
 		GoogleMap _map;
 
 
@@ -45,8 +44,6 @@ namespace Testapplicatie
 			provider = FindViewById<TextView>(Resource.Id.provider);
 			locationName = FindViewById<TextView>(Resource.Id.locationName);
 
-
-		
 			// Button & eventhandler.
 			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
 			returnButton.Click += delegate
@@ -193,8 +190,6 @@ namespace Testapplicatie
 
 		public void OnConnectionSuspended(int i){}
 
-
-
 	
 		private void InitMapFragment()
 		{
@@ -219,15 +214,19 @@ namespace Testapplicatie
 				fragTx.Add(Resource.Id.map, _mapFragment, "map");
 				fragTx.Commit();
 				_mapFragment.GetMapAsync(this);
-
-	
 			}
 		}
 
-		public void OnMapReady(GoogleMap googleMap)
+		public async void OnMapReady(GoogleMap googleMap)
 		{
 			_map = googleMap;
+			Address address = await LocationInformation.ReverseGeocodeCurrentLocation(this, location);
 
+			LatLng LatLngLocation = new LatLng(location.Latitude, location.Longitude);
+			MarkerOptions markerOpt1 = new MarkerOptions();
+			markerOpt1.SetPosition(LatLngLocation);
+			markerOpt1.SetTitle(address.GetAddressLine(0).ToString());
+			_map.AddMarker(markerOpt1);
 		}
 	}
 }
