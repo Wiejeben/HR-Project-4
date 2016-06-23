@@ -10,7 +10,7 @@ using Android.Locations;
 using Android.Content;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-
+using Android.Preferences;
 
 namespace Testapplicatie
 {
@@ -31,6 +31,23 @@ namespace Testapplicatie
 
 			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.Question_One);
+
+			// Save locattion
+			Button saveLocationButton = FindViewById<Button>(Resource.Id.saveLocation);
+			saveLocationButton.Click += delegate
+			{
+				ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(this);
+				string locations = preferences.GetString("Locations", "");
+				locations += "Bike1" + "-"+ location.Latitude + "-" + location.Longitude + ";";
+
+				ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
+				ISharedPreferencesEditor editor = prefs.Edit();
+				editor.PutString("Locations", locations);
+				editor.Apply();
+
+				Log.Debug("OnLocationSave", locations);
+			};
+
 
 			// Button & eventhandler.
 			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
@@ -159,6 +176,29 @@ namespace Testapplicatie
 
 		public void OnConnectionSuspended(int i) { }
 
+		public void CreateMarkers()
+		{
+			ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(this);
+			string locations = preferences.GetString("Locations", "");
+			char delimiterChar1 = ';';
+			char delimiterChar2 = '-';
+
+
+			string[] locationsList = locations.Split(delimiterChar1);
+			foreach (string locationList in locationsList)
+			{
+				string[] locationInformation = locationList.Split(delimiterChar2);
+				// Add marker for current location
+				if (locationInformation[0] != "")
+				{
+					LatLng LatLngLocation = new LatLng(Convert.ToDouble(locationInformation[1]), Convert.ToDouble(locationInformation[2]));
+					MarkerOptions markerOpt1 = new MarkerOptions();
+					markerOpt1.SetPosition(LatLngLocation);
+					markerOpt1.SetTitle(locationInformation[0]);
+					map.AddMarker(markerOpt1);
+				}
+			}
+		}
 
 		private void InitMapFragment()
 		{
@@ -174,12 +214,15 @@ namespace Testapplicatie
 			// Get adress info
 			Address address = await LocationInformation.ReverseGeocodeCurrentLocation(this, location);
 
-			// Add marker
+			// Add marker for current location
 			LatLng LatLngLocation = new LatLng(location.Latitude, location.Longitude);
 			MarkerOptions markerOpt1 = new MarkerOptions();
 			markerOpt1.SetPosition(LatLngLocation);
 			markerOpt1.SetTitle(address.GetAddressLine(0).ToString());
 			map.AddMarker(markerOpt1);
+
+			// Add markers for the saved locations
+			CreateMarkers();
 
 			// Set map options
 			googleMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 18));

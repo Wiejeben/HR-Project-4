@@ -1945,8 +1945,8 @@ namespace Testapplicatie
 			// aapt resource value: 0x7f0c0033
 			public const int list_item = 2131492915;
 			
-			// aapt resource value: 0x7f0c0078
-			public const int map = 2131492984;
+			// aapt resource value: 0x7f0c0079
+			public const int map = 2131492985;
 			
 			// aapt resource value: 0x7f0c0064
 			public const int media_actions = 2131492964;
@@ -2007,6 +2007,9 @@ namespace Testapplicatie
 			
 			// aapt resource value: 0x7f0c0022
 			public const int satellite = 2131492898;
+			
+			// aapt resource value: 0x7f0c0078
+			public const int saveLocation = 2131492984;
 			
 			// aapt resource value: 0x7f0c0015
 			public const int screen = 2131492885;
