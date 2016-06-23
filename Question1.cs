@@ -40,11 +40,12 @@ namespace Testapplicatie
 				StartActivity(typeof(MainActivity));
 				// Close the current layout.
 				Finish();
-			} ;
+			};
 
 			// Show location on the map
 			Button showLocationOnMap = FindViewById<Button>(Resource.Id.showLocationOnMap);
-			showLocationOnMap.Click += delegate {
+			showLocationOnMap.Click += delegate
+			{
 				if (location == null)
 				{
 					Log.Error("OnShowLocationOnMapButtonClick", "No location has been found to display on the map");
@@ -55,7 +56,7 @@ namespace Testapplicatie
 					var mapIntent = new Intent(Intent.ActionView, geoUri);
 					StartActivity(mapIntent);
 				}
-			} ;
+			};
 
 			if (GooglePlayService.IsGooglePlayServicesInstalled(this))
 			{
@@ -156,45 +157,32 @@ namespace Testapplicatie
 			InitMapFragment();
 		}
 
-		public void OnConnectionSuspended(int i){}
+		public void OnConnectionSuspended(int i) { }
 
-	
+
 		private void InitMapFragment()
 		{
 			if (map == null)
 			{
 				FragmentManager.FindFragmentById<MapFragment>(Resource.Id.map).GetMapAsync(this);
-
-				LatLng LatLngLocation = new LatLng(location.Latitude, location.Longitude);
-				CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
-				builder.Target(LatLngLocation);
-				builder.Zoom(18);
-		
-				CameraPosition cameraPosition = builder.Build();
-				GoogleMapOptions mapOptions = new GoogleMapOptions()
-					.InvokeMapType(GoogleMap.MapTypeSatellite)
-					.InvokeZoomControlsEnabled(false)
-					.InvokeCompassEnabled(true)
-					.InvokeCamera(cameraPosition);
-
-				FragmentTransaction fragTx = FragmentManager.BeginTransaction();
-				MapFragment _mapFragment = MapFragment.NewInstance(mapOptions);
-				fragTx.Add(Resource.Id.map, _mapFragment, "map");
-				fragTx.Commit();
-				_mapFragment.GetMapAsync(this);
 			}
 		}
 
 		public async void OnMapReady(GoogleMap googleMap)
 		{
 			map = googleMap;
+			// Get adress info
 			Address address = await LocationInformation.ReverseGeocodeCurrentLocation(this, location);
 
+			// Add marker
 			LatLng LatLngLocation = new LatLng(location.Latitude, location.Longitude);
 			MarkerOptions markerOpt1 = new MarkerOptions();
 			markerOpt1.SetPosition(LatLngLocation);
 			markerOpt1.SetTitle(address.GetAddressLine(0).ToString());
 			map.AddMarker(markerOpt1);
+
+			// Set map options
+			googleMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 18));
 		}
 	}
 }
