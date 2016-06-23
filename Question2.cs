@@ -35,6 +35,7 @@ namespace Testapplicatie
 
 
             var categoryAxis = new CategoryAxis { Position = AxisPosition.Left };
+
             categoryAxis.Labels.Add("Januari");
             categoryAxis.Labels.Add("Februari");
             categoryAxis.Labels.Add("Maart");
@@ -50,37 +51,20 @@ namespace Testapplicatie
             var valueAxis = new LinearAxis { Position = AxisPosition.Bottom, MinimumPadding = 0, MaximumPadding = 0.06, AbsoluteMinimum = 0 };
 
 
-            var s1 = new BarSeries { Title = "Geïnstalleerde fietstrommels", StrokeColor = OxyColors.Black, StrokeThickness = 1 };
-            s1.Items.Add(new BarItem { Value = 25 });
-            s1.Items.Add(new BarItem { Value = 137 });
-            s1.Items.Add(new BarItem { Value = 18 });
-            s1.Items.Add(new BarItem { Value = 40 });
-            s1.Items.Add(new BarItem { Value = 41 });
-            s1.Items.Add(new BarItem { Value = 42 });
-            s1.Items.Add(new BarItem { Value = 43 });
-            s1.Items.Add(new BarItem { Value = 44 });
-            s1.Items.Add(new BarItem { Value = 45 });
-            s1.Items.Add(new BarItem { Value = 46 });
-            s1.Items.Add(new BarItem { Value = 47 });
-            s1.Items.Add(new BarItem { Value = 48 });
+            var serie_one = new BarSeries { Title = "Geïnstalleerde fietstrommels", StrokeColor = OxyColors.Black, StrokeThickness = 1 };
+
+            for(int i = 0; i < 11; i++)
+                serie_one.Items.Add(new BarItem { Value = i + i + i });
 
 
-            var s2 = new BarSeries { Title = "Fietsdiefstallen", StrokeColor = OxyColors.Black, StrokeThickness = 1 };
-            s2.Items.Add(new BarItem { Value = 12 });
-            s2.Items.Add(new BarItem { Value = 14 });
-            s2.Items.Add(new BarItem { Value = 120 });
-            s2.Items.Add(new BarItem { Value = 26 });
-            s2.Items.Add(new BarItem { Value = 27 });
-            s2.Items.Add(new BarItem { Value = 28 });
-            s2.Items.Add(new BarItem { Value = 29 });
-            s2.Items.Add(new BarItem { Value = 22 });
-            s2.Items.Add(new BarItem { Value = 21 });
-            s2.Items.Add(new BarItem { Value = 22 });
-            s2.Items.Add(new BarItem { Value = 23 });
-            s2.Items.Add(new BarItem { Value = 24 });
+            var serie_two = new BarSeries { Title = "Fietsdiefstallen", StrokeColor = OxyColors.Black, StrokeThickness = 1 };
 
-            plotModel.Series.Add(s1);
-            plotModel.Series.Add(s2);
+            for (int i = 0; i < 11; i++)
+                serie_two.Items.Add(new BarItem { Value = i + i });
+            
+
+            plotModel.Series.Add(serie_one);
+            plotModel.Series.Add(serie_two);
             plotModel.Axes.Add(categoryAxis);
             plotModel.Axes.Add(valueAxis);
 
