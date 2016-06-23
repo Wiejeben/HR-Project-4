@@ -17,8 +17,6 @@ namespace ImportBicycleInfo
             CsvParser bikeContainerParser = new CsvParser("BikeContainers", 1);
             List<BikeContainer> bikeContainers = bikeContainerParser.ParseBikeContainer();
 
-            Console.Write("");
-
             // Create SQLite file
             SQLiteConnection.CreateFile("Database.sqlite");
 
@@ -26,8 +24,17 @@ namespace ImportBicycleInfo
             SQLiteConnection dbConnection = new SQLiteConnection("Data Source=Database.sqlite;Version=3;");
             dbConnection.Open();
 
-            SQLiteCommand command = new SQLiteCommand(Resource.sql_init, dbConnection);
-            command.ExecuteNonQuery();
+            using (SQLiteCommand command = new SQLiteCommand(Resource.sql_init, dbConnection))
+            {
+                command.ExecuteNonQuery();
+            }
+
+            // Insert thefts
+            foreach (var theft in bikeThefts)
+            {
+                theft.InsertDB(dbConnection);
+            }
+
 
             //sql = "insert into highscores (name, score) values ('Me', 3000)";
             //command = new SQLiteCommand(sql, m_dbConnection);

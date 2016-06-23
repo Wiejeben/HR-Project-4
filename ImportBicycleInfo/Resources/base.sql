@@ -6,7 +6,7 @@ CREATE TABLE `streets` (
 	FOREIGN KEY(district_id) REFERENCES districts(id)
 );
 CREATE TABLE `districts` (
-	`id`	INTEGER,
+	`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	`name`	TEXT
 );
 CREATE TABLE `colors` (
@@ -19,8 +19,6 @@ CREATE TABLE "brands" (
 );
 CREATE TABLE "bikethefts" (
 	`id`	TEXT NOT NULL,
-	`lat`	REAL,
-	`long`	REAL,
 	`brand_id`	INTEGER,
 	`color_id`	INTEGER,
 	`street_id`	INTEGER,
