@@ -24,16 +24,17 @@ namespace Testapplicatie
 	{
 		int counter = 0;
 
-        private PlotModel CreatePlotModel()
-        {
+        private PlotModel CreatePlotModel(string title)
+		{
 
-            var plotModel = new PlotModel { Title = "" };
+            var plotModel = new PlotModel { Title = title };
 
             var stolenBrandsChart = new PieSeries
             {
-                StrokeThickness = 2.0, InsideLabelPosition = 0.8, AngleSpan = 360, StartAngle = 0
+                StrokeThickness = 1.0, InsideLabelPosition = 0.5, AngleSpan = 360, StartAngle = 0
             };
 
+			// fake data
 			Dictionary<string, int> dicOfValues = new Dictionary<string, int>();
 
 			for (int i = 0; i <= 6; i++)
@@ -50,7 +51,6 @@ namespace Testapplicatie
             //series1.Slices.Add(new PieSlice("Africa", 1030) { IsExploded = false, Fill = OxyColors.PaleVioletRed });
 
 			plotModel.Series.Add(stolenBrandsChart);
-
 
             return plotModel;
         }
@@ -73,10 +73,10 @@ namespace Testapplicatie
 			};
 
 			PlotView view = FindViewById<PlotView>(Resource.Id.plotView);
-			view.Model = CreatePlotModel();
+			view.Model = CreatePlotModel("Gestolen fietsen op basis van merk");
 
 			PlotView viewTwo = FindViewById<PlotView>(Resource.Id.plotView2);
-			view.Model = CreatePlotModel();
+			viewTwo.Model = CreatePlotModel("Gestolen fietsen op basis van kleur");
 		}
 	}
 }

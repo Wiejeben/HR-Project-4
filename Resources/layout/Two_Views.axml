@@ -8,20 +8,21 @@
     <OxyPlot.Xamarin.Android.PlotView
         android:id="@+id/plotView"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="0.0dp"
+        android:layout_height="270dp"
+        android:layout_marginTop="0dp"
         android:visibility="visible"
         android:focusable="false" />
     <OxyPlot.Xamarin.Android.PlotView
         android:id="@+id/plotView2"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="0.0dp"
+        android:layout_height="270dp"
+        android:layout_marginTop="5dp"
         android:visibility="visible"
         android:focusable="false" />
     <Button
         android:text="@string/returnLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:id="@+id/returnButton" />
 </LinearLayout>
