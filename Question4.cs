@@ -63,10 +63,10 @@ namespace Testapplicatie
 			};
 
             var plotView = new PlotView(this);
+
             plotView.Model = CreatePlotModel();
 
-            this.AddContentView(plotView,
-                new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
+            this.AddContentView(plotView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
         }
 	}
 }

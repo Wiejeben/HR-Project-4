@@ -28,11 +28,11 @@ namespace Testapplicatie
             var plotModel = new PlotModel { Title = "Pie Sample1" };
             
             var categoryAxis = new CategoryAxis { Position = AxisPosition.Left };
-            categoryAxis.Labels.Add("Category A");
-            categoryAxis.Labels.Add("Category B");
-            categoryAxis.Labels.Add("Category C");
-            categoryAxis.Labels.Add("Category D");
-            categoryAxis.Labels.Add("Category E");
+            categoryAxis.Labels.Add("Buurt 1");
+            categoryAxis.Labels.Add("Buurt 2");
+            categoryAxis.Labels.Add("Buurt 3");
+            categoryAxis.Labels.Add("Buurt 4");
+            categoryAxis.Labels.Add("Buurt 5");
 
             var rand = new Random();
             double[] cakePopularity = new double[5];
@@ -44,6 +44,7 @@ namespace Testapplicatie
 
             var series1 = new BarSeries
             {
+                Title = "Fietstrommels",
                 ItemsSource = new List<BarItem>(new[]
                 {
                     new BarItem{ Value = (cakePopularity[0] / sum * 100) },
