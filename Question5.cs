@@ -42,17 +42,25 @@ namespace Testapplicatie
 				Position = AxisPosition.Bottom,
 				Minimum = 0,
 				Maximum = 12,
-				AbsoluteMinimum = 0
+				AbsoluteMinimum = 0,
+				Title = "Maanden",
+				MinorTickSize = 1,
+				MajorTickSize = 1,
+				MinorStep = 1,
+				MajorStep = 1
 			};
 
 
 			var yAxis = // Y-axis attributes
 			new LinearAxis
-			{ 
-				Position = AxisPosition.Left, 
-				Minimum = 0, 
+			{
+				Position = AxisPosition.Left,
+				Minimum = 1,
 				Maximum = highestAmount,
-				AbsoluteMinimum = 0
+				AbsoluteMinimum = 1,
+				Title = "Hoeveelheid fietsen",
+				MaximumPadding = 1,
+				MinimumPadding = 1
 			};
 
 			// Disable moving the screen on the x-axis, so that we don't see more than 12 months.
