@@ -38,7 +38,8 @@ namespace Testapplicatie
 			{
 				ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(this);
 				string locations = preferences.GetString("Locations", "");
-				locations += "Bike1" + "-"+ location.Latitude + "-" + location.Longitude + ";";
+				TextView locationName = FindViewById<TextView>(Resource.Id.LocationName);
+				locations += locationName.Text + "-" + location.Latitude + "-" + location.Longitude + ";";
 
 				ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
 				ISharedPreferencesEditor editor = prefs.Edit();
@@ -180,22 +181,24 @@ namespace Testapplicatie
 		{
 			ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(this);
 			string locations = preferences.GetString("Locations", "");
-			char delimiterChar1 = ';';
-			char delimiterChar2 = '-';
-
-
-			string[] locationsList = locations.Split(delimiterChar1);
-			foreach (string locationList in locationsList)
+			if (locations.Length > 0)
 			{
-				string[] locationInformation = locationList.Split(delimiterChar2);
-				// Add marker for current location
-				if (locationInformation[0] != "")
+				char delimiterChar1 = ';';
+				char delimiterChar2 = '-';
+
+				string[] locationsList = locations.Split(delimiterChar1);
+				foreach (string locationList in locationsList)
 				{
-					LatLng LatLngLocation = new LatLng(Convert.ToDouble(locationInformation[1]), Convert.ToDouble(locationInformation[2]));
-					MarkerOptions markerOpt1 = new MarkerOptions();
-					markerOpt1.SetPosition(LatLngLocation);
-					markerOpt1.SetTitle(locationInformation[0]);
-					map.AddMarker(markerOpt1);
+					if (locationList != "")
+					{
+						string[] locationInformation = locationList.Split(delimiterChar2);
+						// Add marker for current location	
+						LatLng LatLngLocation = new LatLng(Convert.ToDouble(locationInformation[1]), Convert.ToDouble(locationInformation[2]));
+						MarkerOptions markerOpt1 = new MarkerOptions();
+						markerOpt1.SetPosition(LatLngLocation);
+						markerOpt1.SetTitle(locationInformation[0]);
+						map.AddMarker(markerOpt1);
+					}
 				}
 			}
 		}
