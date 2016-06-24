@@ -39,7 +39,8 @@ namespace ImportBicycleInfo
             string street = row[9];
             string type = row[21];
 
-            if (dateTime == "" ||
+            // Validation
+            return (dateTime == "" ||
                 ID == "" ||
                 color == "0" ||
                 color == "#N/A" ||
@@ -49,12 +50,7 @@ namespace ImportBicycleInfo
                 brand == "-" ||
                 brand == "#N/A" ||
                 type == "FIETS"
-                )
-            {
-                return false;
-            }
-
-            return true;
+            );
         }
 
         public static BikeTheft ParseCSVRow(string[] row)
