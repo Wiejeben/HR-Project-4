@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+
+using Android;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Provider;
+
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;

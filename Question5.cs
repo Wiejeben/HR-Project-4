@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Android;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -113,11 +114,8 @@ namespace Testapplicatie
                 Finish();
             };
 
-            var plotView = new PlotView(this);
-            plotView.Model = CreatePlotModel();
-
-            this.AddContentView(plotView,
-                new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
+            PlotView view = FindViewById<PlotView>(Resource.Id.plotView);
+			view.Model = CreatePlotModel();
         }
     }
 }
