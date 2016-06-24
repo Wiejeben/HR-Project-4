@@ -56,11 +56,11 @@ namespace Testapplicatie
 			}
 
 			// The bars attributes
-			var neighbourhoodBar_1 = new BarSeries { Title = neighbourhoods[0].Key, LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
-			var neighbourhoodBar_2 = new BarSeries { Title = neighbourhoods[1].Key, LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
-			var neighbourhoodBar_3 = new BarSeries { Title = neighbourhoods[2].Key, LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
-			var neighbourhoodBar_4 = new BarSeries { Title = neighbourhoods[3].Key, LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
-			var neighbourhoodBar_5 = new BarSeries { Title = neighbourhoods[4].Key, LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
+			var neighbourhoodBar_1 = new BarSeries { LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
+			var neighbourhoodBar_2 = new BarSeries { LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
+			var neighbourhoodBar_3 = new BarSeries { LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
+			var neighbourhoodBar_4 = new BarSeries { LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
+			var neighbourhoodBar_5 = new BarSeries { LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
 
 			// The bars shown value
 			neighbourhoodBar_1.Items.Add(new BarItem { Value = neighbourhoods[0].Value });
