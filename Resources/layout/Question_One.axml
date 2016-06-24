@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/returnButton" />
     <Button
-        android:text="Show location in default map app"
+        android:text="Show my location in default map app"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/showLocationOnMap" />
@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/LocationName"
-        android:text="Bike name" />
+        android:hint="Bike name" />
     <Button
         android:text="Save location"
         android:layout_width="match_parent"
