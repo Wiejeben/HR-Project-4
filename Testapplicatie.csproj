@@ -105,8 +105,9 @@
     <AndroidResource Include="Resources\mipmap-xhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
-    <AndroidResource Include="Resources\layout\Question_One.axml" />
-    <AndroidResource Include="Resources\layout\Question_Two.axml" />
+    <AndroidResource Include="Resources\layout\Base.axml" />
+    <AndroidResource Include="Resources\layout\One_View.axml" />
+    <AndroidResource Include="Resources\layout\Two_Views.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

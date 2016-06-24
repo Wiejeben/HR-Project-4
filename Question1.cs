@@ -30,7 +30,10 @@ namespace Testapplicatie
 			Log.Debug("OnCreate", "OnCreate called, initializing views...");
 
 			// Set our view from the "main" layout resource
-			SetContentView(Resource.Layout.Question_One);
+			SetContentView(Resource.Layout.One_View);
+
+			// Set layout view.
+			SetContentView(Resource.Layout.Base);
 
 			// Save locattion
 			Button saveLocationButton = FindViewById<Button>(Resource.Id.saveLocation);
