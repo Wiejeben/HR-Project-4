@@ -44,9 +44,9 @@ namespace ImportBicycleInfo
             }
         }
 
-        public List<BikeTheft> ParseBikeTheft()
+        public List<Insertable> ParseBikeTheft()
         {
-            List<BikeTheft> thefts = new List<BikeTheft>();
+            List<Insertable> thefts = new List<Insertable>();
 
             foreach (var row in this.Rows)
             {
@@ -57,17 +57,17 @@ namespace ImportBicycleInfo
             return thefts;
         }
 
-        public List<BikeContainer> ParseBikeContainer()
+        public List<Insertable> ParseBikeContainer()
         {
-            List<BikeContainer> thefts = new List<BikeContainer>();
+            List<Insertable> containers = new List<Insertable>();
 
             foreach (var row in this.Rows)
             {
                 if (BikeContainer.ValidCSVRow(row))
-                    thefts.Add(BikeContainer.ParseCSVRow(row));
+                    containers.Add(BikeContainer.ParseCSVRow(row));
             }
 
-            return thefts;
+            return containers;
         }
     }
 }

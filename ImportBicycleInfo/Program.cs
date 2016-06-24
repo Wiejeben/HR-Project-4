@@ -11,48 +11,28 @@ namespace ImportBicycleInfo
     {
         static void Main(string[] args)
         {
-            CsvParser bikeTheftParser = new CsvParser("BikeThefts", 1);
-            List<BikeTheft> bikeThefts = bikeTheftParser.ParseBikeTheft();
-
-            CsvParser bikeContainerParser = new CsvParser("BikeContainers", 1);
-            List<BikeContainer> bikeContainers = bikeContainerParser.ParseBikeContainer();
-
             // Create SQLite file
+            Console.WriteLine("Init DB");
             SQLiteConnection.CreateFile("Database.sqlite");
 
             // Connect
-            SQLiteConnection dbConnection = new SQLiteConnection("Data Source=Database.sqlite;Version=3;");
-            dbConnection.Open();
+            SQLiteConnection connection = new SQLiteConnection("Data Source=Database.sqlite;Version=3;");
+            connection.Open();
 
-            using (SQLiteCommand command = new SQLiteCommand(Resource.sql_init, dbConnection))
+            using (SQLiteCommand command = new SQLiteCommand(Resource.sql_init, connection))
             {
                 command.ExecuteNonQuery();
             }
 
-            // Insert thefts
-            foreach (var theft in bikeThefts)
-            {
-                theft.InsertDB(dbConnection);
-            }
+            
+            CsvParser bikeTheftParser = new CsvParser("BikeThefts", 1);
+            CsvParser bikeContainerParser = new CsvParser("BikeContainers", 1);
 
+            List<Insertable> insertables = new List<Insertable>();
+            insertables.AddRange(bikeTheftParser.ParseBikeTheft());
+            insertables.AddRange(bikeContainerParser.ParseBikeContainer());
 
-            //sql = "insert into highscores (name, score) values ('Me', 3000)";
-            //command = new SQLiteCommand(sql, m_dbConnection);
-            //command.ExecuteNonQuery();
-            //sql = "insert into highscores (name, score) values ('Myself', 6000)";
-            //command = new SQLiteCommand(sql, m_dbConnection);
-            //command.ExecuteNonQuery();
-            //sql = "insert into highscores (name, score) values ('And I', 9001)";
-            //command = new SQLiteCommand(sql, m_dbConnection);
-            //command.ExecuteNonQuery();
-
-            //var sql = "select * from bikecontainers order by score desc";
-            //command = new SQLiteCommand(sql, dbConnection);
-            //SQLiteDataReader reader = command.ExecuteReader();
-            //while (reader.Read())
-            //{
-            //    Console.WriteLine("Name: " + reader["name"] + "\tScore: " + reader["score"]);
-            //}
+            insertables.ForEach(m => m.InsertDB(connection));
         }
     }
 }

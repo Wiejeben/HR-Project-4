@@ -48,11 +48,13 @@ namespace ImportBicycleInfo
 
         public static BikeTheft ParseCSVRow(string[] row)
         {
+            TextInfo format = new CultureInfo("nl-NL", false).TextInfo;
             string ID = row[0];
-            string district = row[8];
-            string color = row[24];
-            string brand = row[22];
-            string street = row[9];
+            string district = format.ToTitleCase(row[8].ToLower());
+            district.TrimStart(new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ' });
+            string color = format.ToTitleCase(row[24].ToLower());
+            string brand = format.ToTitleCase(row[22].ToLower());
+            string street = format.ToTitleCase(row[9].ToLower());
             DateTime dateTime = DateTime.ParseExact(row[11], "dd-MM-yy", CultureInfo.InvariantCulture);
 
             return new BikeTheft(ID, district, street, brand, color, dateTime);
@@ -61,7 +63,7 @@ namespace ImportBicycleInfo
         public override bool InsertDB(SQLiteConnection connection)
         {
             this.Connection = connection;
-            // TODO: Implement create or get
+
             int brandID = this.GetOrSet("brands", this.Brand);
             int colorID = this.GetOrSet("colors", this.Color);
             int streetID = this.GetOrSet("streets", this.Street, "districts", "district_id", this.District);
