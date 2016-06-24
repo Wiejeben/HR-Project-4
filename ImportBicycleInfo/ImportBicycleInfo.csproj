@@ -70,6 +70,7 @@
     <Compile Include="CsvParser.cs" />
     <Compile Include="Models\BikeTheft.cs" />
     <Compile Include="Models\BikeContainer.cs" />
+    <Compile Include="Models\Insertable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource.Designer.cs">
