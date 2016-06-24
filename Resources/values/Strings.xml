@@ -9,4 +9,5 @@
 	<string name="v5">Vraag 5</string>
 	<string name="v6">Fiets ophaal reminder toevoegen</string>
 	<string name="returnLabel">Terug naar het hoofdmenu</string>
+	<string name="selectBike">Select a bike</string>
 </resources>
