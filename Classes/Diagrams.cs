@@ -42,11 +42,11 @@ namespace Testapplicatie
 			var xAxis = new LinearAxis { Title = xAxisLabel, Position = AxisPosition.Bottom, Minimum = 0, AbsoluteMinimum = 0 };
 
 			// Bars & their properties
-			var neighbourhoodBar_1 = new BarSeries { LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
-			var neighbourhoodBar_2 = new BarSeries { LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
-			var neighbourhoodBar_3 = new BarSeries { LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
-			var neighbourhoodBar_4 = new BarSeries { LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
-			var neighbourhoodBar_5 = new BarSeries { LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
+			var Bar_1 = new BarSeries { LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
+			var Bar_2 = new BarSeries { LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
+			var Bar_3 = new BarSeries { LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
+			var Bar_4 = new BarSeries { LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
+			var Bar_5 = new BarSeries { LabelPlacement = LabelPlacement.Inside, LabelFormatString = "{0}" };
 
 			// END: MODEL::BASE
 
@@ -61,7 +61,7 @@ namespace Testapplicatie
 			// The bars shown value
 			foreach (int theft in thefts)
 			{
-				neighbourhoodBar_1.Items.Add(new BarItem { Value = theft });
+				Bar_1.Items.Add(new BarItem { Value = theft });
 			}
 
 			// END: MODEL::VALUES
@@ -69,11 +69,11 @@ namespace Testapplicatie
 			// BEGIN: MODEL::VISUALIZATION
 
 			// Add the bars to the model.
-			model.Series.Add(neighbourhoodBar_1);
-			model.Series.Add(neighbourhoodBar_2);
-			model.Series.Add(neighbourhoodBar_3);
-			model.Series.Add(neighbourhoodBar_4);
-			model.Series.Add(neighbourhoodBar_5);
+			model.Series.Add(Bar_1);
+			model.Series.Add(Bar_2);
+			model.Series.Add(Bar_3);
+			model.Series.Add(Bar_4);
+			model.Series.Add(Bar_5);
 
 			// Add the axes to the model.
 			model.Axes.Add(yAxis);
@@ -129,6 +129,91 @@ namespace Testapplicatie
 			model.Series.Add(secondBar);
 
 			// END MODEL::VISUALIZATION
+
+			return model;
+		}
+
+		public PlotModel createPieModel(Dictionary<string, int> slicesData)
+		{
+			// BEGIN: MODEL::BASE
+
+			// Pie chart properties	
+			var pieChart = new PieSeries
+			{
+				StrokeThickness = 1.0,
+				InsideLabelPosition = 0.5,
+				AngleSpan = 360,
+				StartAngle = 0
+			};
+
+			// END: MODEL::BASE
+
+			// BEGIN: MODEL::VALUES
+
+			foreach (KeyValuePair<string, int> val in slicesData)
+			{
+				pieChart.Slices.Add(new PieSlice(val.Key, val.Value) { IsExploded = true });
+			}
+
+			// END: MODEL::VALUES
+
+			// BEGIN: MODEL::VISUALIZATION
+
+			model.Series.Add(pieChart);
+
+			// END: MODEL::VISUALIZATION
+
+			return model;
+		}
+
+		public PlotModel createLineModel(Dictionary<int, int> lineValues , int limit)
+		{
+			// BEGIN: MODEL::BASE
+
+			var line = new LineSeries
+			{
+				MarkerType = MarkerType.Circle,
+				MarkerSize = 4,
+				MarkerStroke = OxyColors.White
+			};
+
+			// Axises & their properties
+			var xAxis = new LinearAxis
+			{
+				Position = AxisPosition.Bottom, 
+				Minimum = 0, Maximum = 12, AbsoluteMinimum = 0,
+				Title = xAxisLabel,
+				MinorTickSize = 1,MajorTickSize = 1,
+				MinorStep = 1, MajorStep = 1,
+				IsPanEnabled = false, IsZoomEnabled = false
+			};
+
+			var yAxis = new LinearAxis
+			{
+				Position = AxisPosition.Left,
+				Minimum = 1, Maximum = limit, AbsoluteMinimum = 1,
+				Title = yAxisLabel,
+				MaximumPadding = 1, MinimumPadding = 1
+			};
+
+			// END: MODEL::BASE
+
+			// BEGIN: MODEL::VALUES
+
+			foreach (KeyValuePair<int, int> lineVal in lineValues)
+			{
+				line.Points.Add(new DataPoint(lineVal.Key, lineVal.Value));
+			}
+
+			// END: MODEL::VALUES
+
+			// BEGIN: MODEL::VISUALIZATION
+
+			model.Axes.Add(xAxis);
+			model.Axes.Add(yAxis);
+			model.Series.Add(line);
+
+			// END: MODEL::VISUALIZATION
 
 			return model;
 		}

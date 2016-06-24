@@ -1,15 +1,6 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android;
+﻿using System.Collections.Generic;
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 
 using OxyPlot;
@@ -22,38 +13,20 @@ namespace Testapplicatie
 	[Activity(Label = "@string/v4")]
 	public class Question4 : Activity
 	{
-		int counter = 0;
+		// Two instances because we need one for every model and the plot model gets created in the constructor.
+		// It's impossible to re-use an old plot model.
+		Diagrams Diagrams 		= new Diagrams("Gestolen fietsen op basis van merk");
+		Diagrams DiagramsSecond = new Diagrams("Gestolen fietsen op basis van kleur");
 
-        private PlotModel CreatePlotModel(string title)
+		// fake data
+		Dictionary<string, int> chartValues = new Dictionary<string, int>()
 		{
-
-            var plotModel = new PlotModel { Title = title };
-
-            var stolenBrandsChart = new PieSeries
-            {
-                StrokeThickness = 1.0, InsideLabelPosition = 0.5, AngleSpan = 360, StartAngle = 0
-            };
-
-			// fake data
-			Dictionary<string, int> dicOfValues = new Dictionary<string, int>();
-
-			for (int i = 0; i <= 6; i++)
-			{
-				counter = counter + 1;
-				dicOfValues.Add((counter.ToString()), counter + 3);
-			}
-
-			foreach (KeyValuePair<string, int> val in dicOfValues)
-			{
-				stolenBrandsChart.Slices.Add(new PieSlice(val.Key, val.Value) { IsExploded = true });
-			}
-
-            //series1.Slices.Add(new PieSlice("Africa", 1030) { IsExploded = false, Fill = OxyColors.PaleVioletRed });
-
-			plotModel.Series.Add(stolenBrandsChart);
-
-            return plotModel;
-        }
+			{"Een"  , 50},
+			{"Twee" , 75},
+			{"Drie" , 20},
+			{"Vier" , 12},
+			{"Vijf" , 30},
+		};
 
 		protected override void OnCreate(Bundle bundle)
 		{
@@ -72,11 +45,13 @@ namespace Testapplicatie
 				Finish();
 			};
 
+			// Create the first pie chart.
 			PlotView view = FindViewById<PlotView>(Resource.Id.plotView);
-			view.Model = CreatePlotModel("Gestolen fietsen op basis van merk");
+			view.Model = Diagrams.createPieModel(chartValues);
 
+			// Create the second pie chart.
 			PlotView viewTwo = FindViewById<PlotView>(Resource.Id.plotView2);
-			viewTwo.Model = CreatePlotModel("Gestolen fietsen op basis van kleur");
+			viewTwo.Model = DiagramsSecond.createPieModel(chartValues);
 		}
 	}
 }
