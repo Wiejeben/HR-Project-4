@@ -11,6 +11,8 @@ using Android.Content;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.Preferences;
+using Android.Views.InputMethods;
+using Android.Views;
 
 namespace Testapplicatie
 {
@@ -30,15 +32,14 @@ namespace Testapplicatie
 			Log.Debug("OnCreate", "OnCreate called, initializing views...");
 
 			// Set our view from the "main" layout resource
-			SetContentView(Resource.Layout.One_View);
-
-			// Set layout view.
+			//SetContentView(Resource.Layout.One_View);
 			SetContentView(Resource.Layout.Base);
 
 			// Save locattion
 			Button saveLocationButton = FindViewById<Button>(Resource.Id.saveLocation);
 			saveLocationButton.Click += delegate
 			{
+				// Add the new location to the saved locations
 				ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(this);
 				string locations = preferences.GetString("Locations", "");
 				TextView locationName = FindViewById<TextView>(Resource.Id.LocationName);
@@ -48,6 +49,18 @@ namespace Testapplicatie
 				ISharedPreferencesEditor editor = prefs.Edit();
 				editor.PutString("Locations", locations);
 				editor.Apply();
+
+				// Hide keyboard
+				View view = this.CurrentFocus;
+				if (view != null)
+				{
+					InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
+					imm.HideSoftInputFromWindow(view.WindowToken, 0);
+				}
+
+				// Display message
+				Toast.MakeText(this, "Location has been saved", ToastLength.Long).Show();
+				CreateMarkers();
 
 				Log.Debug("OnLocationSave", locations);
 			};
@@ -206,6 +219,7 @@ namespace Testapplicatie
 			}
 		}
 
+
 		private void InitMapFragment()
 		{
 			if (map == null)
@@ -213,6 +227,7 @@ namespace Testapplicatie
 				FragmentManager.FindFragmentById<MapFragment>(Resource.Id.map).GetMapAsync(this);
 			}
 		}
+
 
 		public async void OnMapReady(GoogleMap googleMap)
 		{
