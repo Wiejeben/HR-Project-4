@@ -21,7 +21,7 @@ namespace Testapplicatie
 	public class Question2 : Activity
 	{
 		// Months
-		public List<string> months = new List<string>(
+		List<string> months = new List<string>(
 			new string[] {
 				"December",
 				"November",
@@ -62,7 +62,7 @@ namespace Testapplicatie
             PlotView view = FindViewById<PlotView>(Resource.Id.plotView);
 
 			// Create the model (diagrams.f) and place it in the view (view.model)
-			view.Model = Diagrams.createBarModel(
+			view.Model = Diagrams.createTwoBarModel(
 				months,
 				"Geinstalleerde fietstrommels",
 				firstBar,
