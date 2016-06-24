@@ -32,11 +32,12 @@ namespace ImportBicycleInfo
         public static bool ValidCSVRow(string[] row)
         {
             string ID = row[0];
-            string district = row[8];
+            string district = row[6];
             string color = row[24];
             string brand = row[22];
             string dateTime = row[11];
             string street = row[9];
+            string type = row[21];
 
             if (dateTime == "" ||
                 ID == "" ||
@@ -46,7 +47,8 @@ namespace ImportBicycleInfo
                 color == "" ||
                 brand == "" ||
                 brand == "-" ||
-                brand == "#N/A"
+                brand == "#N/A" ||
+                type == "FIETS"
                 )
             {
                 return false;
@@ -59,8 +61,7 @@ namespace ImportBicycleInfo
         {
             TextInfo format = new CultureInfo("nl-NL", false).TextInfo;
             string ID = row[0];
-            string district = format.ToTitleCase(row[8].ToLower());
-            district = district.TrimStart(new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ' });
+            string district = format.ToTitleCase(row[6].ToLower().Split('/').First());
             string color = format.ToTitleCase(row[24].ToLower());
             string brand = format.ToTitleCase(row[22].ToLower());
             string street = format.ToTitleCase(row[9].ToLower());

@@ -24,7 +24,6 @@ namespace ImportBicycleInfo
                 command.ExecuteNonQuery();
             }
 
-            
             CsvParser bikeTheftParser = new CsvParser("BikeThefts", 1);
             CsvParser bikeContainerParser = new CsvParser("BikeContainers", 1);
 
