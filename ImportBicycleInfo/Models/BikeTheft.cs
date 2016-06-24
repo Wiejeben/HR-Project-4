@@ -51,7 +51,7 @@ namespace ImportBicycleInfo
             TextInfo format = new CultureInfo("nl-NL", false).TextInfo;
             string ID = row[0];
             string district = format.ToTitleCase(row[8].ToLower());
-            district.TrimStart(new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ' });
+            district = district.TrimStart(new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ' });
             string color = format.ToTitleCase(row[24].ToLower());
             string brand = format.ToTitleCase(row[22].ToLower());
             string street = format.ToTitleCase(row[9].ToLower());

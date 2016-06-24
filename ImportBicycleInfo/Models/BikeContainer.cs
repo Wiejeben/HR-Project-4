@@ -59,7 +59,7 @@ namespace ImportBicycleInfo
 
             int streetID = this.GetOrSet("streets", this.Street, "districts", "district_id", this.District);
 
-            string query = "INSERT INTO `bikethefts` VALUES(@id, @lat, @long, @street_id);";
+            string query = "INSERT INTO `bikecontainers` VALUES(@id, @lat, @long, @street_id);";
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
                 // Apply values
