@@ -75,6 +75,7 @@
     <Compile Include="Question5.cs" />
     <Compile Include="Question6.cs" />
     <Compile Include="Classes\Helpers.cs" />
+    <Compile Include="Classes\Diagrams.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
