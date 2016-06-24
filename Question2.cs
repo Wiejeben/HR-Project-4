@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,64 +20,57 @@ namespace Testapplicatie
 	[Activity(Label = "@string/v2")]
 	public class Question2 : Activity
 	{
-        private PlotModel CreatePlotModel()
-        {
+		// Months
+		List<string> months = new List<string>(
+			new string[] {
+				"December",
+				"November",
+				"Oktober",
+				"September",
+				"Augustus",
+				"Juli",
+				"Juni",
+				"Mei",
+				"April",
+				"Maart",
+				"Februari",
+				"Januari"
+		});
 
-            var plotModel = new PlotModel
-            {
-                Title = "BarSeries",
-                LegendPlacement = LegendPlacement.Outside,
-                LegendPosition = LegendPosition.BottomCenter,
-                LegendOrientation = LegendOrientation.Horizontal,
-                LegendBorderThickness = 0
-            };
+		// Fake data
+		List<int> firstBar = new List<int>(
+			new int[] {
+			100,200,300,400,500,600,700,800,900,1000,1100,1200
+		});
 
+		List<int> secondBar = new List<int>(
+			new int[] {
+			50,150,250,350,450,550,650,750,850,950,1050,1150
+		});
 
-            var categoryAxis = new CategoryAxis { Position = AxisPosition.Left };
-
-            categoryAxis.Labels.Add("Januari");
-            categoryAxis.Labels.Add("Februari");
-            categoryAxis.Labels.Add("Maart");
-            categoryAxis.Labels.Add("April");
-            categoryAxis.Labels.Add("Mei");
-            categoryAxis.Labels.Add("Juni");
-            categoryAxis.Labels.Add("Juli");
-            categoryAxis.Labels.Add("Augustus");
-            categoryAxis.Labels.Add("September");
-            categoryAxis.Labels.Add("Oktober");
-            categoryAxis.Labels.Add("November");
-            categoryAxis.Labels.Add("December");
-            var valueAxis = new LinearAxis { Position = AxisPosition.Bottom, MinimumPadding = 0, MaximumPadding = 0.06, AbsoluteMinimum = 0 };
-
-
-            var serie_one = new BarSeries { Title = "Geïnstalleerde fietstrommels", StrokeColor = OxyColors.Black, StrokeThickness = 1 };
-
-            for(int i = 0; i < 11; i++)
-                serie_one.Items.Add(new BarItem { Value = i + i + i });
-
-
-            var serie_two = new BarSeries { Title = "Fietsdiefstallen", StrokeColor = OxyColors.Black, StrokeThickness = 1 };
-
-            for (int i = 0; i < 11; i++)
-                serie_two.Items.Add(new BarItem { Value = i + i });
-            
-
-            plotModel.Series.Add(serie_one);
-            plotModel.Series.Add(serie_two);
-            plotModel.Axes.Add(categoryAxis);
-            plotModel.Axes.Add(valueAxis);
-
-            return plotModel;
-        }
-
+		// Diagram class instance
+		Diagrams Diagrams = new Diagrams("Fietstrommels & fietsdiefstallen per maand");
 
         protected override void OnCreate(Bundle savedInstanceState)
 		{
+			// Create the instance on the base
 			base.OnCreate(savedInstanceState);
 			// Set view.
 			SetContentView(Resource.Layout.One_View);
 
-			// Button & eventhandler.
+			// Our container for the model
+            PlotView view = FindViewById<PlotView>(Resource.Id.plotView);
+
+			// Create the model (diagrams.f) and place it in the view (view.model)
+			view.Model = Diagrams.createTwoBarModel(
+				months,
+				"Geinstalleerde fietstrommels",
+				firstBar,
+				"Fietsdiefstallen",
+				secondBar
+			);
+
+			// Return button & eventhandler.
 			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
 			returnButton.Click += delegate
 			{
@@ -87,11 +79,8 @@ namespace Testapplicatie
 				// Close the current layout.
 				Finish();
 			};
-            var plotView = new PlotView(this);
-            plotView.Model = CreatePlotModel();
 
-            this.AddContentView(plotView,
-                new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
+
         }
 	}
 }
