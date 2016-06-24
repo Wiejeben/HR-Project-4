@@ -38,7 +38,16 @@ namespace ImportBicycleInfo
             string dateTime = row[11];
             string street = row[9];
 
-            if (dateTime == "" || ID == "")
+            if (dateTime == "" ||
+                ID == "" ||
+                color == "0" ||
+                color == "#N/A" ||
+                color == "ONBEKEND" ||
+                color == "" ||
+                brand == "" ||
+                brand == "-" ||
+                brand == "#N/A"
+                )
             {
                 return false;
             }
