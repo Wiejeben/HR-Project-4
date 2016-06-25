@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/returnButton" />
     <Button
-        android:text="Show my location in default map app"
+        android:text="Toon mijn locatie in mijn standart map app"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/showLocationOnMap" />
@@ -17,9 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/LocationName"
-        android:hint="Bike name" />
+        android:hint="Locatie naam" />
     <Button
-        android:text="Save location"
+        android:text="Locatie opslaan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/saveLocation" />

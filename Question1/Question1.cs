@@ -29,7 +29,7 @@ namespace Testapplicatie
 			Log.Debug("OnCreate", "OnCreate called, initializing views...");
 
 			// Set our view from the "main" layout resource
-			SetContentView(Resource.Layout.Base);
+			SetContentView(Resource.Layout.Question1);
 
 			// Load spinner
 			Spinner spinner = FindViewById<Spinner>(Resource.Id.spinner);
@@ -45,6 +45,12 @@ namespace Testapplicatie
 
 				// Hide keyboard
 				General.HideKeyboard(this);
+
+				// Reload spinner
+				Question1Elements.CreateSpinner(this, spinner);
+
+				// Reload map
+				InitMapFragment();
 
 				// Display message
 				Toast.MakeText(this, "Location has been saved", ToastLength.Long).Show();
@@ -208,8 +214,23 @@ namespace Testapplicatie
 		{
 			Spinner spinner = (Spinner)sender;
 
-			string toast = string.Format("The selected item is: {0}", spinner.GetItemAtPosition(e.Position));
-			Toast.MakeText(this, toast, ToastLength.Long).Show();
+			if (spinner.GetItemIdAtPosition(e.Position) != 0)
+			{
+				string toast = string.Format("The selected item is: {0}", spinner.GetItemAtPosition(e.Position));
+				Toast.MakeText(this, toast, ToastLength.Long).Show();
+
+				// Change camara to the selected location
+				int counter = 0;
+				List<string[]> savedLocations = General.GetSavedLocations(this);
+				foreach (string[] savedLocation in savedLocations)
+				{
+					counter++;
+					if (counter == spinner.GetItemIdAtPosition(e.Position))
+					{
+						map.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(Double.Parse(savedLocation[1]), Double.Parse(savedLocation[2])), 18));
+					}
+				}
+			}
 		}
 
 	}

@@ -31,7 +31,6 @@ namespace Testapplicatie
 			// Add the new location to the saved locations
 			ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(parent);
 			string locations = preferences.GetString("Locations", "");
-
 			locations += locationName.Text + "-" + location.Latitude + "-" + location.Longitude + ";";
 
 			ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(parent);
@@ -45,13 +44,40 @@ namespace Testapplicatie
 		// Spiner
 		public static void CreateSpinner(Question1 parent, Spinner spinner)
 		{
-			var items = new List<string>() { "one", "two", "three" };
 			spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(parent.spinner_ItemSelected);
-			var adapter = new ArrayAdapter(parent, Android.Resource.Layout.SimpleSpinnerItem, items);
+			var adapter = new ArrayAdapter(parent, Android.Resource.Layout.SimpleSpinnerItem, GetSpinnerInfo(parent));
 			adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 			spinner.Adapter = adapter;
 		}
 
+		public static List<string> GetSpinnerInfo(Question1 parent)
+		{
+			List<string> locations = new List<string>();
+			locations.Add("Selecteer aan locatie");
+		
+			// Get the saved locations
+			ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(parent);
+			string Savedlocations = preferences.GetString("Locations", "");
+
+
+			if (Savedlocations.Length > 0)
+			{
+				char delimiterChar1 = ';';
+				char delimiterChar2 = '-';
+
+				string[] locationsList = Savedlocations.Split(delimiterChar1);
+				foreach (string locationList in locationsList)
+				{
+					if (locationList != "")
+					{
+						string[] locationInformation = locationList.Split(delimiterChar2);
+						locations.Add(locationInformation[0]);
+					}
+				}
+			}
+
+			return locations;
+		}
 	
 	}
 }
