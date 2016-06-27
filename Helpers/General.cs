@@ -63,5 +63,11 @@ namespace Testapplicatie
 				return false;
 			}
 		}
+
+        public string GetDatabasePath(Activity activity)
+        {
+            var FullDatabasePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal) + "/Database.sqlite";
+            return FullDatabasePath;
+        }
 	}
 }
