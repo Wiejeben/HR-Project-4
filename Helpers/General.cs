@@ -4,6 +4,8 @@ using Android.Views;
 using Android.Views.InputMethods;
 using System.Collections.Generic;
 using Android.Preferences;
+using Android.Locations;
+using Android.App;
 
 namespace Testapplicatie
 {
@@ -47,6 +49,19 @@ namespace Testapplicatie
 			}
 
 			return locations;
+		}
+
+		// Check if location is enabled
+		public static bool LocationStatus(Activity activity)
+		{
+			LocationManager locationManager = (LocationManager)activity.GetSystemService(Context.LocationService);
+			if (locationManager.IsProviderEnabled(LocationManager.GpsProvider))
+			{
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 	}
 }
