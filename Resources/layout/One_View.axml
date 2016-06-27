@@ -8,7 +8,7 @@
     <OxyPlot.Xamarin.Android.PlotView
         android:id="@+id/plotView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="540dp"
         android:layout_marginTop="0dp"
         android:visibility="visible"
         android:focusable="false" />

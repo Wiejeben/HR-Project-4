@@ -2522,6 +2522,24 @@ namespace Testapplicatie
 			// aapt resource value: 0x7f060013
 			public const int status_bar_notification_info_overflow = 2131099667;
 			
+			// aapt resource value: 0x7f06003e
+			public const int us_1 = 2131099710;
+			
+			// aapt resource value: 0x7f06003f
+			public const int us_2 = 2131099711;
+			
+			// aapt resource value: 0x7f060040
+			public const int us_3 = 2131099712;
+			
+			// aapt resource value: 0x7f060041
+			public const int us_4 = 2131099713;
+			
+			// aapt resource value: 0x7f060042
+			public const int us_5 = 2131099714;
+			
+			// aapt resource value: 0x7f060043
+			public const int us_6 = 2131099715;
+			
 			// aapt resource value: 0x7f060037
 			public const int v1 = 2131099703;
 			

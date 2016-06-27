@@ -7,29 +7,29 @@
         android:id="@+id/buttonVraag1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/v1" />
+        android:text="@string/us_1" />
     <Button
-        android:text="@string/v2"
+        android:text="@string/us_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonVraag2" />
     <Button
-        android:text="@string/v3"
+        android:text="@string/us_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonVraag3" />
     <Button
-        android:text="@string/v4"
+        android:text="@string/us_4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonVraag4" />
     <Button
-        android:text="@string/v5"
+        android:text="@string/us_5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonVraag5" />
     <Button
-        android:text="@string/v6"
+        android:text="@string/us_6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonVraag6" />
