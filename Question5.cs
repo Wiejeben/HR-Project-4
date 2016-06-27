@@ -8,7 +8,7 @@ using OxyPlot.Xamarin.Android;
 
 namespace Testapplicatie
 {
-	[Activity(Label = "@string/v5")]
+	[Activity(Label = "@string/us_5")]
 	public class Question5 : Activity
 	{
 

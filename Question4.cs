@@ -10,7 +10,7 @@ using OxyPlot.Xamarin.Android;
 
 namespace Testapplicatie
 {
-	[Activity(Label = "@string/v4")]
+	[Activity(Label = "@string/us_4")]
 	public class Question4 : Activity
 	{
 		// Two instances because we need one for every model and the plot model gets created in the constructor.

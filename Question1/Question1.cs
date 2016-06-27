@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace Testapplicatie
 {
-	[Activity(Label = "@string/v1")]
+	[Activity(Label = "@string/us_1")]
 	public class Question1 : Activity, GoogleApiClient.IConnectionCallbacks,
 		GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener, IOnMapReadyCallback
 	{

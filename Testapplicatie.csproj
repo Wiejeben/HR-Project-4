@@ -93,6 +93,8 @@
     <Compile Include="Helpers\Map.cs" />
     <Compile Include="Classes\Diagrams.cs" />
     <Compile Include="Classes\Menu.cs" />
+    <Compile Include="Question7.cs" />
+    <Compile Include="Question8.cs" />
  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

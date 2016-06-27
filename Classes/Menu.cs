@@ -17,6 +17,8 @@ class Menu
         Button fourthQuestion = Activity.FindViewById<Button>(Resource.Id.buttonVraag4);
         Button fifthQuestion = Activity.FindViewById<Button>(Resource.Id.buttonVraag5);
         Button sixthQuestion = Activity.FindViewById<Button>(Resource.Id.buttonVraag6);
+		Button seventhQuestion = Activity.FindViewById<Button>(Resource.Id.buttonVraag7);
+		Button eightQuestion = Activity.FindViewById<Button>(Resource.Id.buttonVraag8);
 
 
         firstQuestion.Click += delegate {
@@ -33,6 +35,8 @@ class Menu
         fourthQuestion.Click += delegate { this.StartActivity(typeof(Question4)); };
         fifthQuestion.Click += delegate { this.StartActivity(typeof(Question5)); };
         sixthQuestion.Click += delegate { this.StartActivity(typeof(Question6)); };
+		seventhQuestion.Click += delegate { this.StartActivity(typeof(Question7)); };
+		eightQuestion.Click += delegate { this.StartActivity(typeof(Question8)); };
     }
 
     // Start the activity which has been coupled with the right class

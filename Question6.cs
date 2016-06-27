@@ -16,7 +16,7 @@ using Android.Widget;
 
 namespace Testapplicatie
 {
-	[Activity(Label = "@string/v6")]
+	[Activity(Label = "@string/us_6")]
 	public class Question6 : Activity
 	{
 		public int cDay 	= 	DateTime.Now.Day;
