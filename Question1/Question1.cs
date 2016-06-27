@@ -7,12 +7,9 @@ using Android.Gms.Common.Apis;
 using Android.Util;
 using Android.Widget;
 using Android.Locations;
-using Android.Content;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-using Android.Preferences;
-using Android.Views.InputMethods;
-using Android.Views;
+using System.Collections.Generic;
 
 namespace Testapplicatie
 {
@@ -25,46 +22,40 @@ namespace Testapplicatie
 		Location location;
 		GoogleMap map;
 
-		////Lifecycle methods
+		// Lifecycle methods
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
 			Log.Debug("OnCreate", "OnCreate called, initializing views...");
 
 			// Set our view from the "main" layout resource
-			//SetContentView(Resource.Layout.One_View);
-			SetContentView(Resource.Layout.Base);
+			SetContentView(Resource.Layout.Question1);
+
+			// Load spinner
+			Spinner spinner = FindViewById<Spinner>(Resource.Id.spinner);
+			Question1Elements.CreateSpinner(this, spinner);
 
 			// Save locattion
 			Button saveLocationButton = FindViewById<Button>(Resource.Id.saveLocation);
 			saveLocationButton.Click += delegate
 			{
-				// Add the new location to the saved locations
-				ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(this);
-				string locations = preferences.GetString("Locations", "");
+				// Save location
 				TextView locationName = FindViewById<TextView>(Resource.Id.LocationName);
-				locations += locationName.Text + "-" + location.Latitude + "-" + location.Longitude + ";";
-
-				ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-				ISharedPreferencesEditor editor = prefs.Edit();
-				editor.PutString("Locations", locations);
-				editor.Apply();
+				Question1Elements.SaveLocation(this, location, locationName);
 
 				// Hide keyboard
-				View view = this.CurrentFocus;
-				if (view != null)
-				{
-					InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
-					imm.HideSoftInputFromWindow(view.WindowToken, 0);
-				}
+				General.HideKeyboard(this);
+
+				// Reload spinner
+				Question1Elements.CreateSpinner(this, spinner);
+
+				// Reload map
+				InitMapFragment();
 
 				// Display message
 				Toast.MakeText(this, "Location has been saved", ToastLength.Long).Show();
 				CreateMarkers();
-
-				Log.Debug("OnLocationSave", locations);
 			};
-
 
 			// Button & eventhandler.
 			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
@@ -78,19 +69,10 @@ namespace Testapplicatie
 
 			// Show location on the map
 			Button showLocationOnMap = FindViewById<Button>(Resource.Id.showLocationOnMap);
-			showLocationOnMap.Click += delegate
-			{
-				if (location == null)
-				{
-					Log.Error("OnShowLocationOnMapButtonClick", "No location has been found to display on the map");
-					Toast.MakeText(this, "No location has been found.", ToastLength.Long).Show();
-				}
-				else {
-					var geoUri = Android.Net.Uri.Parse("geo:" + location.Latitude + "," + location.Longitude);
-					var mapIntent = new Intent(Intent.ActionView, geoUri);
-					StartActivity(mapIntent);
-				}
+			showLocationOnMap.Click += delegate {
+				Question1Elements.OpenMap(this, location);
 			};
+
 
 			if (GooglePlayService.IsGooglePlayServicesInstalled(this))
 			{
@@ -105,7 +87,6 @@ namespace Testapplicatie
 				Finish();
 			}
 		}
-
 
 		protected override void OnResume()
 		{
@@ -193,30 +174,10 @@ namespace Testapplicatie
 
 		public void OnConnectionSuspended(int i) { }
 
+
 		public void CreateMarkers()
 		{
-			ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(this);
-			string locations = preferences.GetString("Locations", "");
-			if (locations.Length > 0)
-			{
-				char delimiterChar1 = ';';
-				char delimiterChar2 = '-';
-
-				string[] locationsList = locations.Split(delimiterChar1);
-				foreach (string locationList in locationsList)
-				{
-					if (locationList != "")
-					{
-						string[] locationInformation = locationList.Split(delimiterChar2);
-						// Add marker for current location	
-						LatLng LatLngLocation = new LatLng(Convert.ToDouble(locationInformation[1]), Convert.ToDouble(locationInformation[2]));
-						MarkerOptions markerOpt1 = new MarkerOptions();
-						markerOpt1.SetPosition(LatLngLocation);
-						markerOpt1.SetTitle(locationInformation[0]);
-						map.AddMarker(markerOpt1);
-					}
-				}
-			}
+			Map.CreateMarkers(this, map);
 		}
 
 
@@ -227,7 +188,6 @@ namespace Testapplicatie
 				FragmentManager.FindFragmentById<MapFragment>(Resource.Id.map).GetMapAsync(this);
 			}
 		}
-
 
 		public async void OnMapReady(GoogleMap googleMap)
 		{
@@ -248,5 +208,30 @@ namespace Testapplicatie
 			// Set map options
 			googleMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 18));
 		}
+
+		// If an bike is selected
+		public void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Spinner spinner = (Spinner)sender;
+
+			if (spinner.GetItemIdAtPosition(e.Position) != 0)
+			{
+				string toast = string.Format("The selected item is: {0}", spinner.GetItemAtPosition(e.Position));
+				Toast.MakeText(this, toast, ToastLength.Long).Show();
+
+				// Change camara to the selected location
+				int counter = 0;
+				List<string[]> savedLocations = General.GetSavedLocations(this);
+				foreach (string[] savedLocation in savedLocations)
+				{
+					counter++;
+					if (counter == spinner.GetItemIdAtPosition(e.Position))
+					{
+						map.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(Double.Parse(savedLocation[1]), Double.Parse(savedLocation[2])), 18));
+					}
+				}
+			}
+		}
+
 	}
 }

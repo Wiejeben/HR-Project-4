@@ -1,14 +1,12 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
-using System.Collections.Generic;
 using System;
 using Testapplicatie;
 
 class Menu
 {
     private Activity Activity;
-    private List<Button> ButtonList;
 
     public Menu(Activity activity)
     {
@@ -20,7 +18,16 @@ class Menu
         Button fifthQuestion = Activity.FindViewById<Button>(Resource.Id.buttonVraag5);
         Button sixthQuestion = Activity.FindViewById<Button>(Resource.Id.buttonVraag6);
 
-        firstQuestion.Click += delegate { this.StartActivity(typeof(Question1)); };
+
+        firstQuestion.Click += delegate {
+			if (General.LocationStatus(activity))
+			{
+				this.StartActivity(typeof(Question1));
+			}
+			else {
+				Toast.MakeText(activity, "Locatie staat uit", ToastLength.Long).Show();
+			}
+		};
         secondQuestion.Click += delegate { this.StartActivity(typeof(Question2)); };
         thirdQuestion.Click += delegate { this.StartActivity(typeof(Question3)); };
         fourthQuestion.Click += delegate { this.StartActivity(typeof(Question4)); };

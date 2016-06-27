@@ -2,7 +2,7 @@
 <resources>
 	<string name="hello">Hello World, Click Me!</string>
 	<string name="app_name">Project 4</string>
-	<string name="v1">Vraag 1</string>
+	<string name="v1">Fiets locatie opslaan / Opgeslagen locaties bekijken</string>
 	<string name="v2">Vraag 2</string>
 	<string name="v3">Vraag 3</string>
 	<string name="v4">Vraag 4</string>
@@ -15,4 +15,5 @@
 	<string name="us_4">Diefstallen op basis van merk / kleur</string>
 	<string name="us_5">Gestolen fietsen per maand</string>
 	<string name="us_6">Fiets ophaal reminder toevoegen</string>
+	<string name="selectBike">Select a bike</string>
 </resources>
