@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">Project 4</string>
+	<string name="app_name">Project 4 | Groep 4</string>
 	<string name="returnLabel">Terug naar het hoofdmenu</string>
 	<string name="confirmLabel">Opslaan</string>
 	<string name="us_1">Fiets locatie toevoegen</string>
@@ -11,5 +11,5 @@
 	<string name="us_6">Fiets ophaal reminder toevoegen</string>
 	<string name="us_7">Diefstallen per wijk</string>
 	<string name="us_8">Dichtsbijzijnde fietstrommel</string>
-	<string name="selectBike">Select a bike</string>
+	<string name="selectBike">Kies een fiets</string>
 </resources>
