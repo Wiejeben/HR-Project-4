@@ -19,6 +19,7 @@ CREATE TABLE "brands" (
 );
 CREATE TABLE "bikethefts" (
 	`id`	TEXT NOT NULL,
+	`date`	INTEGER NOT NULL,
 	`brand_id`	INTEGER,
 	`color_id`	INTEGER,
 	`street_id`	INTEGER,

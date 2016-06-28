@@ -25,8 +25,7 @@ namespace ImportBicycleInfo
             this.Brand = brand;
             this.Color = color;
             this.District = district;
-            this.Street = street;
-            
+            this.Street = street;  
         }
 
         public static bool ValidCSVRow(string[] row)
@@ -40,7 +39,7 @@ namespace ImportBicycleInfo
             string type = row[21];
 
             // Validation
-            return (dateTime == "" ||
+            return !(dateTime == "" ||
                 ID == "" ||
                 color == "0" ||
                 color == "#N/A" ||
@@ -74,11 +73,12 @@ namespace ImportBicycleInfo
             int colorID = this.GetOrSet("colors", this.Color);
             int streetID = this.GetOrSet("streets", this.Street, "districts", "district_id", this.District);
 
-            string query = "INSERT INTO `bikethefts` VALUES(@id, @brand_id, @color_id, @street_id);";
+            string query = "INSERT INTO `bikethefts` VALUES(@id, @date, @brand_id, @color_id, @street_id);";
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
                 // Apply values
                 command.Parameters.AddWithValue("@id", this.ID);
+                command.Parameters.AddWithValue("@date", this.ConvertToTimestamp(this.DateTime));
                 command.Parameters.AddWithValue("@brand_id", brandID);
                 command.Parameters.AddWithValue("@color_id", colorID);
                 command.Parameters.AddWithValue("@street_id", streetID);

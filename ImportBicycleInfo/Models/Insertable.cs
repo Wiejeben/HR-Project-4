@@ -74,6 +74,15 @@ namespace ImportBicycleInfo
             }
         }
 
+        protected int ConvertToTimestamp(DateTime value)
+        {
+            // UNIX starting time
+            TimeSpan span = (value - new DateTime(1970, 1, 1, 0, 0, 0, 0).ToLocalTime());
+
+            // Get amount of seconds from start UNIX timestamp
+            return Convert.ToInt32(span.TotalSeconds);
+        }
+
         public abstract bool InsertDB(SQLiteConnection connection);
     }
 }

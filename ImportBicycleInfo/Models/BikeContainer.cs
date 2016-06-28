@@ -33,12 +33,7 @@ namespace ImportBicycleInfo
             string district = row[28];
             string street = row[9];
 
-            if (ID == "" || latCoord == "" || longCoord == "")
-            {
-                return false;
-            }
-
-            return true;
+            return !(ID == "" || latCoord == "" || longCoord == "");
         }
 
         public static BikeContainer ParseCSVRow(string[] row)
