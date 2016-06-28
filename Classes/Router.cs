@@ -13,10 +13,7 @@ namespace Testapplicatie
 {
 	public class Router : Activity
 	{
-		public Router()
-		{
-			
-		}
+		public Router(){}
 
 		public void getView(Context old, Type viewActivity)
 		{

@@ -45,7 +45,9 @@ namespace Testapplicatie
 				Finish();
 			};
 
+			// Get the container for the model.
             PlotView view = FindViewById<PlotView>(Resource.Id.plotView);
+			// Place the model in the container.
 			view.Model = Diagrams.CreateBarModel(
 				neighbourhoods,
 				thefts

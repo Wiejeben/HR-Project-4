@@ -11,10 +11,11 @@ namespace Testapplicatie
 	[Activity(Label = "@string/us_5")]
 	public class Question5 : Activity
 	{
-
+		// Instance of the diagrams class.
 		Diagrams Diagrams = new Diagrams("Gestolen fietsen per maand");
 
 		// fake data
+		// {month, value}
 		Dictionary<int, int> lineValues = new Dictionary<int, int>()
 		{
 			{1 , 50},
@@ -47,7 +48,9 @@ namespace Testapplicatie
                 Finish();
             };
 
+			// Find the container for our model
             PlotView view = FindViewById<PlotView>(Resource.Id.plotView);
+			// Place our created model in the container w/ the values.
 			view.Model = Diagrams.createLineModel(
 				lineValues, 
 				80

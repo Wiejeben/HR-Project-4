@@ -91,7 +91,7 @@ namespace Testapplicatie
 			else {
 				// GPS is not installed, error message & return to home.
 				Log.Error("OnCreate", "Google Play Services is not installed");
-				Toast.MakeText(this, "Google Play Services is not installed", ToastLength.Long).Show();
+				Toast.MakeText(this, "Google Play Services is niet geinstalleerd!", ToastLength.Long).Show();
 				Finish();
 			}
 
@@ -115,7 +115,7 @@ namespace Testapplicatie
 				// Title for the agenda item.
 				eventValues.Put(CalendarContract.Events.InterfaceConsts.Title, "Fiets ophalen.");
 				// Description for the agenda item.
-				eventValues.Put(CalendarContract.Events.InterfaceConsts.Description, "Anders word je fiets gejat!");
+				eventValues.Put(CalendarContract.Events.InterfaceConsts.Description, "Haal uw fiets op, de locatie is opgeslagen.");
 				// Location for the agenda item.
 				eventValues.Put(CalendarContract.Events.InterfaceConsts.EventLocation, streetName);
 				// Convert to milliseconds so we can define a start date
