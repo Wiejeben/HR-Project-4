@@ -30,11 +30,23 @@ class Menu
 				Toast.MakeText(activity, "Locatie staat uit", ToastLength.Long).Show();
 			}
 		};
+
+		sixthQuestion.Click += delegate
+		{
+			if (General.LocationStatus(activity))
+			{
+				this.StartActivity(typeof(Question6));
+			}
+			else {
+				Toast.MakeText(activity, "Locatie staat uit", ToastLength.Long).Show();
+			}
+		};
+
         secondQuestion.Click += delegate { this.StartActivity(typeof(Question2)); };
         thirdQuestion.Click += delegate { this.StartActivity(typeof(Question3)); };
         fourthQuestion.Click += delegate { this.StartActivity(typeof(Question4)); };
         fifthQuestion.Click += delegate { this.StartActivity(typeof(Question5)); };
-        sixthQuestion.Click += delegate { this.StartActivity(typeof(Question6)); };
+
 		seventhQuestion.Click += delegate {
 			if (General.LocationStatus(activity))
 			{
@@ -44,6 +56,7 @@ class Menu
 				Toast.MakeText(activity, "Locatie staat uit", ToastLength.Long).Show();
 			}
 		};
+
 		eightQuestion.Click += delegate { this.StartActivity(typeof(Question8)); };
     }
 

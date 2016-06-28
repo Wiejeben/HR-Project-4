@@ -19,6 +19,7 @@ namespace Testapplicatie
 		Diagrams DiagramsSecond = new Diagrams("Gestolen fietsen op basis van kleur");
 
 		// fake data
+		// {name, value}
 		Dictionary<string, int> chartValues = new Dictionary<string, int>()
 		{
 			{"Een"  , 50},

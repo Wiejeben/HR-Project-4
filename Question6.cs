@@ -1,67 +1,141 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-
-using Android;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Provider;
-
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
+using Android.Gms.Location;
+using Android.Gms.Common;
+using Android.Gms.Common.Apis;
+using Android.Util;
+using Android.Locations;
+using Android.Gms.Maps;
+using Android.Gms.Maps.Model;
+using System.Collections.Generic;
 
 namespace Testapplicatie
 {
 	[Activity(Label = "@string/us_6")]
-	public class Question6 : Activity
+	public class Question6 : Activity, GoogleApiClient.IConnectionCallbacks,
+		GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener
 	{
-		public int cDay 	= 	DateTime.Now.Day;
-		public int cMonth 	= 	(DateTime.Now.Month - 1);
-		public int cYear 	= 	DateTime.Now.Year;
-		public int cHour 	= 	DateTime.Now.Hour;
-		public int cMin 	= 	DateTime.Now.Minute;
+		GoogleApiClient apiClient;
+		LocationRequest locRequest;
+		Address address;
+		string streetName;
 
-		Router router = new Router();
+		public async void GetLocation()
+		{
+			// Connect to the API
+			apiClient.Connect();
+
+			// We're connected to the API
+			Log.Info("LocationClient", "Now connected to client");
+			// If we really are connected
+			if (apiClient.IsConnected)
+			{
+				// Wait for location updates
+				await LocationServices.FusedLocationApi.RequestLocationUpdates(apiClient, locRequest, this);
+			}
+			else
+			{
+				// Wait for the connection to be made.
+				Log.Info("LocationClient", "Please wait for Client to connect");
+			}
+		}
+
+		////Interface methods
+		public void OnConnected(Bundle bundle)
+		{
+			// Log message when we connect.
+			Log.Info("LocationClient", "Now connected to client");
+			// Call the getLocation function when we connect.
+			GetLocation();
+		}
+
+		public void OnConnectionFailed(ConnectionResult bundle)
+		{
+			// Log message on connection fail
+			Log.Info("LocationClient", "Connection failed, attempting to reach google play services");
+		}
+
+		public void OnConnectionSuspended(int i) { } // When the connection is suspended, we do nothing.
+
+		public async void OnLocationChanged(Location location)
+		{
+			// Whenever the location changes, log message.
+			Log.Debug("LocationClient", "Location updated");
+			// Update the address.
+			address = await LocationInformation.ReverseGeocodeCurrentLocation(this, location);
+			// Get the streetname from the address we received.
+			streetName = address.GetAddressLine(0).ToString();
+		}
 
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
 
 			// Set layout view.
-			// SetContentView(Resource.Layout.Question_One);
+			SetContentView(Resource.Layout.Datepicker);
 
-			// Class that can save content for applications.
-			ContentValues eventValues = new ContentValues();
+			// If GPS is installed for the geolocater..
+			if (GooglePlayService.IsGooglePlayServicesInstalled(this))
+			{
+				// API client that will be used for the location
+				apiClient = new GoogleApiClient.Builder(this, this, this).AddApi(LocationServices.API).Build();
+				// generate a location request that we will pass into a call for location updates
+				locRequest = new LocationRequest();
+				// We get our location
+				GetLocation();
+			}
+			else {
+				// GPS is not installed, error message & return to home.
+				Log.Error("OnCreate", "Google Play Services is not installed");
+				Toast.MakeText(this, "Google Play Services is niet geinstalleerd!", ToastLength.Long).Show();
+				Finish();
+			}
 
-			// We think the standard id for a calendar is 1 on a device.
-			eventValues.Put(CalendarContract.Events.InterfaceConsts.CalendarId, 1);
-			// Title for the agenda item.
-			eventValues.Put(CalendarContract.Events.InterfaceConsts.Title, "Fiets ophalen.");
-			// Description for the agenda item.
-			eventValues.Put(CalendarContract.Events.InterfaceConsts.Description, "Anders word je fiets gejat!");
-			// Location for the agenda item.
-			eventValues.Put(CalendarContract.Events.InterfaceConsts.EventLocation, "Somewhere..");
-			// Convert to milliseconds so we can define a start date
-			eventValues.Put(CalendarContract.Events.InterfaceConsts.Dtstart, Helpers.convertToMilliseconds(cYear, cMonth, cDay, cHour, cMin));
-			// Convert to milliseconds so we can define a end date.
-			eventValues.Put(CalendarContract.Events.InterfaceConsts.Dtend, Helpers.convertToMilliseconds(cYear, cMonth, cDay+1, cHour, cMin));
+			// The used UI elements
+			DatePicker datePicker = (DatePicker)FindViewById(Resource.Id.datePicker);
+			Button confirmButton = FindViewById<Button>(Resource.Id.datePickerSelect);
 
-			// Define the timezones.
-			eventValues.Put(CalendarContract.Events.InterfaceConsts.EventTimezone, "Europe/Berlin");
-			eventValues.Put(CalendarContract.Events.InterfaceConsts.EventEndTimezone, "Europe/Berlin");
+			// Confirm button & it's event handler.
+			confirmButton.Click += delegate
+			{
+				// The date
+				int cDay = datePicker.DayOfMonth;
+				int cMonth = datePicker.Month;
+				int cYear = datePicker.Year;
 
-			// Insert the data into the agenda content.
-			var uri = ContentResolver.Insert(CalendarContract.Events.ContentUri, eventValues);
+				// Class that can save content for applications.
+				ContentValues eventValues = new ContentValues();
 
-			// Let's return to the main activity.
-			StartActivity(typeof(MainActivity));
+				// We think the standard id for a calendar is 1 on a device.
+				eventValues.Put(CalendarContract.Events.InterfaceConsts.CalendarId, 1);
+				// Title for the agenda item.
+				eventValues.Put(CalendarContract.Events.InterfaceConsts.Title, "Fiets ophalen.");
+				// Description for the agenda item.
+				eventValues.Put(CalendarContract.Events.InterfaceConsts.Description, "Haal uw fiets op, de locatie is opgeslagen.");
+				// Location for the agenda item.
+				eventValues.Put(CalendarContract.Events.InterfaceConsts.EventLocation, streetName);
+				// Convert to milliseconds so we can define a start date
+				eventValues.Put(CalendarContract.Events.InterfaceConsts.Dtstart, Helpers.convertToMilliseconds(cYear, cMonth, cDay));
+				// Convert to milliseconds so we can define a end date.
+				eventValues.Put(CalendarContract.Events.InterfaceConsts.Dtend, Helpers.convertToMilliseconds(cYear, cMonth, cDay, 23, 59));
+
+				// Define the timezones.
+				eventValues.Put(CalendarContract.Events.InterfaceConsts.EventTimezone, "Europe/Berlin");
+				eventValues.Put(CalendarContract.Events.InterfaceConsts.EventEndTimezone, "Europe/Berlin");
+
+				// Insert the data into the agenda content.
+				var uri = ContentResolver.Insert(CalendarContract.Events.ContentUri, eventValues);
+				// Popup message
+				Toast.MakeText(this, "Uw reminder is toevoegd!", ToastLength.Long).Show();
+
+			};
 
 			// Button & eventhandler.
-			/* Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
+			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
 			returnButton.Click += delegate
 			{
 				// Swap to the right activity.
@@ -69,7 +143,7 @@ namespace Testapplicatie
 				// Close the current layout.
 				Finish();
 			};
-			*/
+
 		}
 	}
 }

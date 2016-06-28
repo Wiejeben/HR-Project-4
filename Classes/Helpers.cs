@@ -9,17 +9,17 @@ namespace Testapplicatie
 		{
 		}
 
-		public static long convertToMilliseconds(int yr, int month, int day, int hr, int min)
+		public static long convertToMilliseconds(int yr, int month, int day, int hr = 0, int min = 0)
 		{
-			Calendar c = Calendar.GetInstance(Java.Util.TimeZone.Default);
+			Calendar calendar = Calendar.GetInstance(Java.Util.TimeZone.Default);
 
-			c.Set(Calendar.DayOfMonth, day);
-			c.Set(Calendar.HourOfDay, hr);
-			c.Set(Calendar.Minute, min);
-			c.Set(Calendar.Month, month);
-			c.Set(Calendar.Year, yr);
+			calendar.Set(Calendar.Year, yr);
+			calendar.Set(Calendar.Month, month);
+			calendar.Set(Calendar.DayOfMonth, day);
+			calendar.Set(Calendar.HourOfDay, hr);
+			calendar.Set(Calendar.Minute, min);
 
-			return c.TimeInMillis;
+			return calendar.TimeInMillis;
 		}
 	}
 }

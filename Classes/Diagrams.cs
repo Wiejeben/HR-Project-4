@@ -33,7 +33,7 @@ namespace Testapplicatie
 			};
 		}
 
-		public PlotModel CreateBarModel(List<string> neighbourhoods, List<int> thefts)
+		public PlotModel createBarModel(List<string> labels, List<int> values)
 		{
 			// BEGIN: MODEL::BASE
 
@@ -52,16 +52,16 @@ namespace Testapplicatie
 
 			// BEGIN: MODEL::VALUES
 
-			foreach (string neighbourhood in neighbourhoods)
+			foreach (string label in labels)
 			{
 				// For the sidebar
-				yAxis.Labels.Add(neighbourhood);
+				yAxis.Labels.Add(label);
 			}
 
 			// The bars shown value
-			foreach (int theft in thefts)
+			foreach (int val in values)
 			{
-				Bar_1.Items.Add(new BarItem { Value = theft });
+				Bar_1.Items.Add(new BarItem { Value = val });
 			}
 
 			// END: MODEL::VALUES
