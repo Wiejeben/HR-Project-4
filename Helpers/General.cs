@@ -12,7 +12,7 @@ namespace Testapplicatie
 	public class General
 	{
 		// Hide keyboard
-		public static void HideKeyboard(Question1 parent)
+		public static void HideKeyboard(Activity parent)
 		{
 			View view = parent.CurrentFocus;
 			if (view != null)
@@ -23,7 +23,7 @@ namespace Testapplicatie
 		}
 
 		// Get a list of the saved locations
-		public static List<string[]> GetSavedLocations(Question1 parent)
+		public static List<string[]> GetSavedLocations(Activity parent)
 		{
 			List<string[]> locations = new List<string[]>();
 

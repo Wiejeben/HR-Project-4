@@ -1,16 +1,16 @@
 ﻿using System;
 using Android.Gms.Common;
 using Android.Util;
-
+using Android.Content;
 
 namespace Testapplicatie
 {
 	public static class GooglePlayService
 	{
 		// Example call: if (GooglePlayService.IsGooglePlayServicesInstalled(this))
-		public static bool IsGooglePlayServicesInstalled(Android.Content.Context par1)
+		public static bool IsGooglePlayServicesInstalled(Context parent)
 		{
-			int queryResult = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(par1);
+			int queryResult = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(parent);
 			if (queryResult == ConnectionResult.Success)
 			{
 				Log.Info("MainActivity", "Google Play Services is installed on this device.");

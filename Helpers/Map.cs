@@ -3,12 +3,17 @@ using Android.Content;
 using Android.Gms.Maps.Model;
 using Android.Preferences;
 using Android.Gms.Maps;
+using Android.App;
+using Android.Locations;
+using Android.Util;
+using Android.Widget;
 
 namespace Testapplicatie
 {
 	public class Map
 	{
-		public static void CreateMarkers(Question1 parent, GoogleMap map)
+		// Create markers foreach saved bike location
+		public static void CreateBikeMarkers(Activity parent, GoogleMap map)
 		{
 			ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(parent);
 			string locations = preferences.GetString("Locations", "");
@@ -31,6 +36,32 @@ namespace Testapplicatie
 						map.AddMarker(markerOpt1);
 					}
 				}
+			}
+		}
+
+		// Create a marker for the current location
+		public static void CreateMarkerForCurrentLocation(Activity parent, Location location, Address address, GoogleMap map)
+		{
+			LatLng LatLngLocation = new LatLng(location.Latitude, location.Longitude);
+			MarkerOptions markerOpt1 = new MarkerOptions();
+			markerOpt1.SetPosition(LatLngLocation);
+			markerOpt1.SetTitle(address.GetAddressLine(0).ToString());
+			map.AddMarker(markerOpt1);
+		}
+
+
+		// Open map
+		public static void OpenMap(Activity parent, Location location)
+		{
+			if (location == null)
+			{
+				Log.Error("OnShowLocationOnMapButtonClick", "No location has been found to display on the map");
+				Toast.MakeText(parent, "No location has been found.", ToastLength.Long).Show();
+			}
+			else {
+				var geoUri = Android.Net.Uri.Parse("geo:" + location.Latitude + "," + location.Longitude);
+				var mapIntent = new Intent(Intent.ActionView, geoUri);
+				parent.StartActivity(mapIntent);
 			}
 		}
 	}

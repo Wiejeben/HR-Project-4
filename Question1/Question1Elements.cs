@@ -10,21 +10,6 @@ namespace Testapplicatie
 {
 	public class Question1Elements
 	{
-		// Open map
-		public static void OpenMap(Question1 parent, Location location)
-		{
-			if (location == null)
-			{
-				Log.Error("OnShowLocationOnMapButtonClick", "No location has been found to display on the map");
-				Toast.MakeText(parent, "No location has been found.", ToastLength.Long).Show();
-			}
-			else {
-				var geoUri = Android.Net.Uri.Parse("geo:" + location.Latitude + "," + location.Longitude);
-				var mapIntent = new Intent(Intent.ActionView, geoUri);
-				parent.StartActivity(mapIntent);
-			}
-		}
-
 		// Save location
 		public static void SaveLocation(Question1 parent, Location location, TextView locationName)
 		{

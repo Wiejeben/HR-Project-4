@@ -35,7 +35,15 @@ class Menu
         fourthQuestion.Click += delegate { this.StartActivity(typeof(Question4)); };
         fifthQuestion.Click += delegate { this.StartActivity(typeof(Question5)); };
         sixthQuestion.Click += delegate { this.StartActivity(typeof(Question6)); };
-		seventhQuestion.Click += delegate { this.StartActivity(typeof(Question7)); };
+		seventhQuestion.Click += delegate {
+			if (General.LocationStatus(activity))
+			{
+				this.StartActivity(typeof(Question7));
+			}
+			else {
+				Toast.MakeText(activity, "Locatie staat uit", ToastLength.Long).Show();
+			}
+		};
 		eightQuestion.Click += delegate { this.StartActivity(typeof(Question8)); };
     }
 

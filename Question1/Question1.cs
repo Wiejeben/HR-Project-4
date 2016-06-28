@@ -11,6 +11,7 @@ using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using System.Collections.Generic;
 
+
 namespace Testapplicatie
 {
 	[Activity(Label = "@string/us_1")]
@@ -54,7 +55,7 @@ namespace Testapplicatie
 
 				// Display message
 				Toast.MakeText(this, "Location has been saved", ToastLength.Long).Show();
-				CreateMarkers();
+				Map.CreateBikeMarkers(this, map);
 			};
 
 			// Button & eventhandler.
@@ -70,7 +71,7 @@ namespace Testapplicatie
 			// Show location on the map
 			Button showLocationOnMap = FindViewById<Button>(Resource.Id.showLocationOnMap);
 			showLocationOnMap.Click += delegate {
-				Question1Elements.OpenMap(this, location);
+				Map.OpenMap(this, location);
 			};
 
 
@@ -110,8 +111,6 @@ namespace Testapplicatie
 			}
 		}
 
-
-		////Interface methods
 		public void OnConnected(Bundle bundle)
 		{
 			// This method is called when we connect to the LocationClient. We can start location updated directly form
@@ -175,12 +174,6 @@ namespace Testapplicatie
 		public void OnConnectionSuspended(int i) { }
 
 
-		public void CreateMarkers()
-		{
-			Map.CreateMarkers(this, map);
-		}
-
-
 		private void InitMapFragment()
 		{
 			if (map == null)
@@ -196,17 +189,13 @@ namespace Testapplicatie
 			Address address = await LocationInformation.ReverseGeocodeCurrentLocation(this, location);
 
 			// Add marker for current location
-			LatLng LatLngLocation = new LatLng(location.Latitude, location.Longitude);
-			MarkerOptions markerOpt1 = new MarkerOptions();
-			markerOpt1.SetPosition(LatLngLocation);
-			markerOpt1.SetTitle(address.GetAddressLine(0).ToString());
-			map.AddMarker(markerOpt1);
+			Map.CreateMarkerForCurrentLocation(this, location, address, map);
 
 			// Add markers for the saved locations
-			CreateMarkers();
+			Map.CreateBikeMarkers(this, map);
 
-			// Set map options
-			googleMap.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 18));
+			// Set map camera options
+			map.MoveCamera(CameraUpdateFactory.NewLatLngZoom(new LatLng(location.Latitude, location.Longitude), 18));
 		}
 
 		// If an bike is selected
@@ -232,6 +221,5 @@ namespace Testapplicatie
 				}
 			}
 		}
-
 	}
 }

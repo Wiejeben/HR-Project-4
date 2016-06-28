@@ -2320,19 +2320,22 @@ namespace Testapplicatie
 			public const int Question1 = 2130968615;
 			
 			// aapt resource value: 0x7f040028
-			public const int select_dialog_item_material = 2130968616;
+			public const int Question7 = 2130968616;
 			
 			// aapt resource value: 0x7f040029
-			public const int select_dialog_multichoice_material = 2130968617;
+			public const int select_dialog_item_material = 2130968617;
 			
 			// aapt resource value: 0x7f04002a
-			public const int select_dialog_singlechoice_material = 2130968618;
+			public const int select_dialog_multichoice_material = 2130968618;
 			
 			// aapt resource value: 0x7f04002b
-			public const int support_simple_spinner_dropdown_item = 2130968619;
+			public const int select_dialog_singlechoice_material = 2130968619;
 			
 			// aapt resource value: 0x7f04002c
-			public const int Two_Views = 2130968620;
+			public const int support_simple_spinner_dropdown_item = 2130968620;
+			
+			// aapt resource value: 0x7f04002d
+			public const int Two_Views = 2130968621;
 			
 			static Layout()
 			{
