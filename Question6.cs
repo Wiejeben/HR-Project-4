@@ -26,22 +26,20 @@ namespace Testapplicatie
 
 		public async void GetLocation()
 		{
+			// Connect to the API
 			apiClient.Connect();
 
-			// This method is called when we connect to the LocationClient. We can start location updated directly form
-			// here if desired, or we can do it in a lifecycle method, as shown above 
-
-			// You must implement this to implement the IGooglePlayServicesClientConnectionCallbacks Interface
+			// We're connected to the API
 			Log.Info("LocationClient", "Now connected to client");
+			// If we really are connected
 			if (apiClient.IsConnected)
 			{
-				// pass in a location request and LocationListener
+				// Wait for location updates
 				await LocationServices.FusedLocationApi.RequestLocationUpdates(apiClient, locRequest, this);
-				// In OnLocationChanged (below), we will make calls to update the UI
-				// with the new location data
 			}
 			else
 			{
+				// Wait for the connection to be made.
 				Log.Info("LocationClient", "Please wait for Client to connect");
 			}
 		}
@@ -49,33 +47,27 @@ namespace Testapplicatie
 		////Interface methods
 		public void OnConnected(Bundle bundle)
 		{
-			// This method is called when we connect to the LocationClient. We can start location updated directly form
-			// here if desired, or we can do it in a lifecycle method, as shown above 
-
-			// You must implement this to implement the IGooglePlayServicesClientConnectionCallbacks Interface
+			// Log message when we connect.
 			Log.Info("LocationClient", "Now connected to client");
+			// Call the getLocation function when we connect.
 			GetLocation();
 		}
 
 		public void OnConnectionFailed(ConnectionResult bundle)
 		{
-			// This method is used to handle connection issues with the Google Play Services Client (LocationClient). 
-			// You can check if the connection has a resolution (bundle.HasResolution) and attempt to resolve it
-
-			// You must implement this to implement the IGooglePlayServicesClientOnConnectionFailedListener Interface
+			// Log message on connection fail
 			Log.Info("LocationClient", "Connection failed, attempting to reach google play services");
 		}
 
-		public void OnConnectionSuspended(int i) { }
+		public void OnConnectionSuspended(int i) { } // When the connection is suspended, we do nothing.
 
 		public async void OnLocationChanged(Location location)
 		{
-			// This method display changes in the user's location if they've been requested
-
-			// You must implement this to implement the Android.Gms.Locations.ILocationListener Interface
+			// Whenever the location changes, log message.
 			Log.Debug("LocationClient", "Location updated");
-
+			// Update the address.
 			address = await LocationInformation.ReverseGeocodeCurrentLocation(this, location);
+			// Get the streetname from the address we received.
 			streetName = address.GetAddressLine(0).ToString();
 		}
 
@@ -86,24 +78,31 @@ namespace Testapplicatie
 			// Set layout view.
 			SetContentView(Resource.Layout.Datepicker);
 
+			// If GPS is installed for the geolocater..
 			if (GooglePlayService.IsGooglePlayServicesInstalled(this))
 			{
+				// API client that will be used for the location
 				apiClient = new GoogleApiClient.Builder(this, this, this).AddApi(LocationServices.API).Build();
 				// generate a location request that we will pass into a call for location updates
 				locRequest = new LocationRequest();
+				// We get our location
 				GetLocation();
 			}
 			else {
+				// GPS is not installed, error message & return to home.
 				Log.Error("OnCreate", "Google Play Services is not installed");
 				Toast.MakeText(this, "Google Play Services is not installed", ToastLength.Long).Show();
 				Finish();
 			}
 
+			// The used UI elements
 			DatePicker datePicker = (DatePicker)FindViewById(Resource.Id.datePicker);
 			Button confirmButton = FindViewById<Button>(Resource.Id.datePickerSelect);
 
+			// Confirm button & it's event handler.
 			confirmButton.Click += delegate
 			{
+				// The date
 				int cDay = datePicker.DayOfMonth;
 				int cMonth = datePicker.Month;
 				int cYear = datePicker.Year;
@@ -130,7 +129,7 @@ namespace Testapplicatie
 
 				// Insert the data into the agenda content.
 				var uri = ContentResolver.Insert(CalendarContract.Events.ContentUri, eventValues);
-
+				// Popup message
 				Toast.MakeText(this, "Uw reminder is toevoegd!", ToastLength.Long).Show();
 
 			};
