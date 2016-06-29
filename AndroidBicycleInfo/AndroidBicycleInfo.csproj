@@ -60,11 +60,20 @@
     <Compile Include="Acitivites\BikeAgendaActivity.cs" />
     <Compile Include="Acitivites\BikeTheftsPerNeighborhoodActivity.cs" />
     <Compile Include="Acitivites\RouteCalculatorActivity.cs" />
+    <Compile Include="SQLite.cs" />
+    <Compile Include="SQLiteAsync.cs" />
+    <Compile Include="Models\Color.cs" />
+    <Compile Include="Models\District.cs" />
+    <Compile Include="Models\Brand.cs" />
+    <Compile Include="Models\Street.cs" />
+    <Compile Include="Models\BikeTheft.cs" />
+    <Compile Include="Models\BikeContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
@@ -82,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Acitivites\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
