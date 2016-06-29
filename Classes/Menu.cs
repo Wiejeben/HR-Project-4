@@ -57,7 +57,16 @@ class Menu
 			}
 		};
 
-		eightQuestion.Click += delegate { this.StartActivity(typeof(Question8)); };
+		eightQuestion.Click += delegate
+		{
+			if (General.LocationStatus(activity))
+			{
+				this.StartActivity(typeof(Question8));
+			}
+			else {
+				Toast.MakeText(activity, "Locatie staat uit", ToastLength.Long).Show();
+			}
+		};
     }
 
     // Start the activity which has been coupled with the right class

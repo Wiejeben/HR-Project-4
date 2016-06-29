@@ -119,6 +119,7 @@
     <AndroidResource Include="Resources\layout\Two_Views.axml" />
     <AndroidResource Include="Resources\layout\Question7.axml" />
     <AndroidResource Include="Resources\layout\Datepicker.axml" />
+    <AndroidResource Include="Resources\layout\Question8.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

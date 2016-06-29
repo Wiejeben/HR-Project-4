@@ -2011,8 +2011,8 @@ namespace Testapplicatie
 			// aapt resource value: 0x7f0c0073
 			public const int plotView = 2131492979;
 			
-			// aapt resource value: 0x7f0c0081
-			public const int plotView2 = 2131492993;
+			// aapt resource value: 0x7f0c0082
+			public const int plotView2 = 2131492994;
 			
 			// aapt resource value: 0x7f0c0005
 			public const int progress_circular = 2131492869;
@@ -2079,6 +2079,9 @@ namespace Testapplicatie
 			
 			// aapt resource value: 0x7f0c0045
 			public const int shortcut = 2131492933;
+			
+			// aapt resource value: 0x7f0c0081
+			public const int showClosestBicyledrum = 2131492993;
 			
 			// aapt resource value: 0x7f0c000f
 			public const int showCustom = 2131492879;
@@ -2332,19 +2335,22 @@ namespace Testapplicatie
 			public const int Question7 = 2130968617;
 			
 			// aapt resource value: 0x7f04002a
-			public const int select_dialog_item_material = 2130968618;
+			public const int Question8 = 2130968618;
 			
 			// aapt resource value: 0x7f04002b
-			public const int select_dialog_multichoice_material = 2130968619;
+			public const int select_dialog_item_material = 2130968619;
 			
 			// aapt resource value: 0x7f04002c
-			public const int select_dialog_singlechoice_material = 2130968620;
+			public const int select_dialog_multichoice_material = 2130968620;
 			
 			// aapt resource value: 0x7f04002d
-			public const int support_simple_spinner_dropdown_item = 2130968621;
+			public const int select_dialog_singlechoice_material = 2130968621;
 			
 			// aapt resource value: 0x7f04002e
-			public const int Two_Views = 2130968622;
+			public const int support_simple_spinner_dropdown_item = 2130968622;
+			
+			// aapt resource value: 0x7f04002f
+			public const int Two_Views = 2130968623;
 			
 			static Layout()
 			{
