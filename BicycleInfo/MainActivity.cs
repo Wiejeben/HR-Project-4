@@ -2,7 +2,7 @@
 using Android.Widget;
 using Android.OS;
 
-namespace BicycleInfo
+namespace AndroidBicycleInfo
 {
 	[Activity(Label = "BicycleInfo", MainLauncher = true, Icon = "@mipmap/icon")]
 	public class MainActivity : Activity
