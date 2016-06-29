@@ -18,6 +18,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/showClosestBicyledrum" />
+	<Button
+        android:text="Route beschrijving naar de dichtstbijzijnde fiets trommel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/routeToClosestBicyledrum" />
     <fragment
         android:id="@+id/map"
         android:layout_width="fill_parent"

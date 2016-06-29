@@ -51,7 +51,14 @@ namespace Testapplicatie
 			Button showClosestBicyledrum = FindViewById<Button>(Resource.Id.showClosestBicyledrum);
 			showClosestBicyledrum.Click += delegate
 			{
-				Map.FocusOnClosestBicyleDrum(location, map);
+				Map.FocusOnClosestBicyledrum(map, location);
+			};
+
+			// Show closest bicyledrum on the map
+			Button routeToClosestBicyledrum = FindViewById<Button>(Resource.Id.routeToClosestBicyledrum);
+			routeToClosestBicyledrum.Click += delegate
+			{
+				Map.GetRouteToBicyleDrum(this, location);
 			};
 
 

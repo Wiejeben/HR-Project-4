@@ -2011,8 +2011,8 @@ namespace Testapplicatie
 			// aapt resource value: 0x7f0c0073
 			public const int plotView = 2131492979;
 			
-			// aapt resource value: 0x7f0c0082
-			public const int plotView2 = 2131492994;
+			// aapt resource value: 0x7f0c0083
+			public const int plotView2 = 2131492995;
 			
 			// aapt resource value: 0x7f0c0005
 			public const int progress_circular = 2131492869;
@@ -2025,6 +2025,9 @@ namespace Testapplicatie
 			
 			// aapt resource value: 0x7f0c005d
 			public const int returnButton = 2131492957;
+			
+			// aapt resource value: 0x7f0c0082
+			public const int routeToClosestBicyledrum = 2131492994;
 			
 			// aapt resource value: 0x7f0c0022
 			public const int satellite = 2131492898;

@@ -70,7 +70,7 @@ namespace Testapplicatie
 		}
 
 		// Get the closest bicyledrum based on your current location
-		public static void FocusOnClosestBicyleDrum(Location currentLocation, GoogleMap map)
+		public static LatLng GetClosestBicyleDrum(Location currentLocation)
 		{
 			LatLng currentLocationConverted = new LatLng(currentLocation.Latitude, currentLocation.Longitude);
 			Dictionary<double, double> locations = new Dictionary<double, double>();
@@ -90,15 +90,30 @@ namespace Testapplicatie
 					cameraPosition = LatLngLocation;
 				}
 			}
+			return cameraPosition;
+		}
 
+		public static void FocusOnClosestBicyledrum(GoogleMap map, Location currentLocation)
+		{
+			LatLng cameraPosition = GetClosestBicyleDrum(currentLocation);
 			map.MoveCamera(CameraUpdateFactory.NewLatLngZoom(cameraPosition, 18));
 		}
 
-		// Calculate distance from pos1 to pos in kilometers
+		public static void GetRouteToBicyleDrum(Activity parent, Location currentLocation)
+		{
+			LatLng cameraPosition = GetClosestBicyleDrum(currentLocation);
+
+			var geoUri = Android.Net.Uri.Parse(
+				"http://maps.google.com/maps?saddr="+currentLocation.Latitude+","+currentLocation.Longitude+"&daddr="+cameraPosition.Latitude+","+cameraPosition.Longitude
+			);
+
+			var mapIntent = new Intent(Intent.ActionView, geoUri);
+			parent.StartActivity(mapIntent);
+		}
+
+		// Calculate distance from pos1 to pos2
 		public static double Distance(LatLng pos1, LatLng pos2)
 		{
-			double R = 6371;
-
 			double dLat = toRadian(pos2.Latitude - pos1.Latitude);
 			double dLon = toRadian(pos2.Longitude - pos1.Longitude);
 
@@ -106,9 +121,8 @@ namespace Testapplicatie
 				Math.Cos(toRadian(pos1.Latitude)) * Math.Cos(toRadian(pos2.Latitude)) *
 				Math.Sin(dLon / 2) * Math.Sin(dLon / 2);
 			double c = 2 * Math.Asin(Math.Min(1, Math.Sqrt(a)));
-			double d = R * c;
 
-			return d;
+			return c;
 		}
 
 		public static double toRadian(double val)
