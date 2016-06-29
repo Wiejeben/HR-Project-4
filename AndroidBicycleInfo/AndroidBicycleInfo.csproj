@@ -68,11 +68,9 @@
     <Compile Include="Models\Street.cs" />
     <Compile Include="Models\BikeTheft.cs" />
     <Compile Include="Models\BikeContainer.cs" />
+    <Compile Include="Services\DatabaseService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="GettingStarted.Xamarin" />
-    <None Include="Resources\AboutResources.txt" />
-    <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +90,11 @@
   <ItemGroup>
     <Folder Include="Acitivites\" />
     <Folder Include="Models\" />
+    <Folder Include="Services\" />
+    <Folder Include="Assets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Database.sqlite" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
