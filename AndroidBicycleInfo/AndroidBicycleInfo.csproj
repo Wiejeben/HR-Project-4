@@ -68,7 +68,7 @@
     <Compile Include="Models\Street.cs" />
     <Compile Include="Models\BikeTheft.cs" />
     <Compile Include="Models\BikeContainer.cs" />
-    <Compile Include="Services\DatabaseService.cs" />
+    <Compile Include="Services\Database.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

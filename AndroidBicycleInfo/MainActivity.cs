@@ -25,6 +25,16 @@ namespace AndroidBicycleInfo
             Button button = FindViewById<Button>(Resource.Id.MyButton);
 
             button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
+
+			var db = Database.init();
+
+			var result = db.Table<Color>();
+
+			foreach (Color entry in result)
+			{
+				Toast.MakeText(this, entry.name, ToastLength.Short).Show();
+			}
+				
         }
     }
 }
