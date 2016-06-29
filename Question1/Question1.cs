@@ -205,7 +205,7 @@ namespace Testapplicatie
 
 			if (spinner.GetItemIdAtPosition(e.Position) != 0)
 			{
-				string toast = string.Format("The selected item is: {0}", spinner.GetItemAtPosition(e.Position));
+				string toast = string.Format("De geselecteerde locatie is: {0}", spinner.GetItemAtPosition(e.Position));
 				Toast.MakeText(this, toast, ToastLength.Long).Show();
 
 				// Change camara to the selected location

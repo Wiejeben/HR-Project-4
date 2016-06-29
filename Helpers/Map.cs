@@ -55,6 +55,7 @@ namespace Testapplicatie
 		public static void CreateMarkersForBicyleDrums(Location currentLocation, GoogleMap map)
 		{
 			Dictionary<double, double> locations = new Dictionary<double, double>();
+			// Dummy data
 			locations.Add(51.924420, 4.477733); // Hofplein
 			locations.Add(51.918024, 4.481692); // Blaak
 			locations.Add(51.916491, 4.473635); // Eendrachtsplein
@@ -74,8 +75,9 @@ namespace Testapplicatie
 		{
 			LatLng currentLocationConverted = new LatLng(currentLocation.Latitude, currentLocation.Longitude);
 			Dictionary<double, double> locations = new Dictionary<double, double>();
-			double closestLocation = 999999;
+			double closestLocation = 0;
 			LatLng cameraPosition = new LatLng(currentLocation.Latitude, currentLocation.Longitude); ;
+			// Dummy data
 			locations.Add(51.924420, 4.477733); // Hofplein
 			locations.Add(51.918024, 4.481692); // Blaak
 			locations.Add(51.916491, 4.473635); // Eendrachtsplein
@@ -84,7 +86,7 @@ namespace Testapplicatie
 			{
 				LatLng LatLngLocation = new LatLng(location.Key, location.Value);
 				double result = Distance(currentLocationConverted, LatLngLocation);
-				if (result < closestLocation)
+				if (result < closestLocation || Equals(closestLocation	, 0.0))
 				{
 					closestLocation = result;
 					cameraPosition = LatLngLocation;
@@ -104,7 +106,7 @@ namespace Testapplicatie
 			LatLng cameraPosition = GetClosestBicyleDrum(currentLocation);
 
 			var geoUri = Android.Net.Uri.Parse(
-				"http://maps.google.com/maps?saddr="+currentLocation.Latitude+","+currentLocation.Longitude+"&daddr="+cameraPosition.Latitude+","+cameraPosition.Longitude
+				"http://maps.google.com/maps?daddr="+cameraPosition.Latitude+","+cameraPosition.Longitude
 			);
 
 			var mapIntent = new Intent(Intent.ActionView, geoUri);
