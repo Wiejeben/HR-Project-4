@@ -47,11 +47,13 @@ namespace ImportBicycleInfo
 
         protected int GetOrSet(string table, string name, string childTable, string childColumn, string childName)
         {
-            string select_query = "SELECT `id` FROM `" + table + "` WHERE `name` == @name AND `" + childColumn + "` == @child_name;";
+            int child_id = this.GetOrSet(childTable, childName);
+
+            string select_query = "SELECT `id` FROM `" + table + "` WHERE `name` == @name AND `" + childColumn + "` == @child_id;";
             using (SQLiteCommand command = new SQLiteCommand(select_query, this.Connection))
             {
                 command.Parameters.AddWithValue("@name", name);
-                command.Parameters.AddWithValue("@child_name", childName);
+                command.Parameters.AddWithValue("@child_id", child_id);
 
                 SQLiteDataReader reader = command.ExecuteReader();
                 if (reader.Read())
@@ -66,7 +68,7 @@ namespace ImportBicycleInfo
             using (SQLiteCommand command = new SQLiteCommand(insert_query, this.Connection))
             {
                 command.Parameters.AddWithValue("@name", name);
-                command.Parameters.AddWithValue("@child_id", this.GetOrSet(childTable, childName));
+                command.Parameters.AddWithValue("@child_id", child_id);
                 command.ExecuteNonQuery();
 
                 Console.WriteLine("Create new: " + name + " - With child: " + childName);
