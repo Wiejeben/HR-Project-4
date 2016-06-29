@@ -26,15 +26,16 @@ namespace AndroidBicycleInfo
 
             button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
 
-			var db = Database.init();
+			Database.Boot(this);
+
+			var db = Database.Load();
 
 			var result = db.Table<Color>();
 
 			foreach (Color entry in result)
 			{
 				Toast.MakeText(this, entry.name, ToastLength.Short).Show();
-			}
-				
+			}	
         }
     }
 }
