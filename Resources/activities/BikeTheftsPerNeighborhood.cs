@@ -13,7 +13,7 @@ using Android.Gms.Maps.Model;
 namespace Testapplicatie
 {
 	[Activity(Label = "@string/us_1")]
-	public class Question7 : Activity, GoogleApiClient.IConnectionCallbacks,
+	public class BikeTheftsPerNeighborhood : Activity, GoogleApiClient.IConnectionCallbacks,
 		GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener, IOnMapReadyCallback
 	{
 		GoogleApiClient apiClient;
@@ -28,7 +28,7 @@ namespace Testapplicatie
 			Log.Debug("OnCreate", "OnCreate called, initializing views...");
 
 			// Set our view from the "main" layout resource
-			SetContentView(Resource.Layout.Question7);
+			SetContentView(Resource.Layout.BikeTheftsPerNeighborhood);
 
 			// Button & eventhandler.
 			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);

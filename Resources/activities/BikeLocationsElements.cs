@@ -8,10 +8,10 @@ using System.Collections.Generic;
 
 namespace Testapplicatie
 {
-	public class Question1Elements
+	public class BikeLocationsElements
 	{
 		// Save location
-		public static void SaveLocation(Question1 parent, Location location, TextView locationName)
+		public static void SaveLocation(BikeLocations parent, Location location, TextView locationName)
 		{
 			// Add the new location to the saved locations
 			ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(parent);
@@ -27,7 +27,7 @@ namespace Testapplicatie
 		}
 
 		// Spiner
-		public static void CreateSpinner(Question1 parent, Spinner spinner)
+		public static void CreateSpinner(BikeLocations parent, Spinner spinner)
 		{
 			spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(parent.spinner_ItemSelected);
 			var adapter = new ArrayAdapter(parent, Android.Resource.Layout.SimpleSpinnerItem, GetSpinnerInfo(parent));
@@ -35,7 +35,7 @@ namespace Testapplicatie
 			spinner.Adapter = adapter;
 		}
 
-		public static List<string> GetSpinnerInfo(Question1 parent)
+		public static List<string> GetSpinnerInfo(BikeLocations parent)
 		{
 			List<string> locations = new List<string>();
 			locations.Add("Selecteer aan locatie");

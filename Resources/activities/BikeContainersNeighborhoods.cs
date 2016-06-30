@@ -9,7 +9,7 @@ using OxyPlot.Xamarin.Android;
 namespace Testapplicatie
 {
 	[Activity(Label = "@string/us_3")]
-	public class Question3 : Activity
+	public class BikeContainersNeighborhoods : Activity
 	{
 		// Months
 		List<string> neighbourhoods = new List<string>(

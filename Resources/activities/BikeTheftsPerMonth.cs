@@ -9,7 +9,7 @@ using OxyPlot.Xamarin.Android;
 namespace Testapplicatie
 {
 	[Activity(Label = "@string/us_5")]
-	public class Question5 : Activity
+	public class BikeTheftsPerMonth : Activity
 	{
 		// Instance of the diagrams class.
 		Diagrams Diagrams = new Diagrams("Gestolen fietsen per maand");

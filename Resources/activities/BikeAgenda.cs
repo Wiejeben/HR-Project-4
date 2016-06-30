@@ -16,7 +16,7 @@ using System.Collections.Generic;
 namespace Testapplicatie
 {
 	[Activity(Label = "@string/us_6")]
-	public class Question6 : Activity, GoogleApiClient.IConnectionCallbacks,
+	public class BikeAgenda : Activity, GoogleApiClient.IConnectionCallbacks,
 		GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener
 	{
 		GoogleApiClient apiClient;
@@ -76,7 +76,7 @@ namespace Testapplicatie
 			base.OnCreate(bundle);
 
 			// Set layout view.
-			SetContentView(Resource.Layout.Datepicker);
+			SetContentView(Resource.Layout.BikeAgenda);
 
 			// If GPS is installed for the geolocater..
 			if (GooglePlayService.IsGooglePlayServicesInstalled(this))

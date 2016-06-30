@@ -11,57 +11,57 @@ class Menu
     public Menu(Activity activity)
     {
         this.Activity = activity;
-        Button firstQuestion = Activity.FindViewById<Button>(Resource.Id.buttonVraag1);
-        Button secondQuestion = Activity.FindViewById<Button>(Resource.Id.buttonVraag2);
-        Button thirdQuestion = Activity.FindViewById<Button>(Resource.Id.buttonVraag3);
-        Button fourthQuestion = Activity.FindViewById<Button>(Resource.Id.buttonVraag4);
-        Button fifthQuestion = Activity.FindViewById<Button>(Resource.Id.buttonVraag5);
-        Button sixthQuestion = Activity.FindViewById<Button>(Resource.Id.buttonVraag6);
-		Button seventhQuestion = Activity.FindViewById<Button>(Resource.Id.buttonVraag7);
-		Button eightQuestion = Activity.FindViewById<Button>(Resource.Id.buttonVraag8);
+        Button BikeLocationsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag1);
+        Button BikeContainersAndBikeTheftsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag2);
+        Button BikeContainerNeighborhoodsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag3);
+        Button BikeTheftColorsAndBrandsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag4);
+        Button BikeTheftsPerMonthActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag5);
+        Button BikeAgendaActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag6);
+		Button BikeTheftsPerNeighborhoodActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag7);
+		Button RouteCalculatorActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag8);
 
 
-        firstQuestion.Click += delegate {
+		BikeLocationsActivity.Click += delegate {
 			if (General.LocationStatus(activity))
 			{
-				this.StartActivity(typeof(Question1));
+				this.StartActivity(typeof(BikeLocations));
 			}
 			else {
 				Toast.MakeText(activity, "Locatie staat uit", ToastLength.Long).Show();
 			}
 		};
 
-		sixthQuestion.Click += delegate
+		BikeContainersAndBikeTheftsActivity.Click += delegate { this.StartActivity(typeof(BikeContainersAndBikeThefts)); };
+		BikeContainerNeighborhoodsActivity.Click += delegate { this.StartActivity(typeof(BikeContainersNeighborhoods)); };
+		BikeTheftColorsAndBrandsActivity.Click += delegate { this.StartActivity(typeof(BikeTheftColorsAndBrands)); };
+		BikeTheftsPerMonthActivity.Click += delegate { this.StartActivity(typeof(BikeTheftsPerMonth)); };
+
+		BikeAgendaActivity.Click += delegate
 		{
 			if (General.LocationStatus(activity))
 			{
-				this.StartActivity(typeof(Question6));
+				this.StartActivity(typeof(BikeAgenda));
 			}
 			else {
 				Toast.MakeText(activity, "Locatie staat uit", ToastLength.Long).Show();
 			}
 		};
 
-        secondQuestion.Click += delegate { this.StartActivity(typeof(Question2)); };
-        thirdQuestion.Click += delegate { this.StartActivity(typeof(Question3)); };
-        fourthQuestion.Click += delegate { this.StartActivity(typeof(Question4)); };
-        fifthQuestion.Click += delegate { this.StartActivity(typeof(Question5)); };
-
-		seventhQuestion.Click += delegate {
+		BikeTheftsPerNeighborhoodActivity.Click += delegate {
 			if (General.LocationStatus(activity))
 			{
-				this.StartActivity(typeof(Question7));
+				this.StartActivity(typeof(BikeTheftsPerNeighborhood));
 			}
 			else {
 				Toast.MakeText(activity, "Locatie staat uit", ToastLength.Long).Show();
 			}
 		};
 
-		eightQuestion.Click += delegate
+		RouteCalculatorActivity.Click += delegate
 		{
 			if (General.LocationStatus(activity))
 			{
-				this.StartActivity(typeof(Question8));
+				this.StartActivity(typeof(RouteCalculator));
 			}
 			else {
 				Toast.MakeText(activity, "Locatie staat uit", ToastLength.Long).Show();

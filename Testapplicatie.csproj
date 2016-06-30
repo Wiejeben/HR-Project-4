@@ -81,23 +81,23 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Question2.cs" />
     <Compile Include="Classes\Router.cs" />
-    <Compile Include="Question3.cs" />
-    <Compile Include="Question4.cs" />
-    <Compile Include="Question5.cs" />
-    <Compile Include="Question6.cs" />
     <Compile Include="Classes\Helpers.cs" />
     <Compile Include="Helpers\GooglePlayService.cs" />
     <Compile Include="Helpers\LocationInformation.cs" />
-    <Compile Include="Question1\Question1.cs" />
-    <Compile Include="Question1\Question1Elements.cs" />
     <Compile Include="Helpers\General.cs" />
     <Compile Include="Helpers\Map.cs" />
     <Compile Include="Classes\Diagrams.cs" />
     <Compile Include="Classes\Menu.cs" />
-    <Compile Include="Question7.cs" />
-    <Compile Include="Question8.cs" />
+    <Compile Include="Resources\activities\BikeAgenda.cs" />
+    <Compile Include="Resources\activities\BikeContainersAndBikeThefts.cs" />
+    <Compile Include="Resources\activities\BikeContainersNeighborhoods.cs" />
+    <Compile Include="Resources\activities\BikeLocations.cs" />
+    <Compile Include="Resources\activities\BikeLocationsElements.cs" />
+    <Compile Include="Resources\activities\BikeTheftColorsAndBrands.cs" />
+    <Compile Include="Resources\activities\BikeTheftsPerMonth.cs" />
+    <Compile Include="Resources\activities\BikeTheftsPerNeighborhood.cs" />
+    <Compile Include="Resources\activities\RouteCalculator.cs" />
  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -114,16 +114,16 @@
     <AndroidResource Include="Resources\mipmap-xhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
-    <AndroidResource Include="Resources\layout\Question1.axml" />
+    <AndroidResource Include="Resources\layout\BikeLocations.axml" />
     <AndroidResource Include="Resources\layout\One_View.axml" />
     <AndroidResource Include="Resources\layout\Two_Views.axml" />
-    <AndroidResource Include="Resources\layout\Question7.axml" />
-    <AndroidResource Include="Resources\layout\Datepicker.axml" />
-    <AndroidResource Include="Resources\layout\Question8.axml" />
+    <AndroidResource Include="Resources\layout\BikeTheftsPerNeighborhood.axml" />
+    <AndroidResource Include="Resources\layout\BikeAgenda.axml" />
+    <AndroidResource Include="Resources\layout\RouteCalculator.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
-    <Folder Include="Question1\" />
+    <Folder Include="Resources\activities\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="oxyplot">

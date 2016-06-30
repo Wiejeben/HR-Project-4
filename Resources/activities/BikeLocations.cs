@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace Testapplicatie
 {
 	[Activity(Label = "@string/us_1")]
-	public class Question1 : Activity, GoogleApiClient.IConnectionCallbacks,
+	public class BikeLocations : Activity, GoogleApiClient.IConnectionCallbacks,
 		GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener, IOnMapReadyCallback
 	{
 		GoogleApiClient apiClient;
@@ -30,11 +30,11 @@ namespace Testapplicatie
 			Log.Debug("OnCreate", "OnCreate called, initializing views...");
 
 			// Set our view from the "main" layout resource
-			SetContentView(Resource.Layout.Question1);
+			SetContentView(Resource.Layout.BikeLocations);
 
 			// Load spinner
 			Spinner spinner = FindViewById<Spinner>(Resource.Id.spinner);
-			Question1Elements.CreateSpinner(this, spinner);
+			BikeLocationsElements.CreateSpinner(this, spinner);
 
 			// Save locattion
 			Button saveLocationButton = FindViewById<Button>(Resource.Id.saveLocation);
@@ -42,13 +42,13 @@ namespace Testapplicatie
 			{
 				// Save location
 				TextView locationName = FindViewById<TextView>(Resource.Id.LocationName);
-				Question1Elements.SaveLocation(this, location, locationName);
+				BikeLocationsElements.SaveLocation(this, location, locationName);
 
 				// Hide keyboard
 				General.HideKeyboard(this);
 
 				// Reload spinner
-				Question1Elements.CreateSpinner(this, spinner);
+				BikeLocationsElements.CreateSpinner(this, spinner);
 
 				// Reload map
 				InitMapFragment();

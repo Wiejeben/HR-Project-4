@@ -9,25 +9,20 @@
         android:layout_height="wrap_content"
         android:id="@+id/returnButton" />
     <Button
-        android:text="Toon mijn locatie in mijn standart map app"
+        android:text="@string/showInMapLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/showLocationOnMap" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/LocationName"
-        android:hint="Locatie naam" />
     <Button
-        android:text="Locatie opslaan"
+        android:text="Ga naar de dichtstbijzijnde fiets trommel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/saveLocation" />
-    <Spinner 
-        android:id="@+id/spinner"
-        android:layout_width="fill_parent"
+        android:id="@+id/showClosestBicyledrum" />
+    <Button
+        android:text="Route beschrijving naar de dichtstbijzijnde fiets trommel"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:prompt="@string/selectBike" />
+        android:id="@+id/routeToClosestBicyledrum" />
     <fragment
         android:id="@+id/map"
         android:layout_width="fill_parent"

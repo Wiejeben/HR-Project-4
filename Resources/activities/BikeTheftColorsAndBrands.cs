@@ -11,7 +11,7 @@ using OxyPlot.Xamarin.Android;
 namespace Testapplicatie
 {
 	[Activity(Label = "@string/us_4")]
-	public class Question4 : Activity
+	public class BikeTheftColorsAndBrands : Activity
 	{
 		// Two instances because we need one for every model and the plot model gets created in the constructor.
 		// It's impossible to re-use an old plot model.
