@@ -91,12 +91,71 @@ namespace AndroidBicycleInfo
 
 		public PlotModel CreatePieModel(Dictionary<string, int> data)
 		{
-			throw new NotImplementedException();
+			// Pie chart properties	
+			PieSeries pieChart = new PieSeries
+			{
+				StrokeThickness = 1.0,
+				InsideLabelPosition = 0.5,
+				AngleSpan = 360,
+				StartAngle = 0
+			};
+
+			foreach (KeyValuePair<string, int> entry in data)
+			{
+				pieChart.Slices.Add(new PieSlice(entry.Key, entry.Value) { IsExploded = true });
+			}
+
+			this.Model.Series.Add(pieChart);
+
+			return this.Model;
 		}
 
 		public PlotModel CreateLineModel(Dictionary<int, int> lineValues, int limit)
 		{
-			throw new NotImplementedException();
+			LineSeries line = new LineSeries
+			{
+				MarkerType = MarkerType.Circle,
+				MarkerSize = 4,
+				MarkerStroke = OxyColors.White
+			};
+
+			// Axises & their properties
+			LinearAxis xAxis = new LinearAxis
+			{
+				Position = AxisPosition.Bottom,
+				Minimum = 0,
+				Maximum = 12,
+				AbsoluteMinimum = 0,
+				Title = this.XLabel,
+				MinorTickSize = 1,
+				MajorTickSize = 1,
+				MinorStep = 1,
+				MajorStep = 1,
+				IsPanEnabled = false,
+				IsZoomEnabled = false
+			};
+
+			LinearAxis yAxis = new LinearAxis
+			{
+				Position = AxisPosition.Left,
+				Minimum = 1,
+				Maximum = limit,
+				AbsoluteMinimum = 1,
+				Title = this.YLabel,
+				MaximumPadding = 1,
+				MinimumPadding = 1
+			};
+
+			foreach (KeyValuePair<int, int> lineVal in lineValues)
+			{
+				line.Points.Add(new DataPoint(lineVal.Key, lineVal.Value));
+			}
+
+			this.Model.Axes.Add(xAxis);
+			this.Model.Axes.Add(yAxis);
+			this.Model.Series.Add(line);
+
+			return this.Model;
 		}
 	}
 }
