@@ -24,19 +24,22 @@ namespace Testapplicatie
 			// Set layout view.
 			SetContentView(Resource.Layout.One_View);
 
-			// Start database
+			// Start database.
 			Database.Boot(this);
-			// Connect database
 			var db = Database.Load();
-			// Query
-			string TopContainersQuery = "SELECT b.id, s.name, COUNT(*) as drums FROM bikecontainers as b LEFT JOIN streets as s ON s.id = b.street_id GROUP BY street_id ORDER BY drums DESC LIMIT 5";
-			// Results
+			// Query & getting the results.
+			string TopContainersQuery = "SELECT d.name as name, COUNT(*) as drums FROM bikecontainers as b LEFT JOIN streets as s on s.id = b.street_id LEFT JOIN districts as d on d.id = s.district_id GROUP BY d.id ORDER BY drums DESC LIMIT 5";
 			var results = db.Query<Street>(TopContainersQuery);
-
+			// Adding the data to the list.
 			foreach (Street entry in results)
 			{
-				Toast.MakeText(this, entry.drums, ToastLength.Short).Show();
+				neighbourhoods.Add(entry.name);
+				thefts.Add(entry.drums);
 			}
+
+			// Reverse the values for the diagram.
+			neighbourhoods.Reverse();
+			thefts.Reverse();
 
 			// Button & eventhandler.
 			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);

@@ -19,19 +19,6 @@ namespace Testapplicatie
 			SetContentView(Resource.Layout.Main);
 
             Menu Menu = new Menu(this);
-
-			Database.Boot(this);
-
-			var db = Database.Load();
-
-			string TopContainersQuery = "SELECT b.id, s.name, COUNT(*) as drums FROM bikecontainers as b INNER JOIN streets as s ON s.id = b.street_id GROUP BY street_id ORDER BY drums DESC LIMIT 5";
-			var result = db.Query<Street>(TopContainersQuery);
-
-			foreach (Street entry in result)
-			{
-				var x = result;
-				Toast.MakeText(this, entry.name, ToastLength.Short).Show();
-			}
 		}
 	}
 }
