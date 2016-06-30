@@ -30,9 +30,10 @@ namespace AndroidBicycleInfo
 
 			var db = Database.Load();
 
-			var result = db.Table<Color>();
+			var result = db.Table<Brand>();
 
-			foreach (Color entry in result)
+			Toast.MakeText(this, "Start", ToastLength.Short).Show();
+			foreach (Brand entry in result)
 			{
 				Toast.MakeText(this, entry.name, ToastLength.Short).Show();
 			}	
