@@ -98,6 +98,15 @@
     <Compile Include="Resources\activities\BikeTheftsPerMonth.cs" />
     <Compile Include="Resources\activities\BikeTheftsPerNeighborhood.cs" />
     <Compile Include="Resources\activities\RouteCalculator.cs" />
+    <Compile Include="Classes\Database.cs" />
+    <Compile Include="SQLite.cs" />
+    <Compile Include="SQLiteAsync.cs" />
+    <Compile Include="Models\BikeContainer.cs" />
+    <Compile Include="Models\BikeTheft.cs" />
+    <Compile Include="Models\Brand.cs" />
+    <Compile Include="Models\Color.cs" />
+    <Compile Include="Models\District.cs" />
+    <Compile Include="Models\Street.cs" />
  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -105,6 +114,7 @@
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
+    <None Include="Assets\Database.sqlite" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
@@ -124,6 +134,7 @@
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
     <Folder Include="Resources\activities\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="oxyplot">

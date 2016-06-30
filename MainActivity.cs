@@ -12,18 +12,6 @@ namespace Testapplicatie
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			/*
-			// Impossible to create a dynamically named variable, so we cant loop through a list of buttons unless we find a solution for this.
-			Dictionary<string, int> buttonList = new Dictionary<string, int>();
-			buttonList.Add("firstQuestion", Resource.Id.buttonVraag1);
-			buttonList.Add("secondQuestion", Resource.Id.buttonVraag2);
-
-
-			foreach (KeyValuePair<string, int> btn in buttonList)
-			{
-				// Button a = FindViewById<Button>(btn.Value);
-			}
-			*/
 
 			base.OnCreate(savedInstanceState);
 
@@ -31,6 +19,19 @@ namespace Testapplicatie
 			SetContentView(Resource.Layout.Main);
 
             Menu Menu = new Menu(this);
+
+			Database.Boot(this);
+
+			var db = Database.Load();
+
+			string TopContainersQuery = "SELECT b.id, s.name, COUNT(*) as drums FROM bikecontainers as b INNER JOIN streets as s ON s.id = b.street_id GROUP BY street_id ORDER BY drums DESC LIMIT 5";
+			var result = db.Query<Street>(TopContainersQuery);
+
+			foreach (Street entry in result)
+			{
+				var x = result;
+				Toast.MakeText(this, entry.name, ToastLength.Short).Show();
+			}
 		}
 	}
 }
