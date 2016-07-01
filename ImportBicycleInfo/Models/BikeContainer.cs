@@ -40,8 +40,8 @@ namespace ImportBicycleInfo
         {
             TextInfo format = new CultureInfo("nl-NL", false).TextInfo;
             string ID = row[0];
-            Double latCoord = Convert.ToDouble(row[18]);
-            Double longCoord = Convert.ToDouble(row[19]);
+            Double latCoord = double.Parse(row[18]);
+            Double longCoord = double.Parse(row[19]);
             string district = format.ToTitleCase(row[28].ToLower());
             string street = format.ToTitleCase(row[9].ToLower());
 

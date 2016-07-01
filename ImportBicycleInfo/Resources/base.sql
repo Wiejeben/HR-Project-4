@@ -30,8 +30,8 @@ CREATE TABLE "bikethefts" (
 );
 CREATE TABLE "bikecontainers" (
 	`id`	TEXT NOT NULL,
-	`lat`	REAL,
-	`long`	REAL,
+	`lat`	DOUBLE,
+	`long`	DOUBLE,
 	`street_id`	INTEGER,
 	PRIMARY KEY(id),
 	FOREIGN KEY(street_id) REFERENCES streets(id)
