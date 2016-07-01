@@ -17,8 +17,8 @@ namespace AndroidBicycleInfo
 
 			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.Main);
-
-            Menu Menu = new Menu(this);
+			Database.Boot(this);
+            Menu menu = new Menu(this);
 		}
 	}
 }

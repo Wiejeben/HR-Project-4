@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-
 using Android.App;
 using Android.OS;
 using Android.Widget;
-
 using OxyPlot.Xamarin.Android;
 
 namespace AndroidBicycleInfo
@@ -12,11 +10,11 @@ namespace AndroidBicycleInfo
 	public class BikeTheftsPerMonth : Activity
 	{
 		// Instance of the diagrams class.
-		Diagrams Diagrams = new Diagrams("Gestolen fietsen per maand");
+		Diagram Diagram = new Diagram("Gestolen fietsen per maand");
 
 		// fake data
 		// {month, value}
-		Dictionary<int, int> lineValues = new Dictionary<int, int>()
+		Dictionary<int, int> Data = new Dictionary<int, int>()
 		{
 			{1 , 50},
 			{2 , 75},
@@ -51,8 +49,8 @@ namespace AndroidBicycleInfo
 			// Find the container for our model
             PlotView view = FindViewById<PlotView>(Resource.Id.plotView);
 			// Place our created model in the container w/ the values.
-			view.Model = Diagrams.createLineModel(
-				lineValues, 
+			view.Model = this.Diagram.CreateLineModel(
+				this.Data, 
 				80
 			);
         }
