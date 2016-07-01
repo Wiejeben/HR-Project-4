@@ -13,24 +13,8 @@ namespace Testapplicatie
 	{
 		// Instance of the diagrams class.
 		Diagrams Diagrams = new Diagrams("Gestolen fietsen per maand");
-
-		// fake data
 		// {month, value}
-		Dictionary<int, int> lineValues = new Dictionary<int, int>()
-		{
-			{1 , 50},
-			{2 , 75},
-			{3 , 20},
-			{4 , 12},
-			{5 , 30},
-			{6 , 50},
-			{7 , 75},
-			{8 , 20},
-			{9 , 12},
-			{10 , 30},
-			{11 , 12},
-			{12 , 30}
-		};
+		Dictionary<int, int> lineValues = new Dictionary<int, int>();
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -38,8 +22,21 @@ namespace Testapplicatie
             // Set layout view.
 			SetContentView(Resource.Layout.One_View);
 
-            // Button & eventhandler.
-            Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
+
+			// Start database.
+			Database.Boot(this);
+			var db = Database.Load();
+			// Query & getting the results.
+			string TopContainersQuery = "Select count(*) as thefts, strftime('%m', date, 'unixepoch') as month FROM bikethefts GROUP BY month";
+			var results = db.Query<BikeTheft>(TopContainersQuery);
+			// Adding the data to the list.
+			foreach (BikeTheft entry in results)
+			{
+				lineValues.Add(entry.month, entry.thefts);
+			}
+
+			// Button & eventhandler.
+			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
             returnButton.Click += delegate
             {
                 // Swap to the right activity.
@@ -53,7 +50,7 @@ namespace Testapplicatie
 			// Place our created model in the container w/ the values.
 			view.Model = Diagrams.createLineModel(
 				lineValues, 
-				80
+				500
 			);
         }
     }
