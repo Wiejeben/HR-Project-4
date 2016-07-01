@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-
 using Android.App;
 using Android.OS;
 using Android.Widget;
-
 using OxyPlot.Xamarin.Android;
 
 namespace AndroidBicycleInfo
@@ -11,50 +9,37 @@ namespace AndroidBicycleInfo
 	[Activity(Label = "@string/us_5")]
 	public class BikeTheftsPerMonth : Activity
 	{
-		// Instance of the diagrams class.
-		Diagrams Diagrams = new Diagrams("Gestolen fietsen per maand");
 
-		// fake data
-		// {month, value}
-		Dictionary<int, int> lineValues = new Dictionary<int, int>()
-		{
-			{1 , 50},
-			{2 , 75},
-			{3 , 20},
-			{4 , 12},
-			{5 , 30},
-			{6 , 50},
-			{7 , 75},
-			{8 , 20},
-			{9 , 12},
-			{10 , 30},
-			{11 , 12},
-			{12 , 30}
-		};
+		Diagram Diagram = new Diagram("Gestolen fietsen per maand");
+		Dictionary<int, int> Data = new Dictionary<int, int>();
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            // Set layout view.
 			SetContentView(Resource.Layout.One_View);
 
-            // Button & eventhandler.
-            Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
-            returnButton.Click += delegate
-            {
-                // Swap to the right activity.
-                StartActivity(typeof(MainActivity));
-                // Close the current layout.
-                Finish();
-            };
+			// Query & getting the results.
+			var db = Database.Load();
+			string TopContainersQuery = "Select count(*) as thefts, strftime('%m', date, 'unixepoch') as month FROM bikethefts GROUP BY month";
+			var results = db.Query<BikeTheft>(TopContainersQuery);
+			results.ForEach(value => this.Data.Add(value.month, value.thefts));
 
-			// Find the container for our model
             PlotView view = FindViewById<PlotView>(Resource.Id.plotView);
-			// Place our created model in the container w/ the values.
-			view.Model = Diagrams.createLineModel(
-				lineValues, 
-				80
+			view.Model = this.Diagram.CreateLineModel(
+				this.Data, 
+				500,
+				"Maand",
+				"Diefstellen"
 			);
+
+			// Button & eventhandler.
+			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
+			returnButton.Click += delegate
+			{
+				StartActivity(typeof(MainActivity));
+
+				Finish();
+			};
         }
     }
 }

@@ -13,21 +13,8 @@ namespace AndroidBicycleInfo
 	[Activity(Label = "@string/us_4")]
 	public class BikeTheftColorsAndBrands : Activity
 	{
-		// Two instances because we need one for every model and the plot model gets created in the constructor.
-		// It's impossible to re-use an old plot model.
-		Diagrams Diagrams 		= new Diagrams("Gestolen fietsen op basis van merk");
-		Diagrams DiagramsSecond = new Diagrams("Gestolen fietsen op basis van kleur");
-
-		// fake data
-		// {name, value}
-		/*Dictionary<string, int> chartValues = new Dictionary<string, int>()
-		{
-			{"Een"  , 50},
-			{"Twee" , 75},
-			{"Drie" , 20},
-			{"Vier" , 12},
-			{"Vijf" , 30},
-		};*/
+		private Diagram TheftByBrand = new Diagram("Gestolen fietsen op basis van merk");
+		private Diagram TheftByColor = new Diagram("Gestolen fietsen op basis van kleur");
 
         Dictionary<string, int> BrandData = new Dictionary<string, int>();
         Dictionary<string, int> ColorData = new Dictionary<string, int>();
@@ -57,23 +44,24 @@ namespace AndroidBicycleInfo
             }
 
 			// Button & eventhandler.
+			base.OnCreate(bundle);
+			SetContentView(Resource.Layout.Two_Views);
+
+			// Return
 			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
 			returnButton.Click += delegate
 			{
-				// Swap to the right activity.
 				StartActivity(typeof(MainActivity));
-				// Close the current layout.
 				Finish();
 			};
 
 			// Create the first pie chart.
 			PlotView view = FindViewById<PlotView>(Resource.Id.plotView);
-			view.Model = Diagrams.createPieModel(BrandData);
+			view.Model = TheftByBrand.CreatePieModel(BrandData);
 
 			// Create the second pie chart.
 			PlotView viewTwo = FindViewById<PlotView>(Resource.Id.plotView2);
-			viewTwo.Model = DiagramsSecond.createPieModel(ColorData);
+			viewTwo.Model = TheftByColor.CreatePieModel(ColorData);
 		}
 	}
 }
-

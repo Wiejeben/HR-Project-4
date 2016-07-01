@@ -10,6 +10,10 @@ namespace AndroidBicycleInfo
 		public int date { get; set; }
 
         [Indexed]
+		public int month { get; set; }
+		public int thefts { get; set; }
+
+		[Indexed]
 		public int brand_id { get; set; }
 
 		[Indexed]

@@ -98,7 +98,7 @@
     <Compile Include="Helpers\LocationInformation.cs" />
     <Compile Include="Helpers\General.cs" />
     <Compile Include="Helpers\Map.cs" />
-    <Compile Include="Classes\Diagrams.cs" />
+    <Compile Include="Classes\Diagram.cs" />
     <Compile Include="Classes\Menu.cs" />
     <Compile Include="Resources\activities\BikeAgenda.cs" />
     <Compile Include="Resources\activities\BikeContainersAndBikeThefts.cs" />
@@ -119,9 +119,7 @@
  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
-    <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

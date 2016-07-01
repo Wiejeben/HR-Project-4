@@ -50,19 +50,27 @@ namespace AndroidBicycleInfo
 			map.AddMarker(markerOpt1);
 		}
 
+		// Get all the bikecontainers from the database
+		public static List<BikeContainer> GetBikeContainer()
+		{
+			// Get data from the database
+			var locations = new List<Tuple<float, float>>();
+			var db = Database.Load();
+			string TopContainersQuery = "Select lat, long as lon FROM bikecontainers";
+			var results = db.Query<BikeContainer>(TopContainersQuery);
+			results.ForEach(value => locations.Add(new Tuple<float, float>(value.lat, value.lon)));
+			return results;
+		}
+
 
 		// Create a marker for the current location
 		public static void CreateMarkersForBicyleDrums(Location currentLocation, GoogleMap map)
 		{
-			Dictionary<double, double> locations = new Dictionary<double, double>();
-			// Dummy data
-			locations.Add(51.924420, 4.477733); // Hofplein
-			locations.Add(51.918024, 4.481692); // Blaak
-			locations.Add(51.916491, 4.473635); // Eendrachtsplein
+			List<BikeContainer> locations = GetBikeContainer();
 
 			foreach (var location in locations)
 			{
-				LatLng LatLngLocation = new LatLng(location.Key, location.Value);
+				LatLng LatLngLocation = new LatLng(location.lat, location.lon);
 				MarkerOptions markerOpt1 = new MarkerOptions();
 				markerOpt1.SetPosition(LatLngLocation);
 				markerOpt1.SetTitle("Something");
@@ -74,17 +82,13 @@ namespace AndroidBicycleInfo
 		public static LatLng GetClosestBicyleDrum(Location currentLocation)
 		{
 			LatLng currentLocationConverted = new LatLng(currentLocation.Latitude, currentLocation.Longitude);
-			Dictionary<double, double> locations = new Dictionary<double, double>();
 			double closestLocation = 0;
 			LatLng cameraPosition = new LatLng(currentLocation.Latitude, currentLocation.Longitude); ;
-			// Dummy data
-			locations.Add(51.924420, 4.477733); // Hofplein
-			locations.Add(51.918024, 4.481692); // Blaak
-			locations.Add(51.916491, 4.473635); // Eendrachtsplein
+			List<BikeContainer> locations = GetBikeContainer();
 
 			foreach (var location in locations)
 			{
-				LatLng LatLngLocation = new LatLng(location.Key, location.Value);
+				LatLng LatLngLocation = new LatLng(location.lat, location.lon);
 				double result = Distance(currentLocationConverted, LatLngLocation);
 				if (result < closestLocation || Equals(closestLocation	, 0.0))
 				{

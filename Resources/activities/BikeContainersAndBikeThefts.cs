@@ -40,7 +40,7 @@ namespace AndroidBicycleInfo
 		});
 
 		// Diagram class instance
-		Diagrams Diagrams = new Diagrams("Fietstrommels & fietsdiefstallen per maand");
+		Diagram Diagrams = new Diagram("Fietstrommels & fietsdiefstallen per maand");
 
         protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -53,7 +53,7 @@ namespace AndroidBicycleInfo
             PlotView view = FindViewById<PlotView>(Resource.Id.plotView);
 
 			// Create the model (diagrams.f) and place it in the view (view.model)
-			view.Model = Diagrams.createTwoBarModel(
+			view.Model = Diagrams.CreateTwoBarModel(
 				months,
 				"Geinstalleerde fietstrommels",
 				firstBar,
