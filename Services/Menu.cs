@@ -8,39 +8,29 @@ class Menu
 {
     private Activity Activity;
 
-	// List with buttons
-	private Button BikeLocationsActivity;
-	private Button BikeContainersAndBikeTheftsActivity;
-	private Button BikeContainerNeighborhoodsActivity;
-	private Button BikeTheftColorsAndBrandsActivity;
-	private Button BikeTheftsPerMonthActivity;
-	private Button BikeAgendaActivity;
-	private Button BikeTheftsPerNeighborhoodActivity;
-	private Button RouteCalculatorActivity;
-
     public Menu(Activity activity)
     {
         this.Activity = activity;
 
 		// Assign element
-        this.BikeLocationsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag1);
-		this.BikeContainersAndBikeTheftsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag2);
-		this.BikeContainerNeighborhoodsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag3);
-		this.BikeTheftColorsAndBrandsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag4);
-		this.BikeTheftsPerMonthActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag5);
-		this.BikeAgendaActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag6);
-		this.BikeTheftsPerNeighborhoodActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag7);
-		this.RouteCalculatorActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag8);
+        Button bikeLocationsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag1);
+		Button bikeContainersAndBikeTheftsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag2);
+		Button bikeContainerNeighborhoodsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag3);
+		Button bikeTheftColorsAndBrandsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag4);
+		Button bikeTheftsPerMonthActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag5);
+		Button bikeAgendaActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag6);
+		Button bikeTheftsPerNeighborhoodActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag7);
+		Button routeCalculatorActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag8);
 
 		// Assign events
-		this.BikeLocationsActivity.Click += delegate { this.LocationCheck(typeof(BikeLocationsActivity)); };
-		this.BikeContainersAndBikeTheftsActivity.Click += delegate { this.StartActivity(typeof(BikeContainersAndBikeTheftsActivity)); };
-		this.BikeContainerNeighborhoodsActivity.Click += delegate { this.StartActivity(typeof(BikeContainerNeighborhoodsActivity)); };
-		this.BikeTheftColorsAndBrandsActivity.Click += delegate { this.StartActivity(typeof(BikeTheftColorsAndBrandsActivity)); };
-		this.BikeTheftsPerMonthActivity.Click += delegate { this.StartActivity(typeof(BikeTheftsPerMonthActivity)); };
-		this.BikeAgendaActivity.Click += delegate { this.LocationCheck(typeof(BikeAgendaActivity)); };
-		this.BikeTheftsPerNeighborhoodActivity.Click += delegate { this.LocationCheck(typeof(BikeTheftsPerNeighborhoodActivity)); };
-		this.RouteCalculatorActivity.Click += delegate { this.LocationCheck(typeof(RouteCalculatorActivity)); };
+		bikeLocationsActivity.Click += delegate { this.LocationCheck(typeof(BikeLocationsActivity)); };
+		bikeContainersAndBikeTheftsActivity.Click += delegate { this.StartActivity(typeof(BikeContainersAndBikeTheftsActivity)); };
+		bikeContainerNeighborhoodsActivity.Click += delegate { this.StartActivity(typeof(BikeContainerNeighborhoodsActivity)); };
+		bikeTheftColorsAndBrandsActivity.Click += delegate { this.StartActivity(typeof(BikeTheftColorsAndBrandsActivity)); };
+		bikeTheftsPerMonthActivity.Click += delegate { this.StartActivity(typeof(BikeTheftsPerMonthActivity)); };
+		bikeAgendaActivity.Click += delegate { this.LocationCheck(typeof(BikeAgendaActivity)); };
+		bikeTheftsPerNeighborhoodActivity.Click += delegate { this.LocationCheck(typeof(BikeTheftsPerNeighborhoodActivity)); };
+		routeCalculatorActivity.Click += delegate { this.LocationCheck(typeof(RouteCalculatorActivity)); };
     }
 
 	private void LocationCheck(Type type)
