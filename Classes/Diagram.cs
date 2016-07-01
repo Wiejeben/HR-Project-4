@@ -27,7 +27,9 @@ namespace AndroidBicycleInfo
 				LegendPlacement = LegendPlacement.Outside,
 				LegendPosition = LegendPosition.BottomCenter,
 				LegendOrientation = LegendOrientation.Horizontal,
-				LegendBorderThickness = 0
+				LegendBorderThickness = 0,
+				DefaultFontSize = 26,
+				TitleFontSize = 26
 			};
 		}
 
@@ -97,7 +99,8 @@ namespace AndroidBicycleInfo
 				StrokeThickness = 1.0,
 				InsideLabelPosition = 0.5,
 				AngleSpan = 360,
-				StartAngle = 0
+				StartAngle = 0,
+				FontSize = 26
 			};
 
 			foreach (KeyValuePair<string, int> entry in data)
