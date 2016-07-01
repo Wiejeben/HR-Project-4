@@ -13,7 +13,7 @@ using Android.Gms.Maps.Model;
 namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_1")]
-	public class RouteCalculatorActivity : Activity, GoogleApiClient.IConnectionCallbacks,
+	public class RouteCalculatorActivity : MainActivity, GoogleApiClient.IConnectionCallbacks,
 		GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener, IOnMapReadyCallback
 	{
 		GoogleApiClient apiClient;
@@ -29,16 +29,6 @@ namespace AndroidBicycleInfo
 
 			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.RouteCalculator);
-
-			// Button & eventhandler.
-			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
-			returnButton.Click += delegate
-			{
-				// Swap to the right activity.
-				StartActivity(typeof(MainActivity));
-				// Close the current layout.
-				Finish();
-			};
 
 			// Show location on the map
 			Button showLocationOnMap = FindViewById<Button>(Resource.Id.showLocationOnMap);
