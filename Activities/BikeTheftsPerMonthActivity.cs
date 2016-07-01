@@ -17,6 +17,7 @@ namespace AndroidBicycleInfo
         {
             base.OnCreate(bundle);
 			SetContentView(Resource.Layout.One_View);
+			this.registerReturnButton();
 
 			// Query & getting the results.
 			var db = Database.Load();

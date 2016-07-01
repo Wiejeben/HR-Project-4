@@ -15,8 +15,7 @@ using System.Collections.Generic;
 namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_1")]
-	public class BikeLocationsActivity : MainActivity, GoogleApiClient.IConnectionCallbacks,
-		GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener, IOnMapReadyCallback
+	public class BikeLocationsActivity : MainActivity, GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener, IOnMapReadyCallback
 	{
 		GoogleApiClient apiClient;
 		LocationRequest locRequest;
@@ -27,10 +26,8 @@ namespace AndroidBicycleInfo
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
-			Log.Debug("OnCreate", "OnCreate called, initializing views...");
-
-			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.BikeLocations);
+			this.registerReturnButton();
 
 			// Load spinner
 			Spinner spinner = FindViewById<Spinner>(Resource.Id.spinner);

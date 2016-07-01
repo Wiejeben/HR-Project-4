@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Android.App;
 using Android.OS;
-using Android.Widget;
 using OxyPlot.Xamarin.Android;
 
 namespace AndroidBicycleInfo
@@ -17,6 +16,7 @@ namespace AndroidBicycleInfo
 		{
 			base.OnCreate(bundle);
 			SetContentView(Resource.Layout.One_View);
+			this.registerReturnButton();
 
 			// Get database and make it graph compatible
 			var db = Database.Load();

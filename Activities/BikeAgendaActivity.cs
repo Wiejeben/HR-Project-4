@@ -13,67 +13,18 @@ using Android.Locations;
 namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_6")]
-	public class BikeAgendaActivity : MainActivity, GoogleApiClient.IConnectionCallbacks,
-		GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener
+	public class BikeAgendaActivity : MainActivity, GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener
 	{
-		GoogleApiClient apiClient;
-		LocationRequest locRequest;
-		Address address;
-		string streetName;
-
-		public async void GetLocation()
-		{
-			// Connect to the API
-			apiClient.Connect();
-
-			// We're connected to the API
-			Log.Info("LocationClient", "Now connected to client");
-			// If we really are connected
-			if (apiClient.IsConnected)
-			{
-				// Wait for location updates
-				await LocationServices.FusedLocationApi.RequestLocationUpdates(apiClient, locRequest, this);
-			}
-			else
-			{
-				// Wait for the connection to be made.
-				Log.Info("LocationClient", "Please wait for Client to connect");
-			}
-		}
-
-		////Interface methods
-		public void OnConnected(Bundle bundle)
-		{
-			// Log message when we connect.
-			Log.Info("LocationClient", "Now connected to client");
-			// Call the getLocation function when we connect.
-			GetLocation();
-		}
-
-		public void OnConnectionFailed(ConnectionResult bundle)
-		{
-			// Log message on connection fail
-			Log.Info("LocationClient", "Connection failed, attempting to reach google play services");
-		}
-
-		public void OnConnectionSuspended(int i) { } // When the connection is suspended, we do nothing.
-
-		public async void OnLocationChanged(Location location)
-		{
-			// Whenever the location changes, log message.
-			Log.Debug("LocationClient", "Location updated");
-			// Update the address.
-			address = await LocationInformation.ReverseGeocodeCurrentLocation(this, location);
-			// Get the streetname from the address we received.
-			streetName = address.GetAddressLine(0).ToString();
-		}
+		private GoogleApiClient apiClient;
+		private LocationRequest locRequest;
+		private Address address;
+		private string streetName;
 
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
-
-			// Set layout view.
 			SetContentView(Resource.Layout.BikeAgenda);
+			this.registerReturnButton();
 
 			// If GPS is installed for the geolocater..
 			if (GooglePlayService.IsGooglePlayServicesInstalled(this))
@@ -130,6 +81,53 @@ namespace AndroidBicycleInfo
 				Toast.MakeText(this, "Uw reminder is toevoegd!", ToastLength.Long).Show();
 
 			};
+		}
+
+		public async void GetLocation()
+		{
+			// Connect to the API
+			apiClient.Connect();
+
+			// We're connected to the API
+			Log.Info("LocationClient", "Now connected to client");
+			// If we really are connected
+			if (apiClient.IsConnected)
+			{
+				// Wait for location updates
+				await LocationServices.FusedLocationApi.RequestLocationUpdates(apiClient, locRequest, this);
+			}
+			else
+			{
+				// Wait for the connection to be made.
+				Log.Info("LocationClient", "Please wait for Client to connect");
+			}
+		}
+
+		////Interface methods
+		public void OnConnected(Bundle bundle)
+		{
+			// Log message when we connect.
+			Log.Info("LocationClient", "Now connected to client");
+			// Call the getLocation function when we connect.
+			GetLocation();
+		}
+
+		public void OnConnectionFailed(ConnectionResult bundle)
+		{
+			// Log message on connection fail
+			Log.Info("LocationClient", "Connection failed, attempting to reach google play services");
+		}
+
+		public void OnConnectionSuspended(int i) { } // When the connection is suspended, we do nothing.
+
+		public async void OnLocationChanged(Location location)
+		{
+			// Whenever the location changes, log message.
+			Log.Debug("LocationClient", "Location updated");
+			// Update the address.
+			address = await LocationInformation.ReverseGeocodeCurrentLocation(this, location);
+			// Get the streetname from the address we received.
+			streetName = address.GetAddressLine(0).ToString();
 		}
 	}
 }

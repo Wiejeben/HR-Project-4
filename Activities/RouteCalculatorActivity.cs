@@ -25,10 +25,8 @@ namespace AndroidBicycleInfo
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
-			Log.Debug("OnCreate", "OnCreate called, initializing views...");
-
-			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.RouteCalculator);
+			this.registerReturnButton();
 
 			// Show location on the map
 			Button showLocationOnMap = FindViewById<Button>(Resource.Id.showLocationOnMap);

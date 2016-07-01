@@ -19,7 +19,11 @@ namespace AndroidBicycleInfo
 			SetContentView(Resource.Layout.Main);
 			Database.Boot(this);
 
-			// Back button
+            Menu menu = new Menu(this);
+		}
+
+		protected void registerReturnButton()
+		{
 			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
 
 			if (returnButton != null)
@@ -27,12 +31,9 @@ namespace AndroidBicycleInfo
 				returnButton.Click += delegate
 				{
 					StartActivity(typeof(MainActivity));
-
 					Finish();
 				};
 			}
-
-            Menu menu = new Menu(this);
 		}
 	}
 }
