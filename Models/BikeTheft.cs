@@ -8,6 +8,7 @@ namespace AndroidBicycleInfo
 		[PrimaryKey]
 		public int id { get; set; }
 		public int date { get; set; }
+        public int container { get; set; }
 
         [Indexed]
 		public int month { get; set; }

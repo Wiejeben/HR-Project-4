@@ -28,19 +28,14 @@ namespace AndroidBicycleInfo
 				"Januari"
 		});
 
-		// Fake data
-		List<int> firstBar = new List<int>(
-			new int[] {
-			100,200,300,400,500,600,700,800,900,1000,1100,1200
-		});
+        // Fake data
+        List<int> containers = new List<int>();
 
-		List<int> secondBar = new List<int>(
-			new int[] {
-			50,150,250,350,450,550,650,750,850,950,1050,1150
-		});
+        // Fake data
+        List<int> thefts = new List<int>();
 
-		// Diagram class instance
-		Diagram Diagrams = new Diagram("Fietstrommels & fietsdiefstallen per maand");
+        // Diagram class instance
+        Diagram Diagrams = new Diagram("Fietstrommels & fietsdiefstallen per maand");
 
         protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -52,14 +47,25 @@ namespace AndroidBicycleInfo
 			// Our container for the model
             PlotView view = FindViewById<PlotView>(Resource.Id.plotView);
 
-			// Create the model (diagrams.f) and place it in the view (view.model)
-			view.Model = Diagrams.CreateTwoBarModel(
+            var db = Database.Load();
+            // Query & getting the results.
+            string TopContainersQuery = "Select  d.name as name, d.id as did, COUNT(b.id) as drums, count(bt.id) as thefts ,  strftime('%m', date, 'unixepoch') as month FROM bikethefts as bt LEFT JOIN streets as s on s.id = bt.street_id LEFT JOIN districts as d on d.id = s.district_id LEFT JOIN bikecontainers as b on b.street_id = s.id WHERE did = 16 GROUP BY month";
+            var results = db.Query<BikeTheft>(TopContainersQuery);
+            // Adding the data to the list.
+            foreach (BikeTheft entry in results)
+            {
+                containers.Add(entry.container);
+                thefts.Add(entry.thefts);
+            }
+
+            // Create the model (diagrams.f) and place it in the view (view.model)
+            view.Model = Diagrams.CreateTwoBarModel(
 				months,
 				"Geinstalleerde fietstrommels",
-				firstBar,
+                containers,
 				"Fietsdiefstallen",
-				secondBar
-			);
+                thefts
+            );
 
 			// Return button & eventhandler.
 			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
