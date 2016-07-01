@@ -6,7 +6,7 @@ using Android.Widget;
 
 using OxyPlot.Xamarin.Android;
 
-namespace Testapplicatie
+namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_2")]
 	public class BikeContainersAndBikeThefts : Activity

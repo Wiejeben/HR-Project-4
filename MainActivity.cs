@@ -5,7 +5,7 @@ using Android.OS;
 using System.Collections.Generic;
 using System;
 
-namespace Testapplicatie
+namespace AndroidBicycleInfo
 {
 	[Activity(Label = "Main Menu", MainLauncher = true, Icon = "@mipmap/icon")]
 	public class MainActivity : Activity

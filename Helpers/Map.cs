@@ -9,7 +9,7 @@ using Android.Util;
 using Android.Widget;
 using System.Collections.Generic;
 
-namespace Testapplicatie
+namespace AndroidBicycleInfo
 {
 	public class Map
 	{

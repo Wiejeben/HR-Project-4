@@ -1,7 +1,7 @@
 ﻿using System;
 using SQLite;
 
-namespace Testapplicatie
+namespace AndroidBicycleInfo
 {
 	public class BikeTheft
 	{

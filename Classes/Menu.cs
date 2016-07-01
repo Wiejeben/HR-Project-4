@@ -2,7 +2,7 @@
 using Android.Widget;
 using Android.OS;
 using System;
-using Testapplicatie;
+using AndroidBicycleInfo;
 
 class Menu
 {

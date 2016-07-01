@@ -7,7 +7,7 @@ using Android.Preferences;
 using Android.Locations;
 using Android.App;
 
-namespace Testapplicatie
+namespace AndroidBicycleInfo
 {
 	public class General
 	{
