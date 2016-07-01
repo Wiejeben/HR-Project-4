@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_1")]
-	public class BikeLocationsActivity : Activity, GoogleApiClient.IConnectionCallbacks,
+	public class BikeLocationsActivity : MainActivity, GoogleApiClient.IConnectionCallbacks,
 		GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener, IOnMapReadyCallback
 	{
 		GoogleApiClient apiClient;
@@ -56,16 +56,6 @@ namespace AndroidBicycleInfo
 				// Display message
 				Toast.MakeText(this, "Location has been saved", ToastLength.Long).Show();
 				Map.CreateBikeMarkers(this, map);
-			};
-
-			// Button & eventhandler.
-			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
-			returnButton.Click += delegate
-			{
-				// Swap to the right activity.
-				StartActivity(typeof(MainActivity));
-				// Close the current layout.
-				Finish();
 			};
 
 			// Show location on the map

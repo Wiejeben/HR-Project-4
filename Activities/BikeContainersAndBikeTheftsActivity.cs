@@ -9,7 +9,7 @@ using OxyPlot.Xamarin.Android;
 namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_2")]
-	public class BikeContainersAndBikeTheftsActivity : Activity
+	public class BikeContainersAndBikeTheftsActivity : MainActivity
 	{
 		// Months
 		List<string> months = new List<string>(
@@ -60,18 +60,6 @@ namespace AndroidBicycleInfo
 				"Fietsdiefstallen",
 				secondBar
 			);
-
-			// Return button & eventhandler.
-			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
-			returnButton.Click += delegate
-			{
-				// Swap to the right activity.
-				StartActivity(typeof(MainActivity));
-				// Close the current layout.
-				Finish();
-			};
-
-
         }
 	}
 }

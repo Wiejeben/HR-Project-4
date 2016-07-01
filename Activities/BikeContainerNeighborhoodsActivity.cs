@@ -7,7 +7,7 @@ using OxyPlot.Xamarin.Android;
 namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_3")]
-	public class BikeContainerNeighborhoodsActivity : Activity
+	public class BikeContainerNeighborhoodsActivity : MainActivity
 	{
 
 		Dictionary<string, int> Data = new Dictionary<string, int>();
@@ -28,14 +28,6 @@ namespace AndroidBicycleInfo
 			// Generate table and apply to view
             PlotView view = FindViewById<PlotView>(Resource.Id.plotView);
 			view.Model = Diagram.CreateBarModel(this.Data);
-
-			// Return button
-			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
-			returnButton.Click += delegate
-			{
-				StartActivity(typeof(MainActivity));
-				Finish();
-			};
         }
 	}
 }

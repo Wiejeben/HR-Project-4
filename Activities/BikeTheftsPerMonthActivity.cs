@@ -7,7 +7,7 @@ using OxyPlot.Xamarin.Android;
 namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_5")]
-	public class BikeTheftsPerMonthActivity : Activity
+	public class BikeTheftsPerMonthActivity : MainActivity
 	{
 
 		Diagram Diagram = new Diagram("Gestolen fietsen per maand");
@@ -31,15 +31,6 @@ namespace AndroidBicycleInfo
 				"Maand",
 				"Diefstellen"
 			);
-
-			// Button & eventhandler.
-			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
-			returnButton.Click += delegate
-			{
-				StartActivity(typeof(MainActivity));
-
-				Finish();
-			};
         }
     }
 }

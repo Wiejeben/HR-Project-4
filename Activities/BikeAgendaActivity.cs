@@ -13,7 +13,7 @@ using Android.Locations;
 namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_6")]
-	public class BikeAgendaActivity : Activity, GoogleApiClient.IConnectionCallbacks,
+	public class BikeAgendaActivity : MainActivity, GoogleApiClient.IConnectionCallbacks,
 		GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener
 	{
 		GoogleApiClient apiClient;
@@ -130,17 +130,6 @@ namespace AndroidBicycleInfo
 				Toast.MakeText(this, "Uw reminder is toevoegd!", ToastLength.Long).Show();
 
 			};
-
-			// Button & eventhandler.
-			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
-			returnButton.Click += delegate
-			{
-				// Swap to the right activity.
-				StartActivity(typeof(MainActivity));
-				// Close the current layout.
-				Finish();
-			};
-
 		}
 	}
 }

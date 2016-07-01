@@ -7,7 +7,7 @@ using OxyPlot.Xamarin.Android;
 namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_4")]
-	public class BikeTheftColorsAndBrandsActivity : Activity
+	public class BikeTheftColorsAndBrandsActivity : MainActivity
 	{
 		private Diagram TheftByBrand = new Diagram("Gestolen fietsen op basis van merk");
 		private Diagram TheftByColor = new Diagram("Gestolen fietsen op basis van kleur");
@@ -34,14 +34,6 @@ namespace AndroidBicycleInfo
 			// Apply PlotModel
 			view.Model = TheftByBrand.CreatePieModel(this.BrandData);
 			viewTwo.Model = TheftByColor.CreatePieModel(this.ColorData);
-
-			// Return
-			Button returnButton = FindViewById<Button>(Resource.Id.returnButton);
-			returnButton.Click += delegate
-			{
-				StartActivity(typeof(MainActivity));
-				Finish();
-			};
 		}
 	}
 }
