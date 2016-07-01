@@ -6,7 +6,7 @@ using Android.Locations;
 using System.Collections.Generic;
 using Android.Content;
 
-namespace Testapplicatie
+namespace AndroidBicycleInfo
 {
 	public static class LocationInformation
 	{

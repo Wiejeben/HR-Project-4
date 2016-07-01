@@ -2,7 +2,7 @@
 using SQLite;
 using Android.App;
 
-namespace Testapplicatie
+namespace AndroidBicycleInfo
 {
 	public class Database
 	{

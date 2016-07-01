@@ -13,7 +13,7 @@ using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using System.Collections.Generic;
 
-namespace Testapplicatie
+namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_6")]
 	public class BikeAgenda : Activity, GoogleApiClient.IConnectionCallbacks,

@@ -5,7 +5,7 @@ using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.Xamarin.Android;
 
-namespace Testapplicatie
+namespace AndroidBicycleInfo
 {
 	public class Diagrams
 	{

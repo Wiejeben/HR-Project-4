@@ -3,7 +3,7 @@ using Android.Gms.Common;
 using Android.Util;
 using Android.Content;
 
-namespace Testapplicatie
+namespace AndroidBicycleInfo
 {
 	public static class GooglePlayService
 	{

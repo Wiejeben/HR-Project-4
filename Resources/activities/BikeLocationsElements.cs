@@ -6,7 +6,7 @@ using Android.Content;
 using Android.Preferences;
 using System.Collections.Generic;
 
-namespace Testapplicatie
+namespace AndroidBicycleInfo
 {
 	public class BikeLocationsElements
 	{

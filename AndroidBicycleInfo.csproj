@@ -6,8 +6,8 @@
     <ProjectGuid>{4FBA4C2E-DAB7-4845-9225-8926B99A90E9}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Testapplicatie</RootNamespace>
-    <AssemblyName>Testapplicatie</AssemblyName>
+    <RootNamespace>AndroidBicycleInfo</RootNamespace>
+    <AssemblyName>AndroidBicycleInfo</AssemblyName>
     <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>

@@ -8,7 +8,7 @@ using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.Xamarin.Android;
 
-namespace Testapplicatie
+namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_4")]
 	public class BikeTheftColorsAndBrands : Activity

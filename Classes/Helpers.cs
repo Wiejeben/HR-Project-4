@@ -1,7 +1,7 @@
 ﻿using System;
 using Java.Util;
 
-namespace Testapplicatie
+namespace AndroidBicycleInfo
 {
 	public class Helpers
 	{

@@ -12,7 +12,7 @@ using Android.Gms.Maps.Model;
 using System.Collections.Generic;
 
 
-namespace Testapplicatie
+namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_1")]
 	public class BikeLocations : Activity, GoogleApiClient.IConnectionCallbacks,

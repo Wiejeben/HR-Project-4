@@ -10,7 +10,7 @@ using Android.Locations;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 
-namespace Testapplicatie
+namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_1")]
 	public class RouteCalculator : Activity, GoogleApiClient.IConnectionCallbacks,
