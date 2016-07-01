@@ -110,7 +110,7 @@ namespace AndroidBicycleInfo
 			return this.Model;
 		}
 
-		public PlotModel CreateLineModel(Dictionary<int, int> lineValues, int limit)
+		public PlotModel CreateLineModel(Dictionary<int, int> lineValues, int limit, string Xlabel, string Ylabel)
 		{
 			LineSeries line = new LineSeries
 			{
@@ -126,7 +126,7 @@ namespace AndroidBicycleInfo
 				Minimum = 0,
 				Maximum = 12,
 				AbsoluteMinimum = 0,
-				Title = this.XLabel,
+				Title = Xlabel,
 				MinorTickSize = 1,
 				MajorTickSize = 1,
 				MinorStep = 1,
@@ -141,7 +141,7 @@ namespace AndroidBicycleInfo
 				Minimum = 1,
 				Maximum = limit,
 				AbsoluteMinimum = 1,
-				Title = this.YLabel,
+				Title = Ylabel,
 				MaximumPadding = 1,
 				MinimumPadding = 1
 			};

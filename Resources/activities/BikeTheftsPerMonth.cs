@@ -27,7 +27,9 @@ namespace AndroidBicycleInfo
             PlotView view = FindViewById<PlotView>(Resource.Id.plotView);
 			view.Model = this.Diagram.CreateLineModel(
 				this.Data, 
-				500
+				500,
+				"Maand",
+				"Diefstellen"
 			);
 
 			// Button & eventhandler.
