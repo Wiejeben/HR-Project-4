@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_1")]
-	public class BikeLocations : Activity, GoogleApiClient.IConnectionCallbacks,
+	public class BikeLocationsActivity : Activity, GoogleApiClient.IConnectionCallbacks,
 		GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener, IOnMapReadyCallback
 	{
 		GoogleApiClient apiClient;

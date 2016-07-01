@@ -3,12 +3,11 @@ using Android.App;
 using Android.OS;
 using Android.Widget;
 using OxyPlot.Xamarin.Android;
-using SQLite;
 
 namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_3")]
-	public class BikeContainersNeighborhoods : Activity
+	public class BikeContainerNeighborhoodsActivity : Activity
 	{
 
 		Dictionary<string, int> Data = new Dictionary<string, int>();
@@ -18,12 +17,10 @@ namespace AndroidBicycleInfo
 		{
 			base.OnCreate(bundle);
 			SetContentView(Resource.Layout.One_View);
-			SQLiteConnection db = Database.Load();
-
-			// Query & getting the results.
-			string TopContainersQuery = "SELECT d.name as name, COUNT(*) as drums FROM bikecontainers as b LEFT JOIN streets as s on s.id = b.street_id LEFT JOIN districts as d on d.id = s.district_id GROUP BY d.id ORDER BY drums DESC LIMIT 5";
 
 			// Get database and make it graph compatible
+			var db = Database.Load();
+			string TopContainersQuery = "SELECT d.name as name, COUNT(*) as drums FROM bikecontainers as b LEFT JOIN streets as s on s.id = b.street_id LEFT JOIN districts as d on d.id = s.district_id GROUP BY d.id ORDER BY drums DESC LIMIT 5";
 			List<Street> results = db.Query<Street>(TopContainersQuery);
 			results.Reverse();
 			results.ForEach(value => this.Data.Add(value.name, value.drums));

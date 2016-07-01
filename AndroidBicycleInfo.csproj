@@ -93,29 +93,29 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Classes\Helpers.cs" />
+    <Compile Include="Services\Helpers.cs" />
     <Compile Include="Helpers\GooglePlayService.cs" />
     <Compile Include="Helpers\LocationInformation.cs" />
     <Compile Include="Helpers\General.cs" />
     <Compile Include="Helpers\Map.cs" />
-    <Compile Include="Classes\Diagram.cs" />
-    <Compile Include="Classes\Menu.cs" />
-    <Compile Include="Resources\activities\BikeAgenda.cs" />
-    <Compile Include="Resources\activities\BikeContainersAndBikeThefts.cs" />
-    <Compile Include="Resources\activities\BikeContainersNeighborhoods.cs" />
-    <Compile Include="Resources\activities\BikeLocations.cs" />
-    <Compile Include="Resources\activities\BikeLocationsElements.cs" />
-    <Compile Include="Resources\activities\BikeTheftColorsAndBrands.cs" />
-    <Compile Include="Resources\activities\BikeTheftsPerMonth.cs" />
-    <Compile Include="Resources\activities\BikeTheftsPerNeighborhood.cs" />
-    <Compile Include="Resources\activities\RouteCalculator.cs" />
-    <Compile Include="Classes\Database.cs" />
+    <Compile Include="Services\Diagram.cs" />
+    <Compile Include="Services\Menu.cs" />
+    <Compile Include="Services\Database.cs" />
     <Compile Include="Models\BikeContainer.cs" />
     <Compile Include="Models\BikeTheft.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Color.cs" />
     <Compile Include="Models\District.cs" />
     <Compile Include="Models\Street.cs" />
+    <Compile Include="Activities\BikeAgendaActivity.cs" />
+    <Compile Include="Activities\BikeContainersAndBikeTheftsActivity.cs" />
+    <Compile Include="Activities\BikeContainerNeighborhoodsActivity.cs" />
+    <Compile Include="Activities\BikeLocationsActivity.cs" />
+    <Compile Include="Activities\BikeTheftColorsAndBrandsActivity.cs" />
+    <Compile Include="Activities\BikeTheftsPerMonthActivity.cs" />
+    <Compile Include="Activities\BikeTheftsPerNeighborhoodActivity.cs" />
+    <Compile Include="Activities\RouteCalculatorActivity.cs" />
+    <Compile Include="Helpers\BikeLocationsElements.cs" />
  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -139,8 +139,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
-    <Folder Include="Resources\activities\" />
     <Folder Include="Models\" />
+    <Folder Include="Activities\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="oxyplot">

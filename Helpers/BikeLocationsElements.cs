@@ -11,7 +11,7 @@ namespace AndroidBicycleInfo
 	public class BikeLocationsElements
 	{
 		// Save location
-		public static void SaveLocation(BikeLocations parent, Location location, TextView locationName)
+		public static void SaveLocation(BikeLocationsActivity parent, Location location, TextView locationName)
 		{
 			// Add the new location to the saved locations
 			ISharedPreferences preferences = PreferenceManager.GetDefaultSharedPreferences(parent);
@@ -27,7 +27,7 @@ namespace AndroidBicycleInfo
 		}
 
 		// Spiner
-		public static void CreateSpinner(BikeLocations parent, Spinner spinner)
+		public static void CreateSpinner(BikeLocationsActivity parent, Spinner spinner)
 		{
 			spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(parent.spinner_ItemSelected);
 			var adapter = new ArrayAdapter(parent, Android.Resource.Layout.SimpleSpinnerItem, GetSpinnerInfo(parent));
@@ -35,7 +35,7 @@ namespace AndroidBicycleInfo
 			spinner.Adapter = adapter;
 		}
 
-		public static List<string> GetSpinnerInfo(BikeLocations parent)
+		public static List<string> GetSpinnerInfo(BikeLocationsActivity parent)
 		{
 			List<string> locations = new List<string>();
 			locations.Add("Selecteer aan locatie");

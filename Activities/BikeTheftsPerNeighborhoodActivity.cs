@@ -13,7 +13,7 @@ using Android.Gms.Maps.Model;
 namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_1")]
-	public class BikeTheftsPerNeighborhood : Activity, GoogleApiClient.IConnectionCallbacks,
+	public class BikeTheftsPerNeighborhoodActivity : Activity, GoogleApiClient.IConnectionCallbacks,
 		GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener, IOnMapReadyCallback
 	{
 		GoogleApiClient apiClient;

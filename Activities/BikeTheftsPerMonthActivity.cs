@@ -7,7 +7,7 @@ using OxyPlot.Xamarin.Android;
 namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_5")]
-	public class BikeTheftsPerMonth : Activity
+	public class BikeTheftsPerMonthActivity : Activity
 	{
 
 		Diagram Diagram = new Diagram("Gestolen fietsen per maand");

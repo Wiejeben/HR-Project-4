@@ -33,21 +33,21 @@ class Menu
 		this.RouteCalculatorActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag8);
 
 		// Assign events
-		this.BikeLocationsActivity.Click += delegate { this.LocationCheck(typeof(BikeLocations)); };
-		this.BikeContainersAndBikeTheftsActivity.Click += delegate { this.StartActivity(typeof(BikeContainersAndBikeThefts)); };
-		this.BikeContainerNeighborhoodsActivity.Click += delegate { this.StartActivity(typeof(BikeContainersNeighborhoods)); };
-		this.BikeTheftColorsAndBrandsActivity.Click += delegate { this.StartActivity(typeof(BikeTheftColorsAndBrands)); };
-		this.BikeTheftsPerMonthActivity.Click += delegate { this.StartActivity(typeof(BikeTheftsPerMonth)); };
-		this.BikeAgendaActivity.Click += delegate { this.LocationCheck(typeof(BikeAgenda)); };
-		this.BikeTheftsPerNeighborhoodActivity.Click += delegate { this.LocationCheck(typeof(BikeTheftsPerNeighborhood)); };
-		this.RouteCalculatorActivity.Click += delegate { this.LocationCheck(typeof(RouteCalculator)); };
+		this.BikeLocationsActivity.Click += delegate { this.LocationCheck(typeof(BikeLocationsActivity)); };
+		this.BikeContainersAndBikeTheftsActivity.Click += delegate { this.StartActivity(typeof(BikeContainersAndBikeTheftsActivity)); };
+		this.BikeContainerNeighborhoodsActivity.Click += delegate { this.StartActivity(typeof(BikeContainerNeighborhoodsActivity)); };
+		this.BikeTheftColorsAndBrandsActivity.Click += delegate { this.StartActivity(typeof(BikeTheftColorsAndBrandsActivity)); };
+		this.BikeTheftsPerMonthActivity.Click += delegate { this.StartActivity(typeof(BikeTheftsPerMonthActivity)); };
+		this.BikeAgendaActivity.Click += delegate { this.LocationCheck(typeof(BikeAgendaActivity)); };
+		this.BikeTheftsPerNeighborhoodActivity.Click += delegate { this.LocationCheck(typeof(BikeTheftsPerNeighborhoodActivity)); };
+		this.RouteCalculatorActivity.Click += delegate { this.LocationCheck(typeof(RouteCalculatorActivity)); };
     }
 
 	private void LocationCheck(Type type)
 	{
 		if (General.LocationStatus(this.Activity))
 		{
-			this.StartActivity(typeof(BikeLocations));
+			this.StartActivity(type);
 		}
 		else
 		{

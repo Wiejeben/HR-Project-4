@@ -7,7 +7,7 @@ using OxyPlot.Xamarin.Android;
 namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_4")]
-	public class BikeTheftColorsAndBrands : Activity
+	public class BikeTheftColorsAndBrandsActivity : Activity
 	{
 		private Diagram TheftByBrand = new Diagram("Gestolen fietsen op basis van merk");
 		private Diagram TheftByColor = new Diagram("Gestolen fietsen op basis van kleur");

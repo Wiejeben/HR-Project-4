@@ -9,14 +9,11 @@ using Android.Gms.Common;
 using Android.Gms.Common.Apis;
 using Android.Util;
 using Android.Locations;
-using Android.Gms.Maps;
-using Android.Gms.Maps.Model;
-using System.Collections.Generic;
 
 namespace AndroidBicycleInfo
 {
 	[Activity(Label = "@string/us_6")]
-	public class BikeAgenda : Activity, GoogleApiClient.IConnectionCallbacks,
+	public class BikeAgendaActivity : Activity, GoogleApiClient.IConnectionCallbacks,
 		GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener
 	{
 		GoogleApiClient apiClient;
