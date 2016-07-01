@@ -51,26 +51,32 @@ namespace AndroidBicycleInfo
 		}
 
 		// Get all the bikecontainers from the database
-		public static List<BikeContainer> GetBikeContainer()
+		public static List<Tuple<double, double>> GetBikeContainer()
 		{
 			// Get data from the database
-			var locations = new List<Tuple<float, float>>();
+			var locations = new List<Tuple<double, double>>();
 			var db = Database.Load();
 			string TopContainersQuery = "Select lat, long as lon FROM bikecontainers";
 			var results = db.Query<BikeContainer>(TopContainersQuery);
-			results.ForEach(value => locations.Add(new Tuple<float, float>(value.lat, value.lon)));
-			return results;
+			results.ForEach(value => locations.Add(new Tuple<double, double>(value.lat, value.lon)));
+			foreach (var value in results)
+			{
+				string latConverted = value.lat.ToString().Insert(2, ".");
+				string lonConverted = value.lon.ToString().Insert(1, "."); ;
+				locations.Add(new Tuple<double, double>(double.Parse(latConverted), double.Parse(lonConverted)));
+			}
+			return locations;
 		}
 
 
 		// Create a marker for the current location
 		public static void CreateMarkersForBicyleDrums(Location currentLocation, GoogleMap map)
 		{
-			List<BikeContainer> locations = GetBikeContainer();
+			List<Tuple<double, double>> locations = GetBikeContainer();
 
 			foreach (var location in locations)
 			{
-				LatLng LatLngLocation = new LatLng(location.lat, location.lon);
+				LatLng LatLngLocation = new LatLng(location.Item1, location.Item2);
 				MarkerOptions markerOpt1 = new MarkerOptions();
 				markerOpt1.SetPosition(LatLngLocation);
 				markerOpt1.SetTitle("Something");
@@ -84,13 +90,13 @@ namespace AndroidBicycleInfo
 			LatLng currentLocationConverted = new LatLng(currentLocation.Latitude, currentLocation.Longitude);
 			double closestLocation = 0;
 			LatLng cameraPosition = new LatLng(currentLocation.Latitude, currentLocation.Longitude); ;
-			List<BikeContainer> locations = GetBikeContainer();
+			List<Tuple<double, double>> locations = GetBikeContainer();
 
 			foreach (var location in locations)
 			{
-				LatLng LatLngLocation = new LatLng(location.lat, location.lon);
+				LatLng LatLngLocation = new LatLng(location.Item1, location.Item2);
 				double result = Distance(currentLocationConverted, LatLngLocation);
-				if (result < closestLocation || Equals(closestLocation	, 0.0))
+				if (result < closestLocation || Equals(closestLocation, 0.0))
 				{
 					closestLocation = result;
 					cameraPosition = LatLngLocation;
@@ -110,7 +116,7 @@ namespace AndroidBicycleInfo
 			LatLng cameraPosition = GetClosestBicyleDrum(currentLocation);
 
 			var geoUri = Android.Net.Uri.Parse(
-				"http://maps.google.com/maps?daddr="+cameraPosition.Latitude+","+cameraPosition.Longitude
+				"http://maps.google.com/maps?daddr=" + cameraPosition.Latitude + "," + cameraPosition.Longitude
 			);
 
 			var mapIntent = new Intent(Intent.ActionView, geoUri);
