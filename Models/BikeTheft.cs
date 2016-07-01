@@ -9,7 +9,7 @@ namespace AndroidBicycleInfo
 		public int id { get; set; }
 		public int date { get; set; }
 
-		[Indexed]
+        [Indexed]
 		public int brand_id { get; set; }
 
 		[Indexed]

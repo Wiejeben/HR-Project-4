@@ -9,5 +9,6 @@ namespace AndroidBicycleInfo
 		[PrimaryKey, AutoIncrement]
 		public int id { get; set; }
 		public string name { get; set; }
-	}
+        public int total_stolen { get; set; }
+    }
 }
