@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SQLite;
@@ -15,23 +16,53 @@ namespace ImportBicycleInfo
         public string Color;
         public string Brand;
         public DateTime DateTime;
-        public string District;
-        public string Street;
+        private string District;
+        private string street;
 
-        public BikeTheft(string ID, string district, string street, string brand, string color, DateTime dateTime)
+        public string Street
+        {
+            get
+            {
+                return street;
+            }
+
+            set
+            {
+                JObject json = new GoogleGeocodeAPI(value + ", Rotterdam, The Netherlands").Result;
+                var results = json.SelectToken("results");
+                var result = results.First()["address_components"];
+
+                foreach (var item in result)
+                {
+                    string type = item.SelectToken("types").Last().Value<string>();
+
+                    // Streetname
+                    if (type == "route")
+                    {
+                        this.street = item.SelectToken("long_name").Value<string>();
+                    }
+
+                    // City area
+                    if (type == "sublocality_level_1")
+                    {
+                        this.District = item.SelectToken("long_name").Value<string>();
+                    }
+                }
+            }
+        }
+
+        public BikeTheft(string ID, string street, string brand, string color, DateTime dateTime)
         {
             this.ID = ID;
             this.DateTime = dateTime;
             this.Brand = brand;
             this.Color = color;
-            this.District = district;
             this.Street = street;  
         }
 
         public static bool ValidCSVRow(string[] row)
         {
             string ID = row[0];
-            string district = row[6];
             string color = row[24];
             string brand = row[22];
             string dateTime = row[11];
@@ -56,13 +87,12 @@ namespace ImportBicycleInfo
         {
             TextInfo format = new CultureInfo("nl-NL", false).TextInfo;
             string ID = row[0];
-            string district = format.ToTitleCase(row[6].ToLower().Split('/').First());
             string color = format.ToTitleCase(row[24].ToLower());
             string brand = format.ToTitleCase(row[22].ToLower());
             string street = format.ToTitleCase(row[9].ToLower());
             DateTime dateTime = DateTime.ParseExact(row[11], "dd-MM-yy", CultureInfo.InvariantCulture);
 
-            return new BikeTheft(ID, district, street, brand, color, dateTime);
+            return new BikeTheft(ID, street, brand, color, dateTime);
         }
 
         public override bool InsertDB(SQLiteConnection connection)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Globalization;
@@ -14,12 +15,43 @@ namespace ImportBicycleInfo
         public double Lat;
         public double Long;
         public string District;
-        public string Street;
+        private string street;
 
-        public BikeContainer(string ID, string district, string street, double latCoord, double longCoord)
+        public string Street
+        {
+            get
+            {
+                return street;
+            }
+
+            set
+            {
+                JObject json = new GoogleGeocodeAPI(value).Result;
+                var results = json.SelectToken("results");
+                var result = results.First()["address_components"];
+
+                foreach (var item in result)
+                {
+                    string type = item.SelectToken("types").Last().Value<string>();
+
+                    // Streetname
+                    if (type == "route")
+                    {
+                        this.street = item.SelectToken("long_name").Value<string>();
+                    }
+
+                    // City area
+                    if (type == "sublocality_level_1")
+                    {
+                        this.District = item.SelectToken("long_name").Value<string>();
+                    }
+                }
+            }
+        }
+
+        public BikeContainer(string ID, string street, double latCoord, double longCoord)
         {
             this.ID = ID;
-            this.District = district;
             this.Street = street;
             this.Lat = latCoord;
             this.Long = longCoord;
@@ -42,10 +74,9 @@ namespace ImportBicycleInfo
             string ID = row[0];
             Double latCoord = double.Parse(row[18]);
             Double longCoord = double.Parse(row[19]);
-            string district = format.ToTitleCase(row[28].ToLower());
             string street = format.ToTitleCase(row[9].ToLower());
 
-            return new BikeContainer(ID, district, street, latCoord, longCoord);
+            return new BikeContainer(ID, street, latCoord, longCoord);
         }
 
         public override bool InsertDB(SQLiteConnection connection)
