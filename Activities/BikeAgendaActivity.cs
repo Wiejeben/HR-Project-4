@@ -45,6 +45,8 @@ namespace AndroidBicycleInfo
 
 			// The used UI elements
 			DatePicker datePicker = (DatePicker)FindViewById(Resource.Id.datePicker);
+			TimePicker timePicker = (TimePicker)FindViewById(Resource.Id.timePicker);
+			timePicker.ClearFocus();
 			Button confirmButton = FindViewById<Button>(Resource.Id.datePickerSelect);
 
 			// Confirm button & it's event handler.
@@ -54,7 +56,30 @@ namespace AndroidBicycleInfo
 				int cDay = datePicker.DayOfMonth;
 				int cMonth = datePicker.Month;
 				int cYear = datePicker.Year;
+				// The time
+				int cHour = (int) timePicker.CurrentHour;
+				int cMin = (int) timePicker.CurrentMinute;
+				// The starting times standard variables
+				int cFirstHour = 0;
+				int cFirstMin = 0;
 
+				// If the minutes is less than 0 if you reduce it by 30 (for the first time)
+				if (cMin - 30 < 0)
+				{
+					// Remove an hour
+					cFirstHour = cHour - 1;
+					// Remove the minutes so we can round the hours
+					int removedMin = 30 - cMin;
+					// Remove the leftover minutes from the rounded hour
+					cFirstMin = 60 - removedMin;
+				}
+				else {
+					// Same hours
+					cFirstHour = cHour;
+					// Reduced minutes
+					cFirstMin = cMin - 30;
+				}
+					
 				// Class that can save content for applications.
 				ContentValues eventValues = new ContentValues();
 
@@ -67,9 +92,9 @@ namespace AndroidBicycleInfo
 				// Location for the agenda item.
 				eventValues.Put(CalendarContract.Events.InterfaceConsts.EventLocation, streetName);
 				// Convert to milliseconds so we can define a start date
-				eventValues.Put(CalendarContract.Events.InterfaceConsts.Dtstart, Helpers.convertToMilliseconds(cYear, cMonth, cDay));
+				eventValues.Put(CalendarContract.Events.InterfaceConsts.Dtstart, Helpers.convertToMilliseconds(cYear, cMonth, cDay, cFirstHour, cFirstMin));
 				// Convert to milliseconds so we can define a end date.
-				eventValues.Put(CalendarContract.Events.InterfaceConsts.Dtend, Helpers.convertToMilliseconds(cYear, cMonth, cDay, 23, 59));
+				eventValues.Put(CalendarContract.Events.InterfaceConsts.Dtend, Helpers.convertToMilliseconds(cYear, cMonth, cDay, cHour, cMin));
 
 				// Define the timezones.
 				eventValues.Put(CalendarContract.Events.InterfaceConsts.EventTimezone, "Europe/Berlin");
