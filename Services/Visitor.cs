@@ -45,4 +45,26 @@ namespace AndroidBicycleInfo.Services
             return onNone();
         }
     }
+
+    class LambdaOptionVisitor<T, U> : OptionVisitor<T, U>
+    {
+        Func<T, U> _onSome;
+        Func<U> _onNone;
+
+        public LambdaOptionVisitor(Func<T, U> onSome, Func<U> onNone)
+        {
+            this._onSome = onSome;
+            this._onNone = onNone;
+        }
+
+        public U onNone()
+        {
+            throw new NotImplementedException();
+        }
+
+        public U onSome(T value)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
