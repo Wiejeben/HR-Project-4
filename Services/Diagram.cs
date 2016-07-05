@@ -28,8 +28,8 @@ namespace AndroidBicycleInfo
 				LegendPosition = LegendPosition.BottomCenter,
 				LegendOrientation = LegendOrientation.Horizontal,
 				LegendBorderThickness = 0,
-				DefaultFontSize = 26,
-				TitleFontSize = 26
+				DefaultFontSize = 20,
+				TitleFontSize = 20
 			};
 		}
 
