@@ -36,7 +36,7 @@ namespace AndroidBicycleInfo
             PlotView view = FindViewById<PlotView>(Resource.Id.plotView);
 			view.Model = diagram.CreateLineModel(
 				Data, 
-				500,
+				200,
 				"Maand",
 				"Diefstallen"
 			);
