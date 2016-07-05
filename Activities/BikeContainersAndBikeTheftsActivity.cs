@@ -44,7 +44,7 @@ namespace AndroidBicycleInfo
 
 			// Query & getting the results.
 			var db = Database.Load();
-			string TopContainersQuery = "SELECT d.name as name, d.id AS did, COUNT(b.id) AS drums, COUNT(bt.id) AS thefts, strftime('%m', date, 'unixepoch') AS month FROM bikethefts AS bt LEFT JOIN streets AS s ON s.id = bt.street_id LEFT JOIN districts AS d ON d.id = s.district_id LEFT JOIN bikecontainers AS b ON b.street_id = s.id WHERE did = ";
+			string TopContainersQuery = "SELECT d.name as name, d.id AS did, COUNT(b.id) AS drums, COUNT(bt.id) AS thefts, strftime('%m', bt.date, 'unixepoch') AS month FROM bikethefts AS bt LEFT JOIN streets AS s ON s.id = bt.street_id LEFT JOIN districts AS d ON d.id = s.district_id LEFT JOIN bikecontainers AS b ON b.street_id = s.id WHERE did = ";
 			TopContainersQuery += did; 
 			TopContainersQuery += " GROUP BY month";
 
