@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace AndroidBicycleInfo.Services
+namespace AndroidBicycleInfo
 {
     interface OptionVisitor<T, U>
     {
@@ -64,7 +64,7 @@ namespace AndroidBicycleInfo.Services
 
         public U onSome(T value)
         {
-            return onSome();
+            return onSome(value);
         }
     }
 }

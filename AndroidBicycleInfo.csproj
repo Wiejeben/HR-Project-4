@@ -117,6 +117,7 @@
     <Compile Include="Activities\BikeTheftsPerNeighborhoodActivity.cs" />
     <Compile Include="Activities\RouteCalculatorActivity.cs" />
     <Compile Include="Helpers\BikeLocationsElements.cs" />
+    <Compile Include="Services\Visitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

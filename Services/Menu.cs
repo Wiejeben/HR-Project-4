@@ -10,14 +10,35 @@ namespace AndroidBicycleInfo
 	class Menu
 	{
 		private Activity Activity;
-        private List<Button> ButtonList;
 
 		public Menu(Activity activity)
 		{
-			this.Activity = activity;
+            this.Activity = activity;
+            List<Button> ButtonList = new List<Button>();
 
-			// Assign events
-			bikeLocationsActivity.Click += delegate { this.LocationCheck(typeof(BikeLocationsActivity)); };
+            ButtonList.Add(Activity.FindViewById<Button>(Resource.Id.buttonVraag1));
+            ButtonList.Add(Activity.FindViewById<Button>(Resource.Id.buttonVraag2));
+            ButtonList.Add(Activity.FindViewById<Button>(Resource.Id.buttonVraag3));
+            ButtonList.Add(Activity.FindViewById<Button>(Resource.Id.buttonVraag4));
+            ButtonList.Add(Activity.FindViewById<Button>(Resource.Id.buttonVraag5));
+            ButtonList.Add(Activity.FindViewById<Button>(Resource.Id.buttonVraag6));
+            ButtonList.Add(Activity.FindViewById<Button>(Resource.Id.buttonVraag7));
+            ButtonList.Add(Activity.FindViewById<Button>(Resource.Id.buttonVraag8));
+
+            this.InitializeMenu(ButtonList);
+
+            // Assign element
+            Button bikeLocationsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag1);
+            Button bikeContainersAndBikeTheftsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag2);
+            Button bikeContainerNeighborhoodsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag3);
+            Button bikeTheftColorsAndBrandsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag4);
+            Button bikeTheftsPerMonthActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag5);
+            Button bikeAgendaActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag6);
+            Button bikeTheftsPerNeighborhoodActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag7);
+            Button routeCalculatorActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag8);
+
+            // Assign events
+            bikeLocationsActivity.Click += delegate { this.LocationCheck(typeof(BikeLocationsActivity)); };
 			bikeContainersAndBikeTheftsActivity.Click += delegate { this.StartActivity(typeof(BikeContainersAndBikeTheftsActivity)); };
 			bikeContainerNeighborhoodsActivity.Click += delegate { this.StartActivity(typeof(BikeContainerNeighborhoodsActivity)); };
 			bikeTheftColorsAndBrandsActivity.Click += delegate { this.StartActivity(typeof(BikeTheftColorsAndBrandsActivity)); };
@@ -25,7 +46,7 @@ namespace AndroidBicycleInfo
 			bikeAgendaActivity.Click += delegate { this.LocationCheck(typeof(BikeAgendaActivity)); };
 			bikeTheftsPerNeighborhoodActivity.Click += delegate { this.LocationCheck(typeof(BikeTheftsPerNeighborhoodActivity)); };
 			routeCalculatorActivity.Click += delegate { this.LocationCheck(typeof(RouteCalculatorActivity)); };
-		}
+        }
 
 		private void LocationCheck(Type type)
 		{
@@ -39,23 +60,13 @@ namespace AndroidBicycleInfo
 			}
 		}
 
-        private void InitializeMenu()
+        private void InitializeMenu(List<Button> ButtonList)
         {
-            // Assign element
-            Button bikeLocationsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag1);
-            Button bikeContainersAndBikeTheftsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag2);
-            Button bikeContainerNeighborhoodsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag3);
-            Button bikeTheftColorsAndBrandsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag4);
-            Button bikeTheftsPerMonthActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag5);
-            Button bikeAgendaActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag6);
-            Button bikeTheftsPerNeighborhoodActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag7);
-            Button routeCalculatorActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag8);
-
-            foreach(Button button in ButtonList)
+            foreach(var button in ButtonList)
             {
-                Services.Option<Button> ButtonOption = new Services.Some<Button>(button);
-                ButtonOption.Visit<object>(()=> { throw new Exception(""); }, 
-                    btn => { return btn.Click += delegate { this.StartActivity(typeof(BikeLocationsActivity));});
+                Option<Button> ButtonOption = new Some<Button>(button);
+                ButtonOption.Visit<Button>(()=> { throw new Exception(""); }, 
+                    btn => {  throw new Exception(button.GetType().ToString()); } );
             }
         }
 
