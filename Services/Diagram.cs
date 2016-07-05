@@ -15,8 +15,7 @@ namespace AndroidBicycleInfo
 		private PlotModel Model;
 
 		// For the pie chart
-		private OxyColor color;
-		private OxyColor labelColor = OxyColors.Black;
+		private OxyColor Color;
 
 		public Diagram(string title = "", string yLabel = "", string xLabel = "")
 		{
@@ -114,26 +113,23 @@ namespace AndroidBicycleInfo
 					switch (entry.Key)
 					{
 						case "Zwart":
-							this.color = OxyColors.Black;
+							this.Color = OxyColors.Black;
 							break;
 						case "Blauw":
-							this.color = OxyColors.Blue;
+							this.Color = OxyColors.Blue;
 							break;
 						case "Wit":
-							this.color = OxyColors.White;
+							this.Color = OxyColors.White;
 							break;
 						case "Rood":
-							this.color = OxyColors.Red;
+							this.Color = OxyColors.Red;
 							break;
 						case "Grijs":
-							this.color = OxyColors.Gray;
+							this.Color = OxyColors.Gray;
 							break;
 					}
-					if (entry.Key == "Black" || entry.Key == "Blue")
-					{
-						
-					}
-					pieChart.Slices.Add(new PieSlice(entry.Key, entry.Value) { IsExploded = true, Fill = this.color, Label = "" });
+
+					pieChart.Slices.Add(new PieSlice(entry.Key, entry.Value) { IsExploded = true, Fill = this.Color, Label = "" });
 				}
 				else {
 					pieChart.Slices.Add(new PieSlice(entry.Key, entry.Value) { IsExploded = true });
