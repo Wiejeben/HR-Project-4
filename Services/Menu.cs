@@ -14,16 +14,17 @@ namespace AndroidBicycleInfo
 		public Menu(Activity activity)
 		{
             this.Activity = activity;
-            Dictionary<Button, Type> ButtonDictionary = new Dictionary<Button, Type>();
-
-            ButtonDictionary.Add(Activity.FindViewById<Button>(Resource.Id.buttonVraag1), typeof(BikeLocationsActivity));
-            ButtonDictionary.Add(Activity.FindViewById<Button>(Resource.Id.buttonVraag2), typeof(BikeContainersAndBikeTheftsActivity));
-            ButtonDictionary.Add(Activity.FindViewById<Button>(Resource.Id.buttonVraag3), typeof(BikeContainerNeighborhoodsActivity));
-            ButtonDictionary.Add(Activity.FindViewById<Button>(Resource.Id.buttonVraag4), typeof(BikeTheftColorsAndBrandsActivity));
-            ButtonDictionary.Add(Activity.FindViewById<Button>(Resource.Id.buttonVraag5), typeof(BikeTheftsPerMonthActivity));
-            ButtonDictionary.Add(Activity.FindViewById<Button>(Resource.Id.buttonVraag6), typeof(BikeAgendaActivity));
-            ButtonDictionary.Add(Activity.FindViewById<Button>(Resource.Id.buttonVraag7), typeof(BikeTheftsPerNeighborhoodActivity));
-            ButtonDictionary.Add(Activity.FindViewById<Button>(Resource.Id.buttonVraag8), typeof(RouteCalculatorActivity));
+            Dictionary<Button, Type> ButtonDictionary = new Dictionary<Button, Type>()
+            {
+                {Activity.FindViewById<Button>(Resource.Id.buttonVraag1), typeof(BikeLocationsActivity) },
+                {Activity.FindViewById<Button>(Resource.Id.buttonVraag2), typeof(BikeContainersAndBikeTheftsActivity) },
+                {Activity.FindViewById<Button>(Resource.Id.buttonVraag3), typeof(BikeContainerNeighborhoodsActivity) },
+                {Activity.FindViewById<Button>(Resource.Id.buttonVraag4), typeof(BikeTheftColorsAndBrandsActivity) },
+                {Activity.FindViewById<Button>(Resource.Id.buttonVraag5), typeof(BikeTheftsPerMonthActivity) },
+                {Activity.FindViewById<Button>(Resource.Id.buttonVraag6), typeof(BikeAgendaActivity) },
+                {Activity.FindViewById<Button>(Resource.Id.buttonVraag7), typeof(BikeTheftsPerNeighborhoodActivity) },
+                {Activity.FindViewById<Button>(Resource.Id.buttonVraag8), typeof(RouteCalculatorActivity) },
+            };
 
             this.InitializeMenu(ButtonDictionary);
         }
