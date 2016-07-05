@@ -10,7 +10,7 @@ namespace AndroidBicycleInfo
 	{
 
 		Dictionary<string, int> Data = new Dictionary<string, int>();
-		Diagram Diagram = new Diagram("Top 5 wijken met de meeste fietstrommels", "Hoeveelheid fietstrommels", "Wijken");
+		Diagram Diagram = new Diagram("Top 5 wijken met de meeste fietstrommels", "Wijken", "Hoeveelheid fietstrommels");
 
         protected override void OnCreate(Bundle bundle)
 		{

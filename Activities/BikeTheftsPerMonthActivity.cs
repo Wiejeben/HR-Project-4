@@ -10,7 +10,7 @@ namespace AndroidBicycleInfo
 	public class BikeTheftsPerMonthActivity : MainActivity
 	{
 
-		Diagram Diagram = new Diagram("Gestolen fietsen per maand");
+		Diagram Diagram = new Diagram("Gestolen fietsen per maand in Rotterdam");
 		Dictionary<int, int> Data = new Dictionary<int, int>();
 
         protected override void OnCreate(Bundle bundle)
