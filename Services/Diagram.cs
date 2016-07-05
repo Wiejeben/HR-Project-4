@@ -126,7 +126,7 @@ namespace AndroidBicycleInfo
 			LinearAxis xAxis = new LinearAxis
 			{
 				Position = AxisPosition.Bottom,
-				Minimum = 0,
+				Minimum = 1,
 				Maximum = 12,
 				AbsoluteMinimum = 0,
 				Title = Xlabel,

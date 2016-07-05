@@ -28,13 +28,6 @@ namespace AndroidBicycleInfo
 			SetContentView(Resource.Layout.RouteCalculator);
 			this.registerReturnButton();
 
-			// Show location on the map
-			Button showLocationOnMap = FindViewById<Button>(Resource.Id.showLocationOnMap);
-			showLocationOnMap.Click += delegate
-			{
-				Map.OpenMap(this, location);
-			};
-
 			// Show closest bicyledrum on the map
 			Button showClosestBicyledrum = FindViewById<Button>(Resource.Id.showClosestBicyledrum);
 			showClosestBicyledrum.Click += delegate
@@ -42,7 +35,7 @@ namespace AndroidBicycleInfo
 				Map.FocusOnClosestBicyledrum(map, location);
 			};
 
-			// Show closest bicyledrum on the map
+			// Generate route to closest bicyledrum
 			Button routeToClosestBicyledrum = FindViewById<Button>(Resource.Id.routeToClosestBicyledrum);
 			routeToClosestBicyledrum.Click += delegate
 			{
