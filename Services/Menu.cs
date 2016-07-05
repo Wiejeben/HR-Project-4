@@ -21,7 +21,6 @@ namespace AndroidBicycleInfo
 			Button bikeTheftColorsAndBrandsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag4);
 			Button bikeTheftsPerMonthActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag5);
 			Button bikeAgendaActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag6);
-			Button bikeTheftsPerNeighborhoodActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag7);
 			Button routeCalculatorActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag8);
 
 			// Assign events
@@ -31,7 +30,6 @@ namespace AndroidBicycleInfo
 			bikeTheftColorsAndBrandsActivity.Click += delegate { this.StartActivity(typeof(BikeTheftColorsAndBrandsActivity)); };
 			bikeTheftsPerMonthActivity.Click += delegate { this.StartActivity(typeof(BikeTheftsPerMonthActivity)); };
 			bikeAgendaActivity.Click += delegate { this.LocationCheck(typeof(BikeAgendaActivity)); };
-			bikeTheftsPerNeighborhoodActivity.Click += delegate { this.LocationCheck(typeof(BikeTheftsPerNeighborhoodActivity)); };
 			routeCalculatorActivity.Click += delegate { this.LocationCheck(typeof(RouteCalculatorActivity)); };
 		}
 
