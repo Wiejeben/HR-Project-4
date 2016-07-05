@@ -117,6 +117,7 @@
     <Compile Include="Activities\BikeTheftsPerNeighborhoodActivity.cs" />
     <Compile Include="Activities\RouteCalculatorActivity.cs" />
     <Compile Include="Helpers\BikeLocationsElements.cs" />
+    <Compile Include="Activities\BikeContainersAndBikeTheftsMenuActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -137,6 +138,8 @@
     <AndroidResource Include="Resources\layout\BikeTheftsPerNeighborhood.axml" />
     <AndroidResource Include="Resources\layout\BikeAgenda.axml" />
     <AndroidResource Include="Resources\layout\RouteCalculator.axml" />
+    <AndroidResource Include="Resources\layout\BikeContainersAndBikeTheftsMenu.axml" />
+    <AndroidResource Include="Resources\layout\BikeContainersAndBikeThefts.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
