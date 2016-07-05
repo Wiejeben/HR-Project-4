@@ -9,28 +9,36 @@ namespace AndroidBicycleInfo
 	[Activity(Label = "@string/us_5")]
 	public class BikeTheftsPerMonthActivity : MainActivity
 	{
-
-		Diagram Diagram = new Diagram("Gestolen fietsen per maand in Rotterdam");
-		Dictionary<int, int> Data = new Dictionary<int, int>();
-
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-			SetContentView(Resource.Layout.One_View);
+			SetContentView(Resource.Layout.BikeTheft);
 			this.registerReturnButton();
 
+			Button sreturnButton = FindViewById<Button>(Resource.Id.sreturnButton);
+			// Return to the menu button & it's event handler.
+			sreturnButton.Click += delegate
+			{
+				StartActivity(typeof(BikeTheftMenuActivity));
+				Finish();
+			};
+
+			string year = Intent.GetStringExtra("year");
+
+			Dictionary<int, int> Data = new Dictionary<int, int>();
 			// Query & getting the results.
 			var db = Database.Load();
-			string TopContainersQuery = "Select count(*) as thefts, strftime('%m', date, 'unixepoch') as month FROM bikethefts GROUP BY month";
-			var results = db.Query<BikeTheft>(TopContainersQuery);
-			results.ForEach(value => this.Data.Add(value.month, value.thefts));
+			string BikeTheftsQuery = "Select count(*) as thefts, strftime('%m', date, 'unixepoch') as month, strftime('%Y', date, 'unixepoch')  as year FROM bikethefts WHERE year = '"+year+"' GROUP BY month";
+			var results = db.Query<BikeTheft>(BikeTheftsQuery);
+			results.ForEach(value => Data.Add(value.month, value.thefts));
 
+			Diagram diagram = new Diagram("Gestolen fietsen per maand in Rotterdam in " + year);
             PlotView view = FindViewById<PlotView>(Resource.Id.plotView);
-			view.Model = this.Diagram.CreateLineModel(
-				this.Data, 
-				500,
+			view.Model = diagram.CreateLineModel(
+				Data, 
+				200,
 				"Maand",
-				"Diefstellen"
+				"Diefstallen"
 			);
         }
     }

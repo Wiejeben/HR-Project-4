@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
+
 using Android.App;
 using Android.OS;
 using Android.Widget;
 using OxyPlot.Xamarin.Android;
+
 
 namespace AndroidBicycleInfo
 {
@@ -25,6 +28,7 @@ namespace AndroidBicycleInfo
             var database = Database.Load();
             string TopFiveTheftsPerBrand = "SELECT br.name, COUNT(bt.brand_id) AS total_stolen FROM `bikethefts` AS bt LEFT JOIN `brands` AS br WHERE bt.brand_id = br.id GROUP BY bt.brand_id ORDER BY total_stolen DESC LIMIT 5;";
             string TopFiveTheftsPerColor = "SELECT c.name, COUNT(bt.color_id) AS total_stolen FROM `bikethefts` AS bt LEFT JOIN `colors` AS c WHERE bt.color_id = c.id GROUP BY bt.color_id ORDER BY total_stolen DESC LIMIT 5;";
+
 			database.Query<Brand>(TopFiveTheftsPerBrand).ForEach(value => this.BrandData.Add(value.name, value.total_stolen));
 			database.Query<Color>(TopFiveTheftsPerColor).ForEach(value => this.ColorData.Add(value.name, value.total_stolen));
 
@@ -34,7 +38,7 @@ namespace AndroidBicycleInfo
 
 			// Apply PlotModel
 			view.Model = TheftByBrand.CreatePieModel(this.BrandData);
-			viewTwo.Model = TheftByColor.CreatePieModel(this.ColorData);
+			viewTwo.Model = TheftByColor.CreatePieModel(this.ColorData, true);
 		}
 	}
 }

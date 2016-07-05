@@ -14,6 +14,10 @@ namespace AndroidBicycleInfo
 		private string YLabel;
 		private PlotModel Model;
 
+		// For the pie chart
+		private OxyColor color;
+		private OxyColor labelColor = OxyColors.Black;
+
 		public Diagram(string title = "", string yLabel = "", string xLabel = "")
 		{
 			this.Title = title;
@@ -91,7 +95,7 @@ namespace AndroidBicycleInfo
 			return this.Model;
 		}
 
-		public PlotModel CreatePieModel(Dictionary<string, int> data)
+		public PlotModel CreatePieModel(Dictionary<string, int> data, bool colors = false)
 		{
 			// Pie chart properties	
 			PieSeries pieChart = new PieSeries
@@ -100,12 +104,40 @@ namespace AndroidBicycleInfo
 				InsideLabelPosition = 0.5,
 				AngleSpan = 360,
 				StartAngle = 0,
-				FontSize = 26
+				FontSize = 20
 			};
 
 			foreach (KeyValuePair<string, int> entry in data)
 			{
-				pieChart.Slices.Add(new PieSlice(entry.Key, entry.Value) { IsExploded = true });
+				if (colors)
+				{
+					switch (entry.Key)
+					{
+						case "Zwart":
+							this.color = OxyColors.Black;
+							break;
+						case "Blauw":
+							this.color = OxyColors.Blue;
+							break;
+						case "Wit":
+							this.color = OxyColors.White;
+							break;
+						case "Rood":
+							this.color = OxyColors.Red;
+							break;
+						case "Grijs":
+							this.color = OxyColors.Gray;
+							break;
+					}
+					if (entry.Key == "Black" || entry.Key == "Blue")
+					{
+						
+					}
+					pieChart.Slices.Add(new PieSlice(entry.Key, entry.Value) { IsExploded = true, Fill = this.color, Label = "" });
+				}
+				else {
+					pieChart.Slices.Add(new PieSlice(entry.Key, entry.Value) { IsExploded = true });
+				}
 			}
 
 			this.Model.Series.Add(pieChart);
