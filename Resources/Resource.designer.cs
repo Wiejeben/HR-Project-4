@@ -1771,8 +1771,8 @@ namespace AndroidBicycleInfo
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0c0060
-			public const int LocationName = 2131492960;
+			// aapt resource value: 0x7f0c005f
+			public const int LocationName = 2131492959;
 			
 			// aapt resource value: 0x7f0c006c
 			public const int action0 = 2131492972;
@@ -1960,8 +1960,8 @@ namespace AndroidBicycleInfo
 			// aapt resource value: 0x7f0c0033
 			public const int list_item = 2131492915;
 			
-			// aapt resource value: 0x7f0c0063
-			public const int map = 2131492963;
+			// aapt resource value: 0x7f0c0062
+			public const int map = 2131492962;
 			
 			// aapt resource value: 0x7f0c006f
 			public const int media_actions = 2131492975;
@@ -2032,8 +2032,8 @@ namespace AndroidBicycleInfo
 			// aapt resource value: 0x7f0c0022
 			public const int satellite = 2131492898;
 			
-			// aapt resource value: 0x7f0c0061
-			public const int saveLocation = 2131492961;
+			// aapt resource value: 0x7f0c0060
+			public const int saveLocation = 2131492960;
 			
 			// aapt resource value: 0x7f0c0015
 			public const int screen = 2131492885;
@@ -2092,8 +2092,8 @@ namespace AndroidBicycleInfo
 			// aapt resource value: 0x7f0c0010
 			public const int showHome = 2131492880;
 			
-			// aapt resource value: 0x7f0c005f
-			public const int showLocationOnMap = 2131492959;
+			// aapt resource value: 0x7f0c0063
+			public const int showLocationOnMap = 2131492963;
 			
 			// aapt resource value: 0x7f0c0011
 			public const int showTitle = 2131492881;
@@ -2101,8 +2101,8 @@ namespace AndroidBicycleInfo
 			// aapt resource value: 0x7f0c0037
 			public const int spacer = 2131492919;
 			
-			// aapt resource value: 0x7f0c0062
-			public const int spinner = 2131492962;
+			// aapt resource value: 0x7f0c0061
+			public const int spinner = 2131492961;
 			
 			// aapt resource value: 0x7f0c0007
 			public const int split_action_bar = 2131492871;

@@ -55,13 +55,6 @@ namespace AndroidBicycleInfo
 				Map.CreateBikeMarkers(this, map);
 			};
 
-			// Show location on the map
-			Button showLocationOnMap = FindViewById<Button>(Resource.Id.showLocationOnMap);
-			showLocationOnMap.Click += delegate {
-				Map.OpenMap(this, location);
-			};
-
-
 			if (GooglePlayService.IsGooglePlayServicesInstalled(this))
 			{
 				apiClient = new GoogleApiClient.Builder(this, this, this).AddApi(LocationServices.API).Build();
