@@ -33,12 +33,13 @@ namespace AndroidBicycleInfo
 			Spinner spinner = FindViewById<Spinner>(Resource.Id.spinner);
 			BikeLocationsElements.CreateSpinner(this, spinner);
 
+			TextView locationName = FindViewById<TextView>(Resource.Id.LocationName);
+
 			// Save locattion
 			Button saveLocationButton = FindViewById<Button>(Resource.Id.saveLocation);
 			saveLocationButton.Click += delegate
 			{
 				// Save location
-				TextView locationName = FindViewById<TextView>(Resource.Id.LocationName);
 				BikeLocationsElements.SaveLocation(this, location, locationName);
 
 				// Hide keyboard
@@ -147,7 +148,7 @@ namespace AndroidBicycleInfo
 			}
 		}
 
-		public void OnLocationChanged(Location location)
+		public async void OnLocationChanged(Location location)
 		{
 			// This method display changes in the user's location if they've been requested
 
@@ -155,6 +156,11 @@ namespace AndroidBicycleInfo
 			Log.Debug("LocationClient", "Location updated");
 
 			this.location = location;
+
+			Address address = await LocationInformation.ReverseGeocodeCurrentLocation(this, location);
+			TextView locationName = FindViewById<TextView>(Resource.Id.LocationName);
+			locationName.Text = address.GetAddressLine(0).ToString();
+
 			InitMapFragment();
 		}
 
