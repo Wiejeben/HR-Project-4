@@ -34,7 +34,7 @@ namespace ImportBicycleInfo
             insertables.AddRange(bikeContainerParser.ParseBikeContainer());
 
             // Insert objects to DB
-            insertables.ForEach(m => m.InsertDB(connection));
+            insertables.ForEach(m => m?.InsertDB(connection));
         }
     }
 }
