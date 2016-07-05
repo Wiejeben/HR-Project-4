@@ -59,12 +59,12 @@ namespace AndroidBicycleInfo.Services
 
         public U onNone()
         {
-            throw new NotImplementedException();
+            return onNone();
         }
 
         public U onSome(T value)
         {
-            throw new NotImplementedException();
+            return onSome();
         }
     }
 }
