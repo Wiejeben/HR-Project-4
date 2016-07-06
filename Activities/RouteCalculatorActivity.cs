@@ -12,7 +12,7 @@ using Android.Gms.Maps.Model;
 
 namespace AndroidBicycleInfo
 {
-	[Activity(Label = "@string/us_1")]
+	[Activity(Label = "@string/us_9")]
 	public class RouteCalculatorActivity : MainActivity, GoogleApiClient.IConnectionCallbacks,
 		GoogleApiClient.IOnConnectionFailedListener, Android.Gms.Location.ILocationListener, IOnMapReadyCallback
 	{

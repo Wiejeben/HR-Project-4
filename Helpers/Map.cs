@@ -62,8 +62,8 @@ namespace AndroidBicycleInfo
 			//results.ForEach(value => locations.Add(new Tuple<double, double>(value.lat, value.lon)));
 			foreach (var value in results)
 			{
-				string latConverted = value.lat.ToString();
-				string lonConverted = value.lon.ToString();
+				string latConverted = value.lat.ToString().Replace(",", ".");
+				string lonConverted = value.lon.ToString().Replace(",", ".");
 				string StreetNameQuery = "Select name FROM streets where id = " + value.street_id;
 				var StreetNameQueryResult = db.Query<Street>(StreetNameQuery);
 				var streetname = StreetNameQueryResult[0].name;
