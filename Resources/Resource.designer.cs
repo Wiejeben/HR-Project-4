@@ -1771,11 +1771,11 @@ namespace AndroidBicycleInfo
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0c005f
-			public const int LocationName = 2131492959;
+			// aapt resource value: 0x7f0c0063
+			public const int LocationName = 2131492963;
 			
-			// aapt resource value: 0x7f0c006b
-			public const int action0 = 2131492971;
+			// aapt resource value: 0x7f0c006e
+			public const int action0 = 2131492974;
 			
 			// aapt resource value: 0x7f0c004c
 			public const int action_bar = 2131492940;
@@ -1801,8 +1801,8 @@ namespace AndroidBicycleInfo
 			// aapt resource value: 0x7f0c004d
 			public const int action_context_bar = 2131492941;
 			
-			// aapt resource value: 0x7f0c006f
-			public const int action_divider = 2131492975;
+			// aapt resource value: 0x7f0c0072
+			public const int action_divider = 2131492978;
 			
 			// aapt resource value: 0x7f0c0002
 			public const int action_menu_divider = 2131492866;
@@ -1843,41 +1843,44 @@ namespace AndroidBicycleInfo
 			// aapt resource value: 0x7f0c0036
 			public const int buttonPanel = 2131492918;
 			
-			// aapt resource value: 0x7f0c0064
-			public const int buttonVraag1 = 2131492964;
-			
-			// aapt resource value: 0x7f0c0065
-			public const int buttonVraag2 = 2131492965;
-			
-			// aapt resource value: 0x7f0c0066
-			public const int buttonVraag3 = 2131492966;
-			
 			// aapt resource value: 0x7f0c0067
-			public const int buttonVraag4 = 2131492967;
+			public const int buttonVraag1 = 2131492967;
 			
 			// aapt resource value: 0x7f0c0068
-			public const int buttonVraag5 = 2131492968;
+			public const int buttonVraag2 = 2131492968;
 			
 			// aapt resource value: 0x7f0c0069
-			public const int buttonVraag6 = 2131492969;
+			public const int buttonVraag3 = 2131492969;
 			
 			// aapt resource value: 0x7f0c006a
-			public const int buttonVraag8 = 2131492970;
+			public const int buttonVraag4 = 2131492970;
+			
+			// aapt resource value: 0x7f0c006b
+			public const int buttonVraag5 = 2131492971;
 			
 			// aapt resource value: 0x7f0c006c
-			public const int cancel_action = 2131492972;
+			public const int buttonVraag6 = 2131492972;
+			
+			// aapt resource value: 0x7f0c006d
+			public const int buttonVraag8 = 2131492973;
+			
+			// aapt resource value: 0x7f0c006f
+			public const int cancel_action = 2131492975;
 			
 			// aapt resource value: 0x7f0c0044
 			public const int checkbox = 2131492932;
 			
-			// aapt resource value: 0x7f0c0072
-			public const int chronometer = 2131492978;
+			// aapt resource value: 0x7f0c0075
+			public const int chronometer = 2131492981;
 			
 			// aapt resource value: 0x7f0c0028
 			public const int collapseActionView = 2131492904;
 			
 			// aapt resource value: 0x7f0c003c
 			public const int contentPanel = 2131492924;
+			
+			// aapt resource value: 0x7f0c0062
+			public const int continueButton = 2131492962;
 			
 			// aapt resource value: 0x7f0c0042
 			public const int custom = 2131492930;
@@ -1909,8 +1912,8 @@ namespace AndroidBicycleInfo
 			// aapt resource value: 0x7f0c0025
 			public const int end = 2131492901;
 			
-			// aapt resource value: 0x7f0c0077
-			public const int end_padder = 2131492983;
+			// aapt resource value: 0x7f0c007a
+			public const int end_padder = 2131492986;
 			
 			// aapt resource value: 0x7f0c0030
 			public const int expand_activities_button = 2131492912;
@@ -1939,17 +1942,17 @@ namespace AndroidBicycleInfo
 			// aapt resource value: 0x7f0c0031
 			public const int image = 2131492913;
 			
-			// aapt resource value: 0x7f0c0076
-			public const int info = 2131492982;
+			// aapt resource value: 0x7f0c0079
+			public const int info = 2131492985;
 			
 			// aapt resource value: 0x7f0c0015
 			public const int light = 2131492885;
 			
-			// aapt resource value: 0x7f0c0070
-			public const int line1 = 2131492976;
+			// aapt resource value: 0x7f0c0073
+			public const int line1 = 2131492979;
 			
-			// aapt resource value: 0x7f0c0074
-			public const int line3 = 2131492980;
+			// aapt resource value: 0x7f0c0077
+			public const int line3 = 2131492983;
 			
 			// aapt resource value: 0x7f0c0016
 			public const int listMode = 2131492886;
@@ -1957,11 +1960,11 @@ namespace AndroidBicycleInfo
 			// aapt resource value: 0x7f0c0033
 			public const int list_item = 2131492915;
 			
-			// aapt resource value: 0x7f0c0062
-			public const int map = 2131492962;
+			// aapt resource value: 0x7f0c0065
+			public const int map = 2131492965;
 			
-			// aapt resource value: 0x7f0c006e
-			public const int media_actions = 2131492974;
+			// aapt resource value: 0x7f0c0071
+			public const int media_actions = 2131492977;
 			
 			// aapt resource value: 0x7f0c0026
 			public const int middle = 2131492902;
@@ -1981,35 +1984,35 @@ namespace AndroidBicycleInfo
 			// aapt resource value: 0x7f0c0038
 			public const int parentPanel = 2131492920;
 			
-			// aapt resource value: 0x7f0c007b
-			public const int place_autocomplete_clear_button = 2131492987;
-			
 			// aapt resource value: 0x7f0c007d
-			public const int place_autocomplete_powered_by_google = 2131492989;
+			public const int place_autocomplete_clear_button = 2131492989;
 			
 			// aapt resource value: 0x7f0c007f
-			public const int place_autocomplete_prediction_primary_text = 2131492991;
+			public const int place_autocomplete_powered_by_google = 2131492991;
+			
+			// aapt resource value: 0x7f0c0081
+			public const int place_autocomplete_prediction_primary_text = 2131492993;
+			
+			// aapt resource value: 0x7f0c0082
+			public const int place_autocomplete_prediction_secondary_text = 2131492994;
 			
 			// aapt resource value: 0x7f0c0080
-			public const int place_autocomplete_prediction_secondary_text = 2131492992;
+			public const int place_autocomplete_progress = 2131492992;
 			
-			// aapt resource value: 0x7f0c007e
-			public const int place_autocomplete_progress = 2131492990;
-			
-			// aapt resource value: 0x7f0c0079
-			public const int place_autocomplete_search_button = 2131492985;
-			
-			// aapt resource value: 0x7f0c007a
-			public const int place_autocomplete_search_input = 2131492986;
+			// aapt resource value: 0x7f0c007b
+			public const int place_autocomplete_search_button = 2131492987;
 			
 			// aapt resource value: 0x7f0c007c
-			public const int place_autocomplete_separator = 2131492988;
+			public const int place_autocomplete_search_input = 2131492988;
 			
-			// aapt resource value: 0x7f0c0078
-			public const int plotView = 2131492984;
+			// aapt resource value: 0x7f0c007e
+			public const int place_autocomplete_separator = 2131492990;
 			
-			// aapt resource value: 0x7f0c0083
-			public const int plotView2 = 2131492995;
+			// aapt resource value: 0x7f0c005f
+			public const int plotView = 2131492959;
+			
+			// aapt resource value: 0x7f0c0085
+			public const int plotView2 = 2131492997;
 			
 			// aapt resource value: 0x7f0c0005
 			public const int progress_circular = 2131492869;
@@ -2023,14 +2026,14 @@ namespace AndroidBicycleInfo
 			// aapt resource value: 0x7f0c005e
 			public const int returnButton = 2131492958;
 			
-			// aapt resource value: 0x7f0c0082
-			public const int routeToClosestBicyledrum = 2131492994;
+			// aapt resource value: 0x7f0c0084
+			public const int routeToClosestBicyledrum = 2131492996;
 			
 			// aapt resource value: 0x7f0c000c
 			public const int satellite = 2131492876;
 			
-			// aapt resource value: 0x7f0c0060
-			public const int saveLocation = 2131492960;
+			// aapt resource value: 0x7f0c0064
+			public const int saveLocation = 2131492964;
 			
 			// aapt resource value: 0x7f0c0020
 			public const int screen = 2131492896;
@@ -2080,8 +2083,8 @@ namespace AndroidBicycleInfo
 			// aapt resource value: 0x7f0c0045
 			public const int shortcut = 2131492933;
 			
-			// aapt resource value: 0x7f0c0081
-			public const int showClosestBicyledrum = 2131492993;
+			// aapt resource value: 0x7f0c0083
+			public const int showClosestBicyledrum = 2131492995;
 			
 			// aapt resource value: 0x7f0c001a
 			public const int showCustom = 2131492890;
@@ -2089,8 +2092,8 @@ namespace AndroidBicycleInfo
 			// aapt resource value: 0x7f0c001b
 			public const int showHome = 2131492891;
 			
-			// aapt resource value: 0x7f0c0063
-			public const int showLocationOnMap = 2131492963;
+			// aapt resource value: 0x7f0c0066
+			public const int showLocationOnMap = 2131492966;
 			
 			// aapt resource value: 0x7f0c001c
 			public const int showTitle = 2131492892;
@@ -2113,11 +2116,14 @@ namespace AndroidBicycleInfo
 			// aapt resource value: 0x7f0c0023
 			public const int src_over = 2131492899;
 			
+			// aapt resource value: 0x7f0c0060
+			public const int sreturnButton = 2131492960;
+			
 			// aapt resource value: 0x7f0c0011
 			public const int standard = 2131492881;
 			
-			// aapt resource value: 0x7f0c006d
-			public const int status_bar_latest_event_content = 2131492973;
+			// aapt resource value: 0x7f0c0070
+			public const int status_bar_latest_event_content = 2131492976;
 			
 			// aapt resource value: 0x7f0c0057
 			public const int submit_area = 2131492951;
@@ -2128,17 +2134,17 @@ namespace AndroidBicycleInfo
 			// aapt resource value: 0x7f0c000d
 			public const int terrain = 2131492877;
 			
-			// aapt resource value: 0x7f0c0075
-			public const int text = 2131492981;
+			// aapt resource value: 0x7f0c0078
+			public const int text = 2131492984;
 			
-			// aapt resource value: 0x7f0c0073
-			public const int text2 = 2131492979;
+			// aapt resource value: 0x7f0c0076
+			public const int text2 = 2131492982;
 			
 			// aapt resource value: 0x7f0c003f
 			public const int textSpacerNoButtons = 2131492927;
 			
-			// aapt resource value: 0x7f0c0071
-			public const int time = 2131492977;
+			// aapt resource value: 0x7f0c0074
+			public const int time = 2131492980;
 			
 			// aapt resource value: 0x7f0c005c
 			public const int timePicker = 2131492956;
@@ -2290,70 +2296,85 @@ namespace AndroidBicycleInfo
 			public const int BikeAgenda = 2130968601;
 			
 			// aapt resource value: 0x7f04001a
-			public const int BikeLocations = 2130968602;
+			public const int BikeContainersAndBikeThefts = 2130968602;
 			
 			// aapt resource value: 0x7f04001b
-			public const int BikeTheftsPerNeighborhood = 2130968603;
+			public const int BikeContainersAndBikeTheftsMenu = 2130968603;
 			
 			// aapt resource value: 0x7f04001c
-			public const int Main = 2130968604;
+			public const int BikeLocations = 2130968604;
 			
 			// aapt resource value: 0x7f04001d
-			public const int notification_media_action = 2130968605;
+			public const int BikeTheft = 2130968605;
 			
 			// aapt resource value: 0x7f04001e
-			public const int notification_media_cancel_action = 2130968606;
+			public const int BikeTheftMenu = 2130968606;
 			
 			// aapt resource value: 0x7f04001f
-			public const int notification_template_big_media = 2130968607;
+			public const int BikeTheftsPerNeighborhood = 2130968607;
 			
 			// aapt resource value: 0x7f040020
-			public const int notification_template_big_media_narrow = 2130968608;
+			public const int Main = 2130968608;
 			
 			// aapt resource value: 0x7f040021
-			public const int notification_template_lines = 2130968609;
+			public const int notification_media_action = 2130968609;
 			
 			// aapt resource value: 0x7f040022
-			public const int notification_template_media = 2130968610;
+			public const int notification_media_cancel_action = 2130968610;
 			
 			// aapt resource value: 0x7f040023
-			public const int notification_template_part_chronometer = 2130968611;
+			public const int notification_template_big_media = 2130968611;
 			
 			// aapt resource value: 0x7f040024
-			public const int notification_template_part_time = 2130968612;
+			public const int notification_template_big_media_narrow = 2130968612;
 			
 			// aapt resource value: 0x7f040025
-			public const int One_View = 2130968613;
+			public const int notification_template_lines = 2130968613;
 			
 			// aapt resource value: 0x7f040026
-			public const int place_autocomplete_fragment = 2130968614;
+			public const int notification_template_media = 2130968614;
 			
 			// aapt resource value: 0x7f040027
-			public const int place_autocomplete_item_powered_by_google = 2130968615;
+			public const int notification_template_part_chronometer = 2130968615;
 			
 			// aapt resource value: 0x7f040028
-			public const int place_autocomplete_item_prediction = 2130968616;
+			public const int notification_template_part_time = 2130968616;
 			
 			// aapt resource value: 0x7f040029
-			public const int place_autocomplete_progress = 2130968617;
+			public const int One_View = 2130968617;
 			
 			// aapt resource value: 0x7f04002a
-			public const int RouteCalculator = 2130968618;
+			public const int place_autocomplete_fragment = 2130968618;
 			
 			// aapt resource value: 0x7f04002b
-			public const int select_dialog_item_material = 2130968619;
+			public const int place_autocomplete_item_powered_by_google = 2130968619;
 			
 			// aapt resource value: 0x7f04002c
-			public const int select_dialog_multichoice_material = 2130968620;
+			public const int place_autocomplete_item_prediction = 2130968620;
 			
 			// aapt resource value: 0x7f04002d
-			public const int select_dialog_singlechoice_material = 2130968621;
+			public const int place_autocomplete_progress = 2130968621;
 			
 			// aapt resource value: 0x7f04002e
-			public const int support_simple_spinner_dropdown_item = 2130968622;
+			public const int Question_Two = 2130968622;
 			
 			// aapt resource value: 0x7f04002f
-			public const int Two_Views = 2130968623;
+			public const int RouteCalculator = 2130968623;
+			
+			// aapt resource value: 0x7f040030
+			public const int select_dialog_item_material = 2130968624;
+			
+			// aapt resource value: 0x7f040031
+			public const int select_dialog_multichoice_material = 2130968625;
+			
+			// aapt resource value: 0x7f040032
+			public const int select_dialog_singlechoice_material = 2130968626;
+			
+			// aapt resource value: 0x7f040033
+			public const int support_simple_spinner_dropdown_item = 2130968627;
+			
+			// aapt resource value: 0x7f040034
+			public const int Two_Views = 2130968628;
 			
 			static Layout()
 			{
