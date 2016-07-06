@@ -35,7 +35,7 @@ namespace AndroidBicycleInfo
 			foreach (District entry in results)
 			{
 				spinnerN.Add(entry.name);
-				Neighborhoods[entry.id] = entry.name;
+				this.Neighborhoods[entry.id] = entry.name;
 			}
 
 			// Set up our adapter for the spinner

@@ -7,7 +7,7 @@ using System;
 
 namespace AndroidBicycleInfo
 {
-	[Activity(Label = "Main Menu", MainLauncher = true, Icon = "@mipmap/icon")]
+	[Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@mipmap/icon")]
 	public class MainActivity : Activity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
@@ -18,7 +18,7 @@ namespace AndroidBicycleInfo
 			SetContentView(Resource.Layout.Main);
 			Database.Boot(this);
 
-            Menu menu = new Menu(this);
+            new Menu(this);
 		}
 
 		protected void registerReturnButton()
