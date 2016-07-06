@@ -12,8 +12,8 @@ namespace AndroidBicycleInfo
 	[Activity(Label = "@string/us_4")]
 	public class BikeTheftColorsAndBrandsActivity : MainActivity
 	{
-		private Diagram TheftByBrand = new Diagram("Top 5 gestolen fietsen op basis van merk");
-		private Diagram TheftByColor = new Diagram("Top 5 gestolen fietsen op basis van kleur");
+		private Diagram TheftByBrand = new Diagram("Gestolen fietsen op basis van merk");
+		private Diagram TheftByColor = new Diagram("Gestolen fietsen op basis van kleur");
 
         Dictionary<string, int> BrandData = new Dictionary<string, int>();
         Dictionary<string, int> ColorData = new Dictionary<string, int>();
