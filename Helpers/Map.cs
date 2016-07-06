@@ -51,19 +51,24 @@ namespace AndroidBicycleInfo
 		}
 
 		// Get all the bikecontainers from the database
-		public static List<Tuple<double, double>> GetBikeContainer()
+		public static List<Tuple<double, double, string>> GetBikeContainer()
 		{
 			// Get data from the database
-			var locations = new List<Tuple<double, double>>();
 			var db = Database.Load();
-			string TopContainersQuery = "Select lat, long as lon FROM bikecontainers";
+			string TopContainersQuery = "Select lat, long as lon, street_id FROM bikecontainers";
 			var results = db.Query<BikeContainer>(TopContainersQuery);
-			results.ForEach(value => locations.Add(new Tuple<double, double>(value.lat, value.lon)));
+			var locations = new List<Tuple<double, double, string>>();
+
+			//results.ForEach(value => locations.Add(new Tuple<double, double>(value.lat, value.lon)));
 			foreach (var value in results)
 			{
 				string latConverted = value.lat.ToString().Insert(2, ".");
-				string lonConverted = value.lon.ToString().Insert(1, "."); ;
-				locations.Add(new Tuple<double, double>(double.Parse(latConverted), double.Parse(lonConverted)));
+				string lonConverted = value.lon.ToString().Insert(1, ".");
+				string StreetNameQuery = "Select name FROM streets where id = " + value.street_id;
+				var StreetNameQueryResult = db.Query<Street>(StreetNameQuery);
+				var streetname = StreetNameQueryResult[0].name;
+				//locations.Add(new Tuple<double, double>(double.Parse(latConverted), double.Parse(lonConverted)));
+				locations.Add(new Tuple<double, double, string>(double.Parse(latConverted), double.Parse(lonConverted), streetname));
 			}
 			return locations;
 		}
@@ -72,14 +77,14 @@ namespace AndroidBicycleInfo
 		// Create a marker for the current location
 		public static void CreateMarkersForBicyleDrums(Location currentLocation, GoogleMap map)
 		{
-			List<Tuple<double, double>> locations = GetBikeContainer();
+			List<Tuple<double, double, string>> locations = GetBikeContainer();
 
-			foreach (var location in locations)
+			foreach (var locationInfo in locations)
 			{
-				LatLng LatLngLocation = new LatLng(location.Item1, location.Item2);
+				LatLng LatLngLocation = new LatLng(locationInfo.Item1, locationInfo.Item2);
 				MarkerOptions markerOpt1 = new MarkerOptions();
 				markerOpt1.SetPosition(LatLngLocation);
-				markerOpt1.SetTitle("Something");
+				markerOpt1.SetTitle(locationInfo.Item3);
 				map.AddMarker(markerOpt1);
 			}
 		}
@@ -90,7 +95,7 @@ namespace AndroidBicycleInfo
 			LatLng currentLocationConverted = new LatLng(currentLocation.Latitude, currentLocation.Longitude);
 			double closestLocation = 0;
 			LatLng cameraPosition = new LatLng(currentLocation.Latitude, currentLocation.Longitude); ;
-			List<Tuple<double, double>> locations = GetBikeContainer();
+			List<Tuple<double, double, string>> locations = GetBikeContainer();
 
 			foreach (var location in locations)
 			{
@@ -129,7 +134,8 @@ namespace AndroidBicycleInfo
 			double dLat = toRadian(pos2.Latitude - pos1.Latitude);
 			double dLon = toRadian(pos2.Longitude - pos1.Longitude);
 
-			double a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
+			double a = 
+				Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
 				Math.Cos(toRadian(pos1.Latitude)) * Math.Cos(toRadian(pos2.Latitude)) *
 				Math.Sin(dLon / 2) * Math.Sin(dLon / 2);
 			double c = 2 * Math.Asin(Math.Min(1, Math.Sqrt(a)));

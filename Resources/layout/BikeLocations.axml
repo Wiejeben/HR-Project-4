@@ -8,11 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/returnButton" />
-    <Button
-        android:text="@string/showInMapLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/showLocationOnMap" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

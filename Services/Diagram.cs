@@ -14,6 +14,9 @@ namespace AndroidBicycleInfo
 		private string YLabel;
 		private PlotModel Model;
 
+		// For the pie chart
+		private OxyColor Color;
+
 		public Diagram(string title = "", string yLabel = "", string xLabel = "")
 		{
 			this.Title = title;
@@ -28,8 +31,8 @@ namespace AndroidBicycleInfo
 				LegendPosition = LegendPosition.BottomCenter,
 				LegendOrientation = LegendOrientation.Horizontal,
 				LegendBorderThickness = 0,
-				DefaultFontSize = 26,
-				TitleFontSize = 26
+				DefaultFontSize = 20,
+				TitleFontSize = 20
 			};
 		}
 
@@ -91,7 +94,7 @@ namespace AndroidBicycleInfo
 			return this.Model;
 		}
 
-		public PlotModel CreatePieModel(Dictionary<string, int> data)
+		public PlotModel CreatePieModel(Dictionary<string, int> data, bool colors = false)
 		{
 			// Pie chart properties	
 			PieSeries pieChart = new PieSeries
@@ -100,12 +103,37 @@ namespace AndroidBicycleInfo
 				InsideLabelPosition = 0.5,
 				AngleSpan = 360,
 				StartAngle = 0,
-				FontSize = 26
+				FontSize = 20
 			};
 
 			foreach (KeyValuePair<string, int> entry in data)
 			{
-				pieChart.Slices.Add(new PieSlice(entry.Key, entry.Value) { IsExploded = true });
+				if (colors)
+				{
+					switch (entry.Key)
+					{
+						case "Zwart":
+							this.Color = OxyColors.Black;
+							break;
+						case "Blauw":
+							this.Color = OxyColors.Blue;
+							break;
+						case "Wit":
+							this.Color = OxyColors.White;
+							break;
+						case "Rood":
+							this.Color = OxyColors.Red;
+							break;
+						case "Grijs":
+							this.Color = OxyColors.Gray;
+							break;
+					}
+
+					pieChart.Slices.Add(new PieSlice(entry.Key, entry.Value) { IsExploded = true, Fill = this.Color, Label = "" });
+				}
+				else {
+					pieChart.Slices.Add(new PieSlice(entry.Key, entry.Value) { IsExploded = true });
+				}
 			}
 
 			this.Model.Series.Add(pieChart);
@@ -126,7 +154,7 @@ namespace AndroidBicycleInfo
 			LinearAxis xAxis = new LinearAxis
 			{
 				Position = AxisPosition.Bottom,
-				Minimum = 0,
+				Minimum = 1,
 				Maximum = 12,
 				AbsoluteMinimum = 0,
 				Title = Xlabel,

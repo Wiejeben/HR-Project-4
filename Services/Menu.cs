@@ -22,7 +22,6 @@ namespace AndroidBicycleInfo
                 {Activity.FindViewById<Button>(Resource.Id.buttonVraag4), typeof(BikeTheftColorsAndBrandsActivity) },
                 {Activity.FindViewById<Button>(Resource.Id.buttonVraag5), typeof(BikeTheftsPerMonthActivity) },
                 {Activity.FindViewById<Button>(Resource.Id.buttonVraag6), typeof(BikeAgendaActivity) },
-                {Activity.FindViewById<Button>(Resource.Id.buttonVraag7), typeof(BikeTheftsPerNeighborhoodActivity) },
                 {Activity.FindViewById<Button>(Resource.Id.buttonVraag8), typeof(RouteCalculatorActivity) },
             };
 

@@ -7,7 +7,7 @@ CREATE TABLE `streets` (
 );
 CREATE TABLE `districts` (
 	`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-	`name`	TEXT
+	`name`	TEXT NOT NULL
 );
 CREATE TABLE `colors` (
 	`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -30,8 +30,9 @@ CREATE TABLE "bikethefts" (
 );
 CREATE TABLE "bikecontainers" (
 	`id`	TEXT NOT NULL,
+	`date`	INTEGER NOT NULL,
 	`lat`	DOUBLE,
-	`long`	DOUBLE,
+	`long`	DOUBLE, 
 	`street_id`	INTEGER,
 	PRIMARY KEY(id),
 	FOREIGN KEY(street_id) REFERENCES streets(id)

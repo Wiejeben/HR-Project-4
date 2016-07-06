@@ -17,47 +17,16 @@ namespace ImportBicycleInfo
         public string Brand;
         public DateTime DateTime;
         private string District;
-        private string street;
+        private string Street;
 
-        public string Street
-        {
-            get
-            {
-                return street;
-            }
-
-            set
-            {
-                JObject json = new GoogleGeocodeAPI(value + ", Rotterdam, The Netherlands").Result;
-                var results = json.SelectToken("results");
-                var result = results.First()["address_components"];
-
-                foreach (var item in result)
-                {
-                    string type = item.SelectToken("types").Last().Value<string>();
-
-                    // Streetname
-                    if (type == "route")
-                    {
-                        this.street = item.SelectToken("long_name").Value<string>();
-                    }
-
-                    // City area
-                    if (type == "sublocality_level_1")
-                    {
-                        this.District = item.SelectToken("long_name").Value<string>();
-                    }
-                }
-            }
-        }
-
-        public BikeTheft(string ID, string street, string brand, string color, DateTime dateTime)
+        public BikeTheft(string ID, string street, string district, string brand, string color, DateTime dateTime)
         {
             this.ID = ID;
             this.DateTime = dateTime;
             this.Brand = brand;
             this.Color = color;
-            this.Street = street;  
+            this.Street = street;
+            this.District = district;
         }
 
         public static bool ValidCSVRow(string[] row)
@@ -68,6 +37,7 @@ namespace ImportBicycleInfo
             string dateTime = row[11];
             string street = row[9];
             string type = row[21];
+            string place = row[7];
 
             // Validation
             return !(dateTime == "" ||
@@ -79,7 +49,8 @@ namespace ImportBicycleInfo
                 brand == "" ||
                 brand == "-" ||
                 brand == "#N/A" ||
-                type == "FIETS"
+                type == "FIETS" ||
+                place == "ROTTERDAM"
             );
         }
 
@@ -89,14 +60,19 @@ namespace ImportBicycleInfo
             string ID = row[0];
             string color = format.ToTitleCase(row[24].ToLower());
             string brand = format.ToTitleCase(row[22].ToLower());
-            string street = format.ToTitleCase(row[9].ToLower());
             DateTime dateTime = DateTime.ParseExact(row[11], "dd-MM-yy", CultureInfo.InvariantCulture);
 
-            return new BikeTheft(ID, street, brand, color, dateTime);
+            string street = format.ToTitleCase(row[9].ToLower());
+            GoogleLocation location = GoogleGeocodeAPI.GetStreetAndDistrict(street + " Rotterdam");
+            
+            return new BikeTheft(ID, location.Street, location.District, brand, color, dateTime);
         }
 
         public override bool InsertDB(SQLiteConnection connection)
         {
+            if (this.Street == null || this.District == null)
+                return false;
+
             this.Connection = connection;
 
             int brandID = this.GetOrSet("brands", this.Brand);
