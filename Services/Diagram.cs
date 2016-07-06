@@ -14,9 +14,6 @@ namespace AndroidBicycleInfo
 		private string YLabel;
 		private PlotModel Model;
 
-		// For the pie chart
-		private OxyColor Color;
-
 		public Diagram(string title = "", string yLabel = "", string xLabel = "")
 		{
 			this.Title = title;
@@ -110,7 +107,7 @@ namespace AndroidBicycleInfo
 			{
 				if (colors)
 				{
-					OxyColor color;
+					OxyColor color = OxyColors.Gray;
 					bool foundColor = true;
 
 					switch (entry.Key)
