@@ -47,7 +47,17 @@ namespace AndroidBicycleInfo
             {
                 Option<Button> ButtonOption = new Some<Button>(entry.Key);
                 ButtonOption.Visit<Button>(()=> { throw new Exception("Not a button!"); }, 
-                    button => { button.Click += delegate { this.StartActivity(entry.Value); }; return button; });
+                    button => { button.Click += delegate { 
+						if (General.LocationStatus(this.Activity)) {
+							this.StartActivity(entry.Value); 
+						}
+						else
+						{
+							Toast.MakeText(this.Activity, "Locatie staat uit", ToastLength.Short).Show();
+						}
+					}; 
+					return button; 
+				});
             }
         }
 
