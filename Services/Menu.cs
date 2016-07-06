@@ -17,7 +17,7 @@ namespace AndroidBicycleInfo
             Dictionary<Button, Type> ButtonDictionary = new Dictionary<Button, Type>()
             {
                 {Activity.FindViewById<Button>(Resource.Id.buttonVraag1), typeof(BikeLocationsActivity) },
-                {Activity.FindViewById<Button>(Resource.Id.buttonVraag2), typeof(BikeContainersAndBikeTheftsActivity) },
+                {Activity.FindViewById<Button>(Resource.Id.buttonVraag2), typeof(BikeContainersAndBikeTheftsMenuActivity) },
                 {Activity.FindViewById<Button>(Resource.Id.buttonVraag3), typeof(BikeContainerNeighborhoodsActivity) },
                 {Activity.FindViewById<Button>(Resource.Id.buttonVraag4), typeof(BikeTheftColorsAndBrandsActivity) },
                 {Activity.FindViewById<Button>(Resource.Id.buttonVraag5), typeof(BikeTheftsPerMonthActivity) },
