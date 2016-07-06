@@ -110,26 +110,62 @@ namespace AndroidBicycleInfo
 			{
 				if (colors)
 				{
+					OxyColor color;
+					bool foundColor = true;
+
 					switch (entry.Key)
 					{
 						case "Zwart":
-							this.Color = OxyColors.Black;
+							color = OxyColors.Black;
 							break;
 						case "Blauw":
-							this.Color = OxyColors.Blue;
+							color = OxyColors.Blue;
 							break;
 						case "Wit":
-							this.Color = OxyColors.White;
+							color = OxyColors.White;
 							break;
 						case "Rood":
-							this.Color = OxyColors.Red;
+							color = OxyColors.Red;
 							break;
 						case "Grijs":
-							this.Color = OxyColors.Gray;
+							color = OxyColors.Gray;
+							break;
+						case "Oranje":
+							color = OxyColors.Orange;
+							break;
+						case "Zilverkleurig":
+							color = OxyColors.Silver;
+							break;
+						case "Beige":
+							color = OxyColors.Beige;
+							break;
+						case "Geel":
+							color = OxyColors.Yellow;
+							break;
+						case "Groen":
+							color = OxyColors.Green;
+							break;
+						case "Paars":
+							color = OxyColors.Purple;
+							break;
+						case "Bruin":
+							color = OxyColors.Brown;
+							break;
+						case "Goudkleurig":
+							color = OxyColors.Gold;
+							break;
+						case "Roze":
+							color = OxyColors.Pink;
+							break;
+						default:
+							foundColor = false;
 							break;
 					}
 
-					pieChart.Slices.Add(new PieSlice(entry.Key, entry.Value) { IsExploded = true, Fill = this.Color, Label = "" });
+					if (foundColor)
+					{
+						pieChart.Slices.Add(new PieSlice(entry.Key, entry.Value) { IsExploded = true, Fill = color, Label = "" });
+					}
 				}
 				else {
 					pieChart.Slices.Add(new PieSlice(entry.Key, entry.Value) { IsExploded = true });
