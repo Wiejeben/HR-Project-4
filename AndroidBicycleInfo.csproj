@@ -91,6 +91,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\BikeContainersAndBikeTheftsMenuActivity.cs" />
+    <Compile Include="Activities\BikeTheftMenuActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -117,13 +119,17 @@
     <Compile Include="Activities\BikeTheftsPerNeighborhoodActivity.cs" />
     <Compile Include="Activities\RouteCalculatorActivity.cs" />
     <Compile Include="Helpers\BikeLocationsElements.cs" />
-    <Compile Include="Activities\BikeContainersAndBikeTheftsMenuActivity.cs" />
-    <Compile Include="Activities\BikeTheftMenuActivity.cs" />
+    <Compile Include="Services\Visitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="packages.config" />
+    <AndroidResource Include="Resources\layout\BikeContainersAndBikeThefts.axml" />
+    <AndroidResource Include="Resources\layout\BikeContainersAndBikeTheftsMenu.axml" />
+    <AndroidResource Include="Resources\layout\BikeTheft.axml" />
+    <AndroidResource Include="Resources\layout\BikeTheftMenu.axml" />
+    <AndroidResource Include="Resources\layout\Question_Two.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
@@ -139,10 +145,6 @@
     <AndroidResource Include="Resources\layout\BikeTheftsPerNeighborhood.axml" />
     <AndroidResource Include="Resources\layout\BikeAgenda.axml" />
     <AndroidResource Include="Resources\layout\RouteCalculator.axml" />
-    <AndroidResource Include="Resources\layout\BikeContainersAndBikeTheftsMenu.axml" />
-    <AndroidResource Include="Resources\layout\BikeContainersAndBikeThefts.axml" />
-    <AndroidResource Include="Resources\layout\BikeTheftMenu.axml" />
-    <AndroidResource Include="Resources\layout\BikeTheft.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

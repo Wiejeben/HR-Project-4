@@ -3,6 +3,7 @@ using Android.Widget;
 using Android.OS;
 using System;
 using AndroidBicycleInfo;
+using System.Collections.Generic;
 
 namespace AndroidBicycleInfo
 {
@@ -12,26 +13,20 @@ namespace AndroidBicycleInfo
 
 		public Menu(Activity activity)
 		{
-			this.Activity = activity;
+            this.Activity = activity;
+            Dictionary<Button, Type> ButtonDictionary = new Dictionary<Button, Type>()
+            {
+                {Activity.FindViewById<Button>(Resource.Id.buttonVraag1), typeof(BikeLocationsActivity) },
+                {Activity.FindViewById<Button>(Resource.Id.buttonVraag2), typeof(BikeContainersAndBikeTheftsMenuActivity) },
+                {Activity.FindViewById<Button>(Resource.Id.buttonVraag3), typeof(BikeContainerNeighborhoodsActivity) },
+                {Activity.FindViewById<Button>(Resource.Id.buttonVraag4), typeof(BikeTheftColorsAndBrandsActivity) },
+                {Activity.FindViewById<Button>(Resource.Id.buttonVraag5), typeof(BikeTheftsPerMonthActivity) },
+                {Activity.FindViewById<Button>(Resource.Id.buttonVraag6), typeof(BikeAgendaActivity) },
+                {Activity.FindViewById<Button>(Resource.Id.buttonVraag8), typeof(RouteCalculatorActivity) },
+            };
 
-			// Assign element
-			Button bikeLocationsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag1);
-			Button bikeContainersAndBikeTheftsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag2);
-			Button bikeContainerNeighborhoodsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag3);
-			Button bikeTheftColorsAndBrandsActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag4);
-			Button bikeTheftsPerMonthActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag5);
-			Button bikeAgendaActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag6);
-			Button routeCalculatorActivity = Activity.FindViewById<Button>(Resource.Id.buttonVraag8);
-
-			// Assign events
-			bikeLocationsActivity.Click += delegate { this.LocationCheck(typeof(BikeLocationsActivity)); };
-			bikeContainersAndBikeTheftsActivity.Click += delegate { this.StartActivity(typeof(BikeContainersAndBikeTheftsMenuActivity)); };
-			bikeContainerNeighborhoodsActivity.Click += delegate { this.StartActivity(typeof(BikeContainerNeighborhoodsActivity)); };
-			bikeTheftColorsAndBrandsActivity.Click += delegate { this.StartActivity(typeof(BikeTheftColorsAndBrandsActivity)); };
-			bikeTheftsPerMonthActivity.Click += delegate { this.StartActivity(typeof(BikeTheftMenuActivity)); };
-			bikeAgendaActivity.Click += delegate { this.LocationCheck(typeof(BikeAgendaActivity)); };
-			routeCalculatorActivity.Click += delegate { this.LocationCheck(typeof(RouteCalculatorActivity)); };
-		}
+            this.InitializeMenu(ButtonDictionary);
+        }
 
 		private void LocationCheck(Type type)
 		{
@@ -44,6 +39,17 @@ namespace AndroidBicycleInfo
 				Toast.MakeText(this.Activity, "Locatie staat uit", ToastLength.Short).Show();
 			}
 		}
+
+        // Initialize the menu and add the click functions to buttons
+        private void InitializeMenu(Dictionary<Button, Type> ButtonDictionary)
+        {
+            foreach(var entry in ButtonDictionary)
+            {
+                Option<Button> ButtonOption = new Some<Button>(entry.Key);
+                ButtonOption.Visit<Button>(()=> { throw new Exception("Not a button!"); }, 
+                    button => { button.Click += delegate { this.StartActivity(entry.Value); }; return button; });
+            }
+        }
 
 		private void StartActivity(Type type)
 		{
