@@ -7,7 +7,7 @@
         android:id="@+id/spinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:prompt="@string/selectNeighborhood" />
+        android:prompt="@string/selectYear" />
     <Button
         android:text="@string/continueLabel"
         android:layout_width="match_parent"

@@ -1,9 +1,7 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -13,7 +11,7 @@ using Android.Widget;
 
 namespace AndroidBicycleInfo
 {
-	[Activity(Label = "@string/us_2_menu")]
+	[Activity(Label = "@string/us_5")]
 	public class BikeTheftMenuActivity : MainActivity
 	{
 		// For the spinner
@@ -22,7 +20,7 @@ namespace AndroidBicycleInfo
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-			SetContentView(Resource.Layout.BikeContainersAndBikeTheftsMenu);
+			SetContentView(Resource.Layout.BikeTheftMenu);
 			this.registerReturnButton();
 
 			// Query & getting the results.
@@ -32,10 +30,7 @@ namespace AndroidBicycleInfo
 			// Adding the data to the list.
 			foreach (BikeTheft entry in results)
 			{
-				if (entry.year != 1992 && entry.year != 2020)
-				{
-					spinnerN.Add(entry.year);
-				}
+				spinnerN.Add(entry.year);
 			}
 
 			// Set up our adapter for the spinner

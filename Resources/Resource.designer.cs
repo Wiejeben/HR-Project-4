@@ -2576,6 +2576,9 @@ namespace AndroidBicycleInfo
 			// aapt resource value: 0x7f060045
 			public const int selectNeighborhood = 2131099717;
 			
+			// aapt resource value: 0x7f060046
+			public const int selectYear = 2131099718;
+			
 			// aapt resource value: 0x7f060038
 			public const int showInMapLabel = 2131099704;
 			
